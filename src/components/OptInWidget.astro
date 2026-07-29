@@ -1,0 +1,134 @@
+---
+/**
+ * GoHighLevel A2P compliance chat widget.
+ *
+ * This replaces the previous hand-built opt-in form. The widget is the artifact
+ * GoHighLevel generates during a sub-account's A2P 10DLC registration, and its
+ * consent language is bound to that registration record. Using it means the
+ * consent a carrier reviewer reads on this page is the same consent the carrier
+ * has on file, which is exactly what the MESSAGE_FLOW rejection code grades.
+ *
+ * Do not replace this with an <iframe src="https://api.leadconnectorhq.com/widget/form/...">.
+ * That is a GHL lead-capture FORM and embedding one is part of what got the
+ * original campaign rejected. This is a different artifact on a different host
+ * (widgets.leadconnectorhq.com) loaded by script, not by frame.
+ *
+ * The widget mounts as a launcher in the lower right of the viewport and expands
+ * into the consent panel. Because a reviewer may read the page without opening
+ * it, the exact consent wording is also reproduced below as quoted text.
+ */
+import { company, type Brand } from '../data/company';
+
+interface Props {
+  brand: Brand;
+}
+
+const { brand } = Astro.props;
+const widgetId = brand.chatWidgetId;
+
+const scriptTag = widgetId
+  ? `<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="${widgetId}"></script>`
+  : '';
+---
+
+{
+  widgetId ? (
+    <div class="widget-block">
+      <p class="widget-instruction">
+        <strong>The sign up form is the chat panel on this page.</strong> Open it with
+        the button in the lower right corner of your screen, enter your name and the
+        mobile number that should receive the messages, then check the consent box or
+        boxes that apply and press Send.
+      </p>
+
+      <div class="widget-consent">
+        <p class="widget-consent-label">
+          The consent you are asked to give, word for word:
+        </p>
+        <blockquote>
+          By submitting, you authorize {company.legalName.replace(/\.$/, '')} to
+          text/call the number above for informational/transactional messages, possibly
+          using automated means. Msg/data rates apply, msg frequency varies. Consent is
+          not a condition of purchase. See terms and privacy policy. Text HELP for help
+          and STOP to unsubscribe.
+        </blockquote>
+        <p class="widget-consent-label">
+          And, separately, for promotional messages:
+        </p>
+        <blockquote>
+          By submitting, you authorize {company.legalName.replace(/\.$/, '')} to
+          text/call the number above for promotional messages, possibly using automated
+          means. Msg/data rates apply, msg frequency varies. Consent is not a condition
+          of purchase. See terms and privacy policy. Text HELP for help and STOP to
+          unsubscribe.
+        </blockquote>
+        <p>
+          You may check either box, both, or neither. Checking neither means we will not
+          text you. Consent is not a condition of purchase and you can withdraw it at
+          any time by replying STOP.
+        </p>
+      </div>
+
+      <Fragment set:html={scriptTag} />
+    </div>
+  ) : (
+    <div class="widget-block">
+      <div class="note note-pending">
+        <p>
+          <strong>The {brand.name} sign up form is being provisioned.</strong>
+        </p>
+        <p>
+          This brand's text message program is completing carrier registration. Until
+          that finishes there is no way to sign up for text messages here, and we are
+          not sending any.
+        </p>
+        <p>
+          To reach us in the meantime, call <a href={brand.phoneHref}>{brand.phone}</a>{' '}
+          or email <a href={company.emailHref}>{company.email}</a>.
+        </p>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .widget-block {
+    margin: 1.5rem 0 0;
+  }
+
+  .widget-instruction {
+    margin-bottom: 1.25rem;
+  }
+
+  .widget-consent {
+    border: 1px solid var(--line, #dfe3e8);
+    border-left: 3px solid var(--accent, #0b6b3a);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    background: var(--soft, #f6f8fa);
+  }
+
+  .widget-consent-label {
+    margin: 0 0 0.4rem;
+    font-weight: 600;
+  }
+
+  .widget-consent blockquote {
+    margin: 0 0 1rem;
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--line, #dfe3e8);
+    font-style: normal;
+  }
+
+  .widget-consent p:last-child {
+    margin-bottom: 0;
+  }
+
+  .note-pending {
+    border: 1px solid var(--line, #dfe3e8);
+    border-left: 3px solid var(--accent, #0b6b3a);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    background: var(--soft, #f6f8fa);
+  }
+</style>

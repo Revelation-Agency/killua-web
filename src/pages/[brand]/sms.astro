@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import OptInForm from '../../components/OptInForm.astro';
+import OptInWidget from '../../components/OptInWidget.astro';
 import SmsDisclosureTable from '../../components/SmsDisclosureTable.astro';
 import {
   CARRIER_DISCLOSURE,
@@ -97,12 +97,12 @@ const description = `Sign up to receive text messages from ${brand.name}. Progra
     <section class="section">
       <h2>Sign up</h2>
       <p>
-        Fill in your name and the mobile number that should receive the messages, then
-        check the consent box. The consent box is required, and the form cannot be
-        submitted without it.
+        Sign up is handled by the {company.legalName} chat panel on this page. It is the
+        only place on this website where a phone number is collected, and it is the same
+        consent record our messaging carrier holds on file.
       </p>
 
-      <OptInForm brand={brand} />
+      <OptInWidget brand={brand} />
     </section>
 
     <section class="section">

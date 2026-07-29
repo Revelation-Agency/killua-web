@@ -44,9 +44,9 @@ const description = `${brand.name}, a division of ${company.legalName} in Fresno
 
     <section class="section">
       <h2>What we do</h2>
-      <ul class="prose">
-        {brand.services.map((service) => <li>{service}</li>)}
-      </ul>
+      <p class="prose">
+        {company.legalName} {brand.provides}. {brand.summary}
+      </p>
     </section>
 
     <section class="section">

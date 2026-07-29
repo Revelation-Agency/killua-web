@@ -36,7 +36,7 @@ const FIVE_DISCLOSURES = [
 ];
 
 const PLACEHOLDER_PATTERNS = [
-  ['bracketed placeholder', /\[[A-Za-z][A-Za-z0-9 _.-]{1,48}\]/g],
+  ['bracketed placeholder', /\[(?!data-astro-cid-)[A-Za-z][A-Za-z0-9 _.-]{1,48}\]/g],
   ['handlebars placeholder', /\{\{/g],
   ['TODO marker', /TODO/g],
   ['lorem ipsum', /lorem ipsum/gi],
@@ -50,7 +50,8 @@ const BANNED_STRINGS = [
   ['localStorage', 'localStorage'],
   ['sessionStorage', 'sessionStorage'],
   ['document.cookie', 'document.cookie'],
-  ['leadconnectorhq embed', 'leadconnectorhq'],
+  ['GHL lead-capture form host', 'api.leadconnectorhq.com'],
+  ['iframe embed', '<iframe'],
   ['google fonts', 'fonts.googleapis'],
   ['google analytics', 'googletagmanager'],
 ];
@@ -179,24 +180,60 @@ for (const brand of BRANDS) {
 }
 notes.push('mandatory no-sharing clause present verbatim on all 8 privacy/terms pages');
 
-// ------------------------------------------------ 4. one required checkbox
+// ---------------------------------- 4. GHL compliance chat widget, or nothing
+//
+// The opt-in surface is GoHighLevel's A2P compliance chat widget, not a form we
+// build. Its consent language is bound to the carrier registration record, which
+// is what MESSAGE_FLOW grades. Assertions:
+//   - we ship none of our own consent UI (no form, no tel input, no checkbox)
+//   - either exactly one widget script with a real id, or zero and a notice
+//   - the widget host is widgets.leadconnectorhq.com, never api.leadconnectorhq.com
+const WIDGET_SRC = 'https://widgets.leadconnectorhq.com/loader.js';
+let widgetPages = 0;
+let pendingPages = 0;
 for (const brand of BRANDS) {
   const route = `/${brand}/sms/`;
   const html = pages.get(route) ?? '';
-  const checkboxes = html.match(/<input[^>]*type="checkbox"[^>]*>/g) ?? [];
-  if (checkboxes.length !== 1) {
-    fail(`${route}: expected exactly 1 consent checkbox, found ${checkboxes.length}`);
-  } else if (!/\brequired\b/.test(checkboxes[0])) {
-    fail(`${route}: consent checkbox is not marked required`);
+
+  for (const [label, re] of [
+    ['form', /<form\b/g],
+    ['tel input', /<input[^>]*type="tel"/g],
+    ['checkbox', /<input[^>]*type="checkbox"/g],
+  ]) {
+    const hits = html.match(re) ?? [];
+    if (hits.length > 0) {
+      fail(`${route}: ships its own ${label} (${hits.length}); the widget must be the only consent surface`);
+    }
   }
-  if (!html.includes('express written consent')) {
-    fail(`${route}: consent label missing "express written consent"`);
+
+  const widgetTags =
+    html.match(/<script[^>]*widgets\.leadconnectorhq\.com\/loader\.js[^>]*><\/script>/g) ?? [];
+
+  if (widgetTags.length > 1) {
+    fail(`${route}: ${widgetTags.length} widget scripts; exactly one consent surface is allowed`);
+  } else if (widgetTags.length === 1) {
+    widgetPages += 1;
+    const id = /data-widget-id="([^"]+)"/.exec(widgetTags[0]);
+    if (!id || id[1].length < 12) {
+      fail(`${route}: widget script has a missing or implausible data-widget-id`);
+    }
+    if (!widgetTags[0].includes(WIDGET_SRC)) {
+      fail(`${route}: widget script is not loaded from ${WIDGET_SRC}`);
+    }
+  } else {
+    pendingPages += 1;
+    if (!/being provisioned/i.test(html)) {
+      fail(`${route}: no widget and no provisioning notice; the page offers no explanation`);
+    }
   }
-  if (!html.includes('The form cannot be submitted until it is checked')) {
-    fail(`${route}: missing visible statement that the checkbox is required`);
+
+  if (!/Consent is not a condition of purchase/.test(html)) {
+    fail(`${route}: missing "Consent is not a condition of purchase"`);
   }
 }
-notes.push('each /sms/ page has exactly one consent checkbox, required, with express written consent language');
+notes.push(
+  `opt-in surface is the GHL compliance widget only (${widgetPages} live, ${pendingPages} pending registration), no hand-built consent UI`
+);
 
 // ----------------------------------------------------- 5. five disclosures
 for (const brand of BRANDS) {
@@ -219,8 +256,10 @@ for (const [route, html] of pages) {
   const forms = html.match(/<form\b/g) ?? [];
   const inputs = html.match(/<input\b/g) ?? [];
   if (isOptIn) {
-    if (forms.length !== 1) {
-      fail(`${route}: expected exactly 1 form, found ${forms.length}`);
+    if (forms.length > 0 || inputs.length > 0) {
+      fail(
+        `${route}: opt-in pages must ship no form of our own (found ${forms.length} forms, ${inputs.length} inputs)`
+      );
     }
   } else if (forms.length > 0 || inputs.length > 0) {
     fail(
@@ -228,7 +267,7 @@ for (const [route, html] of pages) {
     );
   }
 }
-notes.push('no lead capture outside the four /sms/ pages');
+notes.push('no hand-built lead capture anywhere, including the four /sms/ pages');
 
 // ---------------------------------------------- 7. residential + commercial
 for (const brand of ['solar', 'roofing']) {
@@ -254,11 +293,18 @@ for (const [route, html] of pages) {
     ...(html.match(/(?:src|href)="https?:\/\/[^"]+"/g) ?? []),
     ...(html.match(/(?:src|href)="\/\/[^"]+"/g) ?? []),
   ];
-  if (external.length > 0) {
-    fail(`${route}: external asset reference: ${external.slice(0, 2).join(', ')}`);
+  const isOptInRoute = /^\/[a-z]+\/sms\/$/.test(route);
+  const disallowed = external.filter((ref) => {
+    if (isOptInRoute && ref.includes('widgets.leadconnectorhq.com')) return false;
+    return true;
+  });
+  if (disallowed.length > 0) {
+    fail(`${route}: external asset reference: ${disallowed.slice(0, 2).join(', ')}`);
   }
 }
-notes.push('zero external asset references at runtime');
+notes.push(
+  'zero external asset references at runtime, except the GHL compliance widget on /sms/ pages'
+);
 
 // -------------------------------------------------- 9. internal links resolve
 const linkRe = /href="([^"]+)"/g;
