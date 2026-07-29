@@ -1,0 +1,64 @@
+---
+import {
+  CARRIER_DISCLOSURE,
+  COST_DISCLOSURE,
+  FREQUENCY_DISCLOSURE,
+  company,
+  type Brand,
+} from '../data/company';
+
+interface Props {
+  brand: Brand;
+  caption: string;
+}
+
+const { brand, caption } = Astro.props;
+---
+
+<div class="table-scroll">
+  <table>
+    <caption>{caption}</caption>
+    <tbody>
+      <tr>
+        <th scope="row">Program name</th>
+        <td>{brand.programName}</td>
+      </tr>
+      <tr>
+        <th scope="row">Who it is for</th>
+        <td>{brand.audience}.</td>
+      </tr>
+      <tr>
+        <th scope="row">Message types</th>
+        <td>{brand.messageTypes}</td>
+      </tr>
+      <tr>
+        <th scope="row">Message frequency</th>
+        <td>{FREQUENCY_DISCLOSURE}</td>
+      </tr>
+      <tr>
+        <th scope="row">Cost</th>
+        <td>{COST_DISCLOSURE}</td>
+      </tr>
+      <tr>
+        <th scope="row">Opt out</th>
+        <td>
+          Reply STOP to any message to stop receiving text messages. We send one
+          confirmation message and then no further messages, unless you sign up
+          again.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Help</th>
+        <td>
+          Reply HELP to any message, email
+          <a href={company.emailHref}>{company.email}</a>, or call
+          <a href={brand.phoneHref}>{brand.phone}</a>.
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Carriers</th>
+        <td>{CARRIER_DISCLOSURE}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

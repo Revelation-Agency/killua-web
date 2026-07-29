@@ -1,0 +1,321 @@
+---
+import Base from '../../layouts/Base.astro';
+import NoSharingClause from '../../components/NoSharingClause.astro';
+import SmsDisclosureTable from '../../components/SmsDisclosureTable.astro';
+import {
+  COST_DISCLOSURE,
+  brands,
+  company,
+  type Brand,
+} from '../../data/company';
+
+export function getStaticPaths() {
+  return brands.map((brand) => ({
+    params: { brand: brand.slug },
+    props: { brand },
+  }));
+}
+
+interface Props {
+  brand: Brand;
+}
+
+const { brand } = Astro.props;
+
+const title = `Privacy Policy | ${brand.name} | ${company.legalName}`;
+const description = `The ${brand.name} privacy policy, including the text messaging program disclosures, mobile information sharing terms, and California privacy rights. Effective ${company.effectiveDate}.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  brandSlug={brand.slug}
+  brandPage="privacy"
+>
+  <div class="shell prose">
+    <section class="section section-first">
+      <span class="eyebrow">{brand.name}</span>
+      <h1>Privacy Policy</h1>
+      <p class="meta-line">Effective date: {company.effectiveDate}</p>
+      <p>
+        {brand.name} is a division of {company.legalName} ("{company.shortName}",
+        "we", "us" or "our"). This Privacy Policy explains what information we
+        collect, how we use it, how we share it, and what choices you have. It
+        applies to this website and to the phone calls, emails and text messages we
+        exchange with you in connection with {brand.word} work.
+      </p>
+      <p>
+        We do not sell your personal information. We do not share mobile phone
+        numbers or text messaging consent with anyone for marketing purposes. This
+        website does not use advertising cookies, tracking pixels or third party
+        analytics.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>1. Information We Collect</h2>
+      <p>We collect only what we need in order to respond to you and do the work.</p>
+      <ul>
+        <li>
+          <strong>Contact information.</strong> {brand.contactInfoLine}
+        </li>
+        <li>
+          <strong>Service details.</strong> {brand.serviceDetailsLine}
+        </li>
+        <li>
+          <strong>Communication records.</strong> Records of the calls, text
+          messages and emails between you and us, including the date and time, the
+          content of the message, the number or address used, and your consent
+          choices and any later opt out.
+        </li>
+        <li>
+          <strong>Technical data.</strong> Basic web server information such as the
+          pages requested, the date and time of the request, and the general region
+          the request came from. We do not build advertising profiles and we do not
+          load third party trackers on this site.
+        </li>
+      </ul>
+      <p>
+        We do not ask for and do not want your Social Security number, your bank
+        login credentials or your payment card number through this website.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>2. How We Use Your Information</h2>
+      <ul>
+        <li>To answer your question and respond to your request</li>
+        <li>{brand.primaryUseLine}</li>
+        <li>To schedule, confirm and remind you about appointments</li>
+        <li>{brand.deliveryUseLine}</li>
+        <li>
+          To send the text messages you have consented to receive, as described in
+          Section 4
+        </li>
+        <li>
+          To keep the records that licensing, permitting, warranty, insurance, tax
+          and employment rules require us to keep
+        </li>
+        <li>To train our team and improve how we do our work</li>
+      </ul>
+      <p>
+        We do not use your information to make automated decisions that have a legal
+        or similarly significant effect on you.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>3. How We Share Your Information</h2>
+      <p>
+        <strong>We do not sell your personal information.</strong> We do not rent,
+        trade or otherwise disclose your personal information in exchange for money
+        or other valuable consideration, and we do not share it for cross context
+        behavioral advertising.
+      </p>
+      <p>We share information only in these limited situations.</p>
+      <ul>
+        <li>
+          <strong>Service providers.</strong> Vendors who work on our behalf, such as
+          the companies that host our systems, deliver our text messages and email,
+          process payments, or perform part of the work at your property. They may
+          use the information only to provide those services to us, they are bound by
+          contract, and they may not use it for their own marketing.
+        </li>
+        <li>
+          <strong>Legal disclosure.</strong> When we are required to disclose
+          information by law, subpoena, warrant or court order, or when disclosure is
+          necessary to investigate fraud or to protect the rights, property or safety
+          of {company.shortName}, our customers, our employees or the public.
+        </li>
+        <li>
+          <strong>At your direction.</strong> When you ask us to share information
+          with a lender, utility, insurer, landlord, property manager, general
+          contractor or other party involved in your project or application.
+        </li>
+        <li>
+          <strong>Business transfer.</strong> If {company.legalName} is involved in a
+          merger, acquisition or sale of assets, information may transfer as part of
+          that transaction, subject to this Privacy Policy.
+        </li>
+      </ul>
+
+      <NoSharingClause />
+    </section>
+
+    <section class="section">
+      <h2>4. SMS / Text Messaging Program</h2>
+      <p>
+        {brand.name} operates one text messaging program. Its full details are below.
+      </p>
+
+      <SmsDisclosureTable
+        brand={brand}
+        caption={`${brand.programName} program disclosures`}
+      />
+
+      <p>
+        We send text messages only to people who have given express written consent.
+        Consent is collected {brand.consentOrigin}. You can review the exact consent
+        language and sign up on the
+        <a href={`/${brand.slug}/sms/`}>{brand.name} text message sign up page</a>.
+      </p>
+      <p>
+        <strong>Consent is not a condition of purchase.</strong> You are never
+        required to agree to receive text messages in order to buy any product or
+        service from us, to get a quote, to be considered for a role, or to receive
+        service. Declining text messages, or opting out later, does not affect your
+        ability to work with us by phone or email, and it does not change the price,
+        the availability, the schedule or the quality of anything we provide.
+      </p>
+      <p>
+        Text messaging consent is specific to the mobile number you gave us and to
+        the program described above. We do not transfer that consent to any other
+        company, any other Killua Energy division, or any other messaging program.
+        If you want messages from more than one division, each one collects its own
+        consent separately.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>5. Data Retention</h2>
+      <p>
+        We keep information only as long as we have a reason to keep it.
+        {brand.retentionLine}
+      </p>
+      <p>
+        Text messaging records, including the consent you gave, the date and time you
+        gave it, the wording you agreed to, and any later opt out, are kept for as
+        long as we message you and for at least four years after that. Carriers and
+        regulators can ask us to prove that consent existed, and this is the record
+        that proves it.
+      </p>
+      <p>
+        When a record is no longer needed for any of these purposes we delete it or
+        remove the information that identifies you.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>6. Security</h2>
+      <p>
+        We use administrative, technical and physical safeguards designed to protect
+        your information, including encrypted connections to this website, access
+        controls that limit staff access to what each role needs, and vendor
+        agreements that require our providers to protect the information we give
+        them.
+      </p>
+      <p>
+        No method of transmission or storage is completely secure, so we cannot
+        promise absolute security. If we discover a breach that affects your personal
+        information we will notify you as required by California law.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>7. Your Rights</h2>
+      <p>You may contact us at any time to:</p>
+      <ul>
+        <li>Ask what personal information we hold about you and get a copy of it</li>
+        <li>Correct information that is wrong or out of date</li>
+        <li>
+          Ask us to delete information, subject to records we are legally required to
+          keep
+        </li>
+        <li>
+          Stop receiving text messages, by replying STOP to any message or by asking
+          us directly
+        </li>
+        <li>Stop receiving marketing email, by using the unsubscribe link</li>
+      </ul>
+
+      <h3>California residents</h3>
+      <p>
+        Under the California Consumer Privacy Act as amended by the California
+        Privacy Rights Act, California residents have the right to know what personal
+        information we collect, use, disclose and sell or share, the right to request
+        a copy of that information, the right to correct inaccurate information, the
+        right to request deletion, the right to limit the use of sensitive personal
+        information, and the right to opt out of the sale or sharing of personal
+        information. {company.legalName} does not sell personal information and does
+        not share it for cross context behavioral advertising, so there is nothing to
+        opt out of, but you may still exercise every other right listed here.
+      </p>
+      <p>
+        <strong>No discrimination.</strong> We will not deny you goods or services,
+        charge you a different price, give you a lower level of quality, or suggest
+        that we might do any of those things because you exercised a privacy right.
+      </p>
+      <p>
+        To exercise a right, email
+        <a href={company.emailHref}>{company.email}</a> or call
+        <a href={brand.phoneHref}>{brand.phone}</a>. We will verify your identity
+        before we act on a request, usually by confirming details we already have on
+        file, and we will respond within the time California law allows. An
+        authorized agent may submit a request on your behalf with proof that you gave
+        them permission.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>8. Children</h2>
+      <p>
+        This website and our services are intended for adults. We do not knowingly
+        collect personal information from anyone under 16 years of age, and we do not
+        knowingly send text messages to a number belonging to anyone under 16. If you
+        believe a child under 16 has given us personal information, email
+        <a href={company.emailHref}>{company.email}</a> and we will delete it.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>9. Changes</h2>
+      <p>
+        We may update this Privacy Policy. When we do, we will change the effective
+        date at the top of this page and post the new version here. If a change
+        materially affects how we handle your information, or how the text messaging
+        program works, we will tell you before it takes effect. Continuing to use
+        this website or the messaging program after a change takes effect means you
+        accept the updated policy.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>10. Contact Us</h2>
+      <p>
+        Questions about this Privacy Policy, or about the {brand.programName}
+        program, go to:
+      </p>
+      <dl class="dl">
+        <div>
+          <dt>Entity</dt>
+          <dd>{company.legalName}, doing business as {brand.name}</dd>
+        </div>
+        <div>
+          <dt>Address</dt>
+          <dd>
+            {company.street}<br />
+            {company.city}, {company.state} {company.zip}
+          </dd>
+        </div>
+        <div>
+          <dt>Phone</dt>
+          <dd><a href={brand.phoneHref}>{brand.phone}</a></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><a href={company.emailHref}>{company.email}</a></dd>
+        </div>
+        <div>
+          <dt>Text messaging help</dt>
+          <dd>
+            Reply HELP to any message from us. {COST_DISCLOSURE}
+          </dd>
+        </div>
+      </dl>
+      <p>
+        See also the
+        <a href={`/${brand.slug}/terms/`}>{brand.name} Terms of Service</a>.
+      </p>
+    </section>
+  </div>
+</Base>

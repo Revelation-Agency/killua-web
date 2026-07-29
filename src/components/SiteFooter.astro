@@ -1,0 +1,52 @@
+---
+import { brands, company } from '../data/company';
+
+const year = 2026;
+---
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2>{company.legalName}</h2>
+        <address>
+          {company.street}<br />
+          {company.city}, {company.state} {company.zip}<br />
+          <a href={company.phoneHref}>{company.phone}</a><br />
+          <a href={company.emailHref}>{company.email}</a>
+        </address>
+      </div>
+      {
+        brands.map((brand) => (
+          <div class="footer-col">
+            <h2>{brand.name}</h2>
+            <ul>
+              <li>
+                <a href={`/${brand.slug}/`}>Overview</a>
+              </li>
+              <li>
+                <a href={`/${brand.slug}/privacy/`}>Privacy Policy</a>
+              </li>
+              <li>
+                <a href={`/${brand.slug}/terms/`}>Terms of Service</a>
+              </li>
+              <li>
+                <a href={`/${brand.slug}/sms/`}>Text Message Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+    <div class="footer-legal">
+      <p>
+        Killua Solar, Killua Roofing, Killua Recruiting and Killua Maintenance are
+        divisions of {company.legalName}
+      </p>
+      <p>
+        Copyright {year} {company.legalName} All rights reserved. Policies
+        effective {company.effectiveDate}.
+      </p>
+    </div>
+  </div>
+</footer>

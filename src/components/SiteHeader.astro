@@ -1,0 +1,72 @@
+---
+import { brands, company } from '../data/company';
+
+interface Props {
+  /** Slug of the brand currently being viewed, if any. */
+  brandSlug?: string;
+  /** Which of the four brand pages is active: home, privacy, terms or sms. */
+  brandPage?: 'home' | 'privacy' | 'terms' | 'sms';
+}
+
+const { brandSlug, brandPage } = Astro.props;
+const activeBrand = brandSlug
+  ? brands.find((candidate) => candidate.slug === brandSlug)
+  : undefined;
+---
+
+<header class="site-header">
+  <div class="shell header-row">
+    <a class="wordmark" href="/">
+      {company.legalName}
+      <span class="wordmark-sub">Fresno, California</span>
+    </a>
+    <nav class="nav" aria-label="Divisions">
+      {
+        brands.map((brand) => (
+          <a
+            href={`/${brand.slug}/`}
+            class={brand.slug === brandSlug ? 'is-current' : undefined}
+          >
+            {brand.name}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+{
+  activeBrand && (
+    <div class="brand-bar">
+      <div class="shell brand-bar-row">
+        <span class="brand-bar-label">{activeBrand.name}</span>
+        <nav class="nav" aria-label={`${activeBrand.name} pages`}>
+          <a
+            href={`/${activeBrand.slug}/`}
+            class={brandPage === 'home' ? 'is-current' : undefined}
+          >
+            Overview
+          </a>
+          <a
+            href={`/${activeBrand.slug}/privacy/`}
+            class={brandPage === 'privacy' ? 'is-current' : undefined}
+          >
+            Privacy Policy
+          </a>
+          <a
+            href={`/${activeBrand.slug}/terms/`}
+            class={brandPage === 'terms' ? 'is-current' : undefined}
+          >
+            Terms of Service
+          </a>
+          <a
+            href={`/${activeBrand.slug}/sms/`}
+            class={brandPage === 'sms' ? 'is-current' : undefined}
+          >
+            Text Message Sign Up
+          </a>
+        </nav>
+      </div>
+    </div>
+  )
+}

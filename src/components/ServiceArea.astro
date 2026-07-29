@@ -1,0 +1,25 @@
+---
+import { serviceAreas } from '../data/company';
+
+interface Props {
+  heading?: string;
+  intro?: string;
+}
+
+const {
+  heading = 'Service area',
+  intro = 'We serve residential and commercial customers across three area codes in California.',
+} = Astro.props;
+---
+
+<h2>{heading}</h2>
+<p class="prose">{intro}</p>
+<ul class="prose">
+  {
+    serviceAreas.map((area) => (
+      <li>
+        <strong>{area.areaCode}.</strong> {area.label}.
+      </li>
+    ))
+  }
+</ul>

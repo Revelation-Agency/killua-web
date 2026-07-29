@@ -1,0 +1,324 @@
+---
+import Base from '../../layouts/Base.astro';
+import NoSharingClause from '../../components/NoSharingClause.astro';
+import {
+  CARRIER_DISCLOSURE,
+  COST_DISCLOSURE,
+  FREQUENCY_DISCLOSURE,
+  brands,
+  company,
+  type Brand,
+} from '../../data/company';
+
+export function getStaticPaths() {
+  return brands.map((brand) => ({
+    params: { brand: brand.slug },
+    props: { brand },
+  }));
+}
+
+interface Props {
+  brand: Brand;
+}
+
+const { brand } = Astro.props;
+
+const title = `Terms of Service | ${brand.name} | ${company.legalName}`;
+const description = `The ${brand.name} terms of service, including the full SMS terms and conditions, consent language, opt out instructions, supported carriers and California governing law. Effective ${company.effectiveDate}.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  brandSlug={brand.slug}
+  brandPage="terms"
+>
+  <div class="shell prose">
+    <section class="section section-first">
+      <span class="eyebrow">{brand.name}</span>
+      <h1>Terms of Service</h1>
+      <p class="meta-line">Effective date: {company.effectiveDate}</p>
+      <p>
+        These Terms of Service (the "Terms") govern your use of this website and your
+        participation in the {brand.programName} text messaging program.
+        {brand.name} is a division of {company.legalName} ("{company.shortName}",
+        "we", "us" or "our"). By using this website, or by giving consent to receive
+        text messages from us, you agree to these Terms. If you do not agree, do not
+        use this website and do not give consent to receive text messages.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>1. Services</h2>
+      <p>
+        {brand.name} {brand.provides}. We serve customers across California's Central
+        Valley and the surrounding markets from our office in {company.city},
+        {company.stateFull}.
+      </p>
+      <p>
+        Pricing, scope of work, schedule, warranty terms and any employment terms are
+        set out in separate written documents that we sign with you.
+        {brand.notAnOfferLine}
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>2. Accuracy of Information</h2>
+      <p>
+        We work to keep this website accurate and current, but the content here is
+        general information only. Product details, service descriptions, availability
+        and regulatory requirements change. Nothing on this website replaces a
+        written proposal, contract, warranty or offer signed by an authorized
+        representative of {company.legalName}
+      </p>
+      <p>
+        You agree that the information you give us is accurate and complete, and that
+        the mobile phone number you provide belongs to you or that you are the
+        authorized user of that number with permission to receive messages on it. If
+        your number changes, or you give up a number, tell us promptly at
+        <a href={company.emailHref}>{company.email}</a> or
+        <a href={brand.phoneHref}>{brand.phone}</a> so that we do not send messages
+        to a person who never consented.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>3. SMS Terms and Conditions</h2>
+      <p>
+        These SMS Terms and Conditions apply to the {brand.programName} program. They
+        are part of these Terms.
+      </p>
+
+      <h3>Consent</h3>
+      <p>
+        By providing your mobile phone number and checking the consent box on the
+        <a href={`/${brand.slug}/sms/`}>{brand.name} text message sign up page</a>, or
+        by giving consent in writing to a {brand.name} representative, you give your
+        <strong>express written consent</strong> to receive text messages from
+        {brand.name} at that number,
+        <strong>including messages sent using automated technology</strong>, about
+        {' ' + brand.messagePurpose}.
+      </p>
+      <p>
+        <strong>Consent is not a condition of purchase.</strong> You are not required
+        to agree to receive text messages in order to purchase any goods or services
+        from us, to receive a quote or estimate, to be considered for a role, or to
+        receive service under an agreement or warranty. Consent is collected
+        {' ' + brand.consentOrigin}. We do not buy, rent or import phone number lists,
+        and we do not message anyone who has not given us consent directly.
+      </p>
+
+      <h3>Message Content and Frequency</h3>
+      <p>
+        Messages in this program cover {brand.messagePurpose}.
+        {' ' + FREQUENCY_DISCLOSURE} Message volume depends on the stage of your
+        project or application, so an active week may carry more messages than a quiet
+        one. We do not send messages promoting anything unlawful, and we do not send
+        messages about loans, debt collection, gambling, cannabis, firearms, tobacco,
+        prescriptions or any other restricted category.
+      </p>
+
+      <h3>Cost</h3>
+      <p>
+        {company.shortName} does not charge you for these messages.
+        {' ' + COST_DISCLOSURE} Check your plan with your mobile carrier if you are
+        unsure what your plan includes.
+      </p>
+
+      <h3>Opting Out</h3>
+      <p>
+        You can stop the messages at any time. Reply <strong>STOP</strong> to any
+        message from us. We will send one confirmation message acknowledging your
+        request, and after that we will not send you further text messages from this
+        program unless you sign up again. You may also opt out by emailing
+        <a href={company.emailHref}>{company.email}</a> or calling
+        <a href={brand.phoneHref}>{brand.phone}</a>. Opting out of text messages does
+        not cancel any contract, project or service agreement, and it does not stop us
+        from reaching you by phone or email about work already in progress.
+      </p>
+
+      <h3>Help</h3>
+      <p>
+        Reply <strong>HELP</strong> to any message from us for help and for our
+        contact information. You can also email
+        <a href={company.emailHref}>{company.email}</a> or call
+        <a href={brand.phoneHref}>{brand.phone}</a>.
+      </p>
+
+      <h3>Carriers and Delivery</h3>
+      <p>
+        {CARRIER_DISCLOSURE} Delivery depends on your carrier, your device, your
+        coverage and your plan, and none of those are under our control. We cannot
+        promise that any given message will arrive or arrive on time, so do not rely
+        on text messages for anything urgent or safety related. Call us instead.
+      </p>
+
+      <h3>Supported Carriers</h3>
+      <p>
+        This program is supported by AT&T, Verizon Wireless and T-Mobile, together
+        with their affiliates and the mobile virtual network operators (MVNOs) that
+        run on their networks. Carrier support can change without notice, and we are
+        not responsible for a carrier's decision to block, filter, delay or refuse a
+        message.
+      </p>
+
+      <h3>Privacy</h3>
+      <p>
+        Information you give us in connection with this program is handled as
+        described in the
+        <a href={`/${brand.slug}/privacy/`}>{brand.name} Privacy Policy</a>, which is
+        part of these Terms.
+      </p>
+
+      <NoSharingClause />
+    </section>
+
+    <section class="section">
+      <h2>4. Acceptable Use</h2>
+      <p>When using this website or our messaging program, you agree not to:</p>
+      <ul>
+        <li>
+          Submit a phone number that is not yours and that you are not authorized to
+          use
+        </li>
+        <li>
+          Submit false, misleading or impersonating information, or submit information
+          on behalf of another person without their permission
+        </li>
+        <li>
+          Use automated tools to submit forms, scrape content, or send repeated
+          requests to this website
+        </li>
+        <li>
+          Attempt to gain unauthorized access to this website, our systems or another
+          person's data
+        </li>
+        <li>
+          Interfere with the operation of this website, or introduce malicious code
+        </li>
+        <li>Use this website or our messages for any unlawful purpose</li>
+      </ul>
+      <p>
+        We may decline service, remove content, or stop messaging a number if we
+        believe these Terms have been violated.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>5. Intellectual Property</h2>
+      <p>
+        This website and its content, including text, layout, graphics, logos and the
+        names Killua Energy, Killua Solar, Killua Roofing, Killua Recruiting and
+        Killua Maintenance, are owned by {company.legalName} or used under license and
+        are protected by United States law. You may view, download and print pages
+        from this site for your own personal or internal business use, including
+        keeping a copy of these Terms and the Privacy Policy. Any other use, including
+        copying, republishing, framing or commercial redistribution, requires our
+        written permission.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>6. Disclaimers</h2>
+      <p>
+        This website is provided on an "as is" and "as available" basis. To the
+        fullest extent permitted by law, {company.legalName} disclaims all warranties
+        of any kind relating to this website, express or implied, including implied
+        warranties of merchantability, fitness for a particular purpose and non
+        infringement. We do not warrant that this website will be uninterrupted, error
+        free, or free of harmful components.
+      </p>
+      <p>
+        This disclaimer applies to the website and to the messaging program. It does
+        not limit, waive or disclaim any warranty we give you in a signed contract for
+        work performed, and it does not affect any right you have under the California
+        laws that govern licensed contractors.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>7. Limitation of Liability</h2>
+      <p>
+        To the fullest extent permitted by law, {company.legalName} and its officers,
+        employees and agents will not be liable for any indirect, incidental,
+        special, consequential, exemplary or punitive damages, or for lost profits,
+        lost data, or lost business opportunity, arising out of your use of this
+        website or the text messaging program, whether the claim is based in contract,
+        tort, negligence, strict liability or any other theory, even if we were
+        advised that such damages were possible. This includes any damages arising
+        from a message that was delayed, undelivered, filtered or misdirected by a
+        carrier.
+      </p>
+      <p>
+        Where liability cannot be excluded, our total liability arising out of or
+        relating to this website and the messaging program is limited to one hundred
+        United States dollars. Nothing in this section limits liability that cannot be
+        limited under California law, including liability for fraud, for willful
+        misconduct, or for personal injury caused by our negligence, and nothing in
+        this section limits our obligations under a signed contract for work
+        performed.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>8. Governing Law</h2>
+      <p>
+        These Terms are governed by the laws of the {company.governingLaw}, without
+        regard to its conflict of laws rules. Any dispute arising out of or relating
+        to these Terms, this website or the text messaging program will be brought
+        exclusively in the state or federal courts located in Fresno County,
+        California, and you and {company.legalName} each consent to the jurisdiction
+        of those courts. If any provision of these Terms is held unenforceable, that
+        provision will be limited or removed to the minimum extent necessary and the
+        rest of the Terms will remain in effect.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>9. Changes to These Terms</h2>
+      <p>
+        We may update these Terms. When we do, we will change the effective date at
+        the top of this page and post the new version here. If a change materially
+        affects the text messaging program, we will tell you before it takes effect.
+        Continuing to use this website or the messaging program after a change takes
+        effect means you accept the updated Terms. Your consent to receive text
+        messages remains subject to the disclosures in effect when you gave it until
+        you are notified of a change.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>10. Contact</h2>
+      <dl class="dl">
+        <div>
+          <dt>Entity</dt>
+          <dd>{company.legalName}, doing business as {brand.name}</dd>
+        </div>
+        <div>
+          <dt>Address</dt>
+          <dd>
+            {company.street}<br />
+            {company.city}, {company.state} {company.zip}
+          </dd>
+        </div>
+        <div>
+          <dt>Phone</dt>
+          <dd><a href={brand.phoneHref}>{brand.phone}</a></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><a href={company.emailHref}>{company.email}</a></dd>
+        </div>
+        <div>
+          <dt>Messaging program</dt>
+          <dd>{brand.programName}</dd>
+        </div>
+      </dl>
+      <p>
+        See also the
+        <a href={`/${brand.slug}/privacy/`}>{brand.name} Privacy Policy</a> and the
+        <a href={`/${brand.slug}/sms/`}>{brand.name} text message sign up page</a>.
+      </p>
+    </section>
+  </div>
+</Base>

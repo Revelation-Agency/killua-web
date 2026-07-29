@@ -1,0 +1,17 @@
+{
+  "name": "killua-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Killua Energy Inc. compliance web property: company one-pager plus A2P 10DLC policy and opt-in pages for four brands.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "verify": "node scripts/verify-compliance.mjs"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0"
+  }
+}

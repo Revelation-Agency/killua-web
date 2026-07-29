@@ -1,0 +1,44 @@
+---
+import { company } from '../data/company';
+
+interface Props {
+  /** Heading text. */
+  heading?: string;
+  /** Phone to display. Defaults to the main company line. */
+  phone?: string;
+  phoneHref?: string;
+  /** Optional line of context above the details. */
+  intro?: string;
+}
+
+const {
+  heading = 'Contact',
+  phone = company.phone,
+  phoneHref = company.phoneHref,
+  intro,
+} = Astro.props;
+---
+
+<h2>{heading}</h2>
+{intro && <p class="prose">{intro}</p>}
+<dl class="dl prose">
+  <div>
+    <dt>Legal entity</dt>
+    <dd>{company.legalName}</dd>
+  </div>
+  <div>
+    <dt>Address</dt>
+    <dd>
+      {company.street}<br />
+      {company.city}, {company.state} {company.zip}
+    </dd>
+  </div>
+  <div>
+    <dt>Phone</dt>
+    <dd><a href={phoneHref}>{phone}</a></dd>
+  </div>
+  <div>
+    <dt>Email</dt>
+    <dd><a href={company.emailHref}>{company.email}</a></dd>
+  </div>
+</dl>

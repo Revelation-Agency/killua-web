@@ -1,0 +1,15 @@
+---
+import { NO_SHARING_CLAUSE } from '../data/company';
+
+interface Props {
+  /** Heading shown above the clause. */
+  label?: string;
+}
+
+const { label = 'Mobile information sharing' } = Astro.props;
+---
+
+<div class="callout" role="note">
+  <span class="callout-label">{label}</span>
+  <p>{NO_SHARING_CLAUSE}</p>
+</div>

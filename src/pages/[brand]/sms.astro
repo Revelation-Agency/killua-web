@@ -1,0 +1,141 @@
+---
+import Base from '../../layouts/Base.astro';
+import OptInForm from '../../components/OptInForm.astro';
+import SmsDisclosureTable from '../../components/SmsDisclosureTable.astro';
+import {
+  CARRIER_DISCLOSURE,
+  COST_DISCLOSURE,
+  FREQUENCY_DISCLOSURE,
+  brands,
+  company,
+  type Brand,
+} from '../../data/company';
+
+export function getStaticPaths() {
+  return brands.map((brand) => ({
+    params: { brand: brand.slug },
+    props: { brand },
+  }));
+}
+
+interface Props {
+  brand: Brand;
+}
+
+const { brand } = Astro.props;
+
+const title = `Text Message Sign Up | ${brand.name} | ${company.legalName}`;
+const description = `Sign up to receive text messages from ${brand.name}. Program details, message frequency, cost, opt out and help instructions, and the express written consent language. Effective ${company.effectiveDate}.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  brandSlug={brand.slug}
+  brandPage="sms"
+>
+  <div class="shell prose">
+    <section class="section section-first">
+      <span class="eyebrow">{brand.name}</span>
+      <h1>Text message sign up</h1>
+      <p class="lede">
+        Use this page to give consent to receive text messages from {brand.name}, a
+        division of {company.legalName} Read the program details first, then fill in
+        the form.
+      </p>
+      <p class="meta-line">
+        This is the only page on this website that collects a phone number.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Program details</h2>
+
+      <SmsDisclosureTable
+        brand={brand}
+        caption={`${brand.programName} program details`}
+      />
+
+      <div class="note">
+        <p><strong>What you are agreeing to, in short:</strong></p>
+        <ul>
+          <li>
+            <strong>What you will receive.</strong> {brand.messageTypes}
+          </li>
+          <li>
+            <strong>How often.</strong> {FREQUENCY_DISCLOSURE}
+          </li>
+          <li>
+            <strong>What it costs.</strong> {COST_DISCLOSURE} {company.shortName} does
+            not charge you for these messages.
+          </li>
+          <li>
+            <strong>How to stop.</strong> Reply STOP to any message to opt out.
+          </li>
+          <li>
+            <strong>How to get help.</strong> Reply HELP to any message, email
+            <a href={company.emailHref}>{company.email}</a>, or call
+            <a href={brand.phoneHref}>{brand.phone}</a>.
+          </li>
+          <li>
+            <strong>Consent is not a condition of purchase.</strong> You do not have
+            to sign up for text messages to work with us.
+          </li>
+        </ul>
+        <p>{CARRIER_DISCLOSURE}</p>
+      </div>
+
+      <p>
+        Who this is for: {brand.audience.charAt(0).toLowerCase() +
+          brand.audience.slice(1)}. If that is not you, there is nothing to sign up
+        for on this page. Call
+        <a href={brand.phoneHref}>{brand.phone}</a> or email
+        <a href={company.emailHref}>{company.email}</a> instead.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Sign up</h2>
+      <p>
+        Fill in your name and the mobile number that should receive the messages, then
+        check the consent box. The consent box is required, and the form cannot be
+        submitted without it.
+      </p>
+
+      <OptInForm brand={brand} />
+    </section>
+
+    <section class="section">
+      <h2>Opting out later</h2>
+      <p>
+        Reply STOP to any message from us at any time. We will send one confirmation
+        message and then stop. You can also email
+        <a href={company.emailHref}>{company.email}</a> or call
+        <a href={brand.phoneHref}>{brand.phone}</a> and ask us to remove your number.
+        Opting out does not affect any project, application or service agreement, and
+        it does not stop us from reaching you by phone or email about work already in
+        progress.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Policies</h2>
+      <ul>
+        <li>
+          <a class="link-strong" href={`/${brand.slug}/privacy/`}>
+            {brand.name} Privacy Policy
+          </a>
+        </li>
+        <li>
+          <a class="link-strong" href={`/${brand.slug}/terms/`}>
+            {brand.name} Terms of Service
+          </a>
+        </li>
+      </ul>
+      <p class="meta-line">
+        {company.legalName} &middot; {company.addressFull} &middot; Effective
+        {' ' + company.effectiveDate}
+      </p>
+    </section>
+  </div>
+</Base>

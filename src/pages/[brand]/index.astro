@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import ServiceArea from '../../components/ServiceArea.astro';
+import { brands, company, type Brand } from '../../data/company';
+
+export function getStaticPaths() {
+  return brands.map((brand) => ({
+    params: { brand: brand.slug },
+    props: { brand },
+  }));
+}
+
+interface Props {
+  brand: Brand;
+}
+
+const { brand } = Astro.props;
+
+const title = `${brand.name} | ${brand.tagline.replace(/\.$/, '')} | Fresno, California`;
+const description = `${brand.name}, a division of ${company.legalName} in Fresno, California. ${brand.summary} Privacy policy, terms of service and text message sign up.`;
+---
+
+<Base
+  title={title}
+  description={description}
+  brandSlug={brand.slug}
+  brandPage="home"
+>
+  <div class="shell">
+    <section class="section section-first">
+      <span class="eyebrow">A division of {company.legalName}</span>
+      <h1>{brand.name}</h1>
+      <p class="lede">
+        {brand.name} {brand.provides} for customers across California's Central
+        Valley and the surrounding markets.
+      </p>
+      <p class="meta-line">
+        {company.addressFull} &middot;
+        <a href={brand.phoneHref}>{brand.phone}</a> &middot;
+        <a href={company.emailHref}>{company.email}</a>
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>What we do</h2>
+      <ul class="prose">
+        {brand.services.map((service) => <li>{service}</li>)}
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Who we serve</h2>
+      <p class="prose">{brand.whoWeServe}</p>
+    </section>
+
+    <section class="section">
+      <ServiceArea />
+    </section>
+
+    <section class="section">
+      <ContactBlock
+        heading="Contact"
+        phone={brand.phone}
+        phoneHref={brand.phoneHref}
+        intro={`Call or email ${brand.name} directly. There is no contact form on this page. We do not collect leads on this website.`}
+      />
+    </section>
+
+    <section class="section">
+      <h2>Policies and text messaging</h2>
+      <p class="prose">
+        {brand.name} sends text messages only to people who have given express
+        written consent. The pages below explain exactly what we send, how often,
+        what it costs, how to stop, and how we handle your information.
+      </p>
+      <ul class="prose">
+        <li>
+          <a class="link-strong" href={`/${brand.slug}/privacy/`}>
+            {brand.name} Privacy Policy
+          </a>
+        </li>
+        <li>
+          <a class="link-strong" href={`/${brand.slug}/terms/`}>
+            {brand.name} Terms of Service
+          </a>
+        </li>
+        <li>
+          <a class="link-strong" href={`/${brand.slug}/sms/`}>
+            {brand.name} text message sign up
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</Base>
