@@ -24,6 +24,18 @@ const EXPECTED_ROUTES = [
   ]),
 ];
 
+/**
+ * Routes served from this domain that are NOT part of the carrier submission.
+ *
+ * Today that is the internal call console the Nexa receptionist team opens
+ * while a Killua lead is on the line. It is deliberately excluded from every
+ * compliance assertion below, and in exchange it must prove two things a
+ * compliance page never has to: that it is noindex, and that no compliance
+ * page links to it. A reviewer must never be able to walk from a policy page
+ * into an internal tool.
+ */
+const INTERNAL_ROUTES = ['/cockpit/'];
+
 const NO_SHARING_CLAUSE =
   'No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.';
 
@@ -90,17 +102,23 @@ if (!existsSync(DIST)) {
 // ---------------------------------------------------------------- 1. routes
 const htmlFiles = walk(DIST).filter((file) => file.endsWith('.html'));
 
+const internalFiles = INTERNAL_ROUTES.map(routeToFile);
+const complianceFiles = htmlFiles.filter((file) => !internalFiles.includes(file));
+
 for (const route of EXPECTED_ROUTES) {
   if (!existsSync(routeToFile(route))) {
     fail(`missing route: ${route}`);
   }
 }
-if (htmlFiles.length !== EXPECTED_ROUTES.length) {
+if (complianceFiles.length !== EXPECTED_ROUTES.length) {
   fail(
-    `expected ${EXPECTED_ROUTES.length} html pages, found ${htmlFiles.length}`
+    `expected ${EXPECTED_ROUTES.length} compliance html pages, found ${complianceFiles.length}`
   );
 }
-notes.push(`${htmlFiles.length} pages built, all ${EXPECTED_ROUTES.length} expected routes present`);
+notes.push(
+  `${complianceFiles.length} compliance pages built, all ${EXPECTED_ROUTES.length} expected routes present` +
+    (INTERNAL_ROUTES.length ? `, plus ${INTERNAL_ROUTES.length} internal route excluded` : '')
+);
 
 const pages = new Map();
 for (const route of EXPECTED_ROUTES) {
@@ -125,6 +143,29 @@ for (const [route, html] of pages) {
   }
 }
 notes.push('no placeholder tokens, em dashes, storage APIs or third party embeds in output');
+
+// ------------------------------------------------------- 2c. internal routes
+for (const route of INTERNAL_ROUTES) {
+  const file = routeToFile(route);
+  if (!existsSync(file)) {
+    fail(`missing internal route: ${route}`);
+    continue;
+  }
+  const html = readFileSync(file, 'utf8');
+  if (!/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html)) {
+    fail(`${route}: internal route must carry a noindex robots meta`);
+  }
+  for (const [complianceRoute, complianceHtml] of pages) {
+    if (complianceHtml.includes(`href="${route}`)) {
+      fail(`${complianceRoute}: compliance page must not link to internal route ${route}`);
+    }
+  }
+}
+if (INTERNAL_ROUTES.length) {
+  notes.push(
+    `${INTERNAL_ROUTES.length} internal route is noindex and unreachable from any compliance page`
+  );
+}
 
 // ------------------------------------------------- 2b. rendered typography
 /**

@@ -193,6 +193,36 @@ Replace `<base>` with the deployed domain.
 | Killua Recruiting | `<base>/recruiting/` | `<base>/recruiting/privacy/` | `<base>/recruiting/terms/` | `<base>/recruiting/sms/` |
 | Killua Maintenance | `<base>/maintenance/` | `<base>/maintenance/privacy/` | `<base>/maintenance/terms/` | `<base>/maintenance/sms/` |
 
+## The call cockpit at /cockpit/
+
+`public/cockpit/index.html` is the page the Nexa receptionist team opens while a
+Killua lead is on the line: route the call, read the script, take consent,
+capture four details, book, and log the outcome that stops Killua chasing the
+same person twice. Built from the 28 August Nexa call with Garrett Robins.
+
+It rides on this repo purely because this is the drawer already wired to Vercel.
+It is **not** part of the A2P submission and is fenced off from it:
+
+- It is a raw file under `public/`, so Astro copies it through untouched and it
+  never enters `src/pages/`. The 17 compliance routes are unchanged.
+- `verify-compliance.mjs` lists it in `INTERNAL_ROUTES`, excludes it from the
+  compliance page count, and then asserts two things about it that no compliance
+  page has to prove: it carries `noindex`, and no compliance page links to it. A
+  carrier reviewer cannot walk from a policy page into an internal tool.
+- It makes zero external requests. The Killua bolt and wordmark, and the display
+  face, are embedded in the file. Nothing loads from Google or any CDN, so the
+  page opens instantly on a call and adds no third-party host to this domain.
+
+Three layouts, switchable from the top bar, over one shared set of data, so Nexa
+can pick the shape their agents like without changing what GoHighLevel receives.
+Booking links and the outcome webhook are pasted per browser via the gear icon
+and are deliberately not committed here.
+
+`npm run build && npm run verify:cockpit` walks a whole call in a real browser
+and fails if any gate breaks. Playwright is not a dependency of this repo, on
+purpose: it would put a browser download inside the Vercel build. Install it
+globally to run that check.
+
 ## Out of scope for this repo
 
 The GoHighLevel A2P submissions themselves, the WordPress site at killuaenergy.com,

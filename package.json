@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "verify": "node scripts/verify-compliance.mjs"
+    "verify": "node scripts/verify-compliance.mjs",
+    "verify:cockpit": "node scripts/verify-cockpit.mjs"
   },
   "devDependencies": {
     "astro": "^5.0.0"
