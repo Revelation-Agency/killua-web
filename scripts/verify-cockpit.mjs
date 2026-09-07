@@ -34,10 +34,30 @@ await page.click('[data-svc="solar"]');
 assert.equal(await page.getAttribute('[data-step="1"]', 'aria-current'), 'step');
 ok('picking a service advances Guided to the script step');
 
-// ------------------------------------------------- capture gates the booking
+// ------------------------------------------------------- consent is the gate
 await page.click('[data-goto="2"]');
 assert.ok(await page.isDisabled('[data-goto="3"]'), 'booking must start locked');
-ok('booking is locked before capture is complete');
+ok('booking is locked before consent');
+
+// The point of this one: a caller who answers nothing can still be booked.
+// Qualification is guidance, not a barrier, because the call is billed per minute.
+await page.check('#consentBox');
+assert.ok(
+  await page.isEnabled('[data-goto="3"]'),
+  'consent alone must unlock booking with every answer blank'
+);
+ok('consent alone unlocks booking with every answer still blank');
+
+assert.ok(
+  (await page.textContent('#blankNote')).includes('Still blank'),
+  'blank answers should be named as a nudge'
+);
+assert.equal(await page.isVisible('#blankNote'), true);
+ok('unanswered questions are named as a nudge, not a blocker');
+
+await page.uncheck('#consentBox');
+assert.ok(await page.isDisabled('[data-goto="3"]'), 'withdrawing consent must re-lock booking');
+ok('taking consent back re-locks booking');
 
 await page.click('.chip[data-field="owner"][data-val="Yes"]');
 await page.fill('[data-field="bill"]', '$310');
@@ -45,12 +65,18 @@ await page.click('.chip[data-field="utility"][data-val="PG&E"]');
 await page.click('.chip[data-field="roofAge"][data-val="10 to 20 yrs"]');
 await page.fill('[data-lead="address"]', '1180 W Shaw Ave, Fresno');
 
-assert.ok(await page.isDisabled('[data-goto="3"]'), 'consent alone must still hold the gate');
-ok('all four answers without consent still leaves booking locked');
+assert.ok(
+  await page.isDisabled('[data-goto="3"]'),
+  'a full capture must never substitute for consent'
+);
+ok('a complete capture without consent still cannot book');
+
+assert.equal(await page.isVisible('#blankNote'), false);
+ok('the nudge disappears once everything is answered');
 
 await page.check('#consentBox');
 assert.ok(await page.isEnabled('[data-goto="3"]'), 'booking should unlock');
-ok('consent plus a complete capture unlocks booking');
+ok('consent unlocks booking');
 
 // ------------------------------------------------------------------ booking
 await page.click('[data-goto="3"]');

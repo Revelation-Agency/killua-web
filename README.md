@@ -218,6 +218,12 @@ can pick the shape their agents like without changing what GoHighLevel receives.
 Booking links and the outcome webhook are pasted per browser via the gear icon
 and are deliberately not committed here.
 
+Consent is the only thing booking waits on. The qualification questions are a
+prompt, not a barrier: whatever the caller will give is enough, anything still
+blank is named under the form as a nudge, and the appointment can be made
+regardless. The call is billed by the minute and an agent should never be
+arguing with a form to get one on the calendar.
+
 `npm run build && npm run verify:cockpit` walks a whole call in a real browser
 and fails if any gate breaks. Playwright is not a dependency of this repo, on
 purpose: it would put a browser download inside the Vercel build. Install it

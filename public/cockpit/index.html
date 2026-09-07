@@ -1020,17 +1020,28 @@ function decline() {
   return null;
 }
 
-/* A capture is complete when every field the service asks for has an answer.
-   Booking unlocks off this, exactly like the flow agreed on the call. */
-function captureDone() {
+/* Consent is the only hard gate. It has to be spoken and confirmed before any
+   detail goes into the CRM, so that one stays mandatory. The qualification
+   answers are guidance, not a barrier: a caller who will not give their
+   electric bill can still be booked, and on a per-minute call nobody should be
+   arguing with a form to get an appointment on the calendar. */
+function canBook() {
+  return !!(svc() && s.consent);
+}
+
+/* Whatever is still empty, named so the agent can ask for it if the call is
+   going well. Never blocks anything. */
+function stillBlank() {
   var v = svc();
-  if (!v) return false;
-  if (!s.consent) return false;
-  for (var i = 0; i < v.fields.length; i++) {
-    var val = s.answers[v.fields[i].id];
-    if (val === undefined || val === null || String(val).trim() === "") return false;
-  }
-  return true;
+  if (!v) return [];
+  var out = [];
+  v.fields.forEach(function (f) {
+    var val = s.answers[f.id];
+    if (val === undefined || val === null || String(val).trim() === "") {
+      out.push(f.label.toLowerCase());
+    }
+  });
+  return out;
 }
 
 function isUrgent() {
@@ -1138,8 +1149,10 @@ function fragCapture() {
   out += '<div class="consent">' +
     '<input type="checkbox" id="consentBox" ' + (s.consent ? "checked" : "") + ">" +
     '<label for="consentBox">I read the consent line out loud and they said yes. ' +
-    '<b>Required</b> before their details go into the CRM or any text is sent.</label></div>';
+    'The <b>one thing</b> that has to happen before their details go into the CRM ' +
+    'or any text is sent, and the only thing booking waits on.</label></div>';
 
+  out += '<p class="buffer-note" id="blankNote"></p>';
   out += '<p class="buffer-note">Service area: ' + esc(AREA_CODES) + '. Outside those, use <b>Not qualified</b>.</p>';
   return out;
 }
@@ -1223,12 +1236,13 @@ function viewGuided() {
     if (d) out += '<div class="book-row"><button class="btn btn--primary" data-goto="4">Log the outcome</button></div>';
   } else if (stepIdx === 2) {
     out += '<h2 class="sec">Capture</h2>' +
-           '<p class="hint">Short on purpose. The rest is Robin’s job on the confirmation call.</p>' +
+           '<p class="hint">Take what they will give you. Only consent is required to book, ' +
+           'the rest is Robin’s job on the confirmation call.</p>' +
            fragCapture() +
            '<div class="book-row" style="margin-top:.25rem">' +
-           '<button class="btn btn--primary" data-goto="3" ' + (captureDone() ? "" : "disabled") + ">Book it</button>" +
-           '<span class="lock-tag" id="captureLock"' + (captureDone() ? " hidden" : "") + '>' +
-           "Booking unlocks when every field above is answered and consent is ticked.</span>" +
+           '<button class="btn btn--primary" data-goto="3" ' + (canBook() ? "" : "disabled") + ">Book it</button>" +
+           '<span class="lock-tag" id="captureLock"' + (canBook() ? " hidden" : "") + '>' +
+           "Booking unlocks once you have read the consent line and they have said yes.</span>" +
            "</div>";
   } else if (stepIdx === 3) {
     out += '<h2 class="sec">Book</h2>' +
@@ -1251,7 +1265,7 @@ function viewGuided() {
 function stepAllowed(i) {
   if (i === 0) return true;
   if (!s.serviceId && !s.declineId) return false;
-  if (i === 3) return captureDone();
+  if (i === 3) return canBook();
   if (i === 1 || i === 2) return !decline();
   return true;
 }
@@ -1277,8 +1291,8 @@ function viewConsole() {
   out += '<div class="box' + (v ? "" : " locked") + '">' +
          (v ? fragCapture() : '<p class="hint" style="margin:0">Pick a service first.</p>') + "</div>";
   out += '<header><h3>Book</h3><span class="n">3</span></header>';
-  out += '<div class="box gate-book' + (captureDone() ? "" : " locked") + '">' +
-         (v ? fragBook() : '<p class="hint" style="margin:0">Locked until capture is done.</p>') + "</div>";
+  out += '<div class="box gate-book' + (canBook() ? "" : " locked") + '">' +
+         (v ? fragBook() : '<p class="hint" style="margin:0">Locked until they have consented.</p>') + "</div>";
   out += "</div>";
 
   out += '<div class="col"><header><h3>Close it</h3><span class="n">4</span></header>';
@@ -1330,7 +1344,7 @@ function viewPrompter() {
 
   out += fragUrgent();
 
-  out += '<div class="line" id="promptBookLive"' + (captureDone() ? "" : " hidden") + '>' +
+  out += '<div class="line" id="promptBookLive"' + (canBook() ? "" : " hidden") + '>' +
     '<span class="stage">Book</span>Let me get you on the calendar. ' +
     '<span class="prompter-chips">' +
     (cfg.links[v.id]
@@ -1339,9 +1353,9 @@ function viewPrompter() {
     "</span> " +
     'They took <input class="blank" id="bookWhen" placeholder="Tue Sep 9, 10:00 AM" value="' + esc(s.booking.when) + '">.</div>';
 
-  out += '<div class="line" id="promptBookHeld" style="opacity:.4"' + (captureDone() ? " hidden" : "") + '>' +
+  out += '<div class="line" id="promptBookHeld" style="opacity:.4"' + (canBook() ? " hidden" : "") + '>' +
     '<span class="stage">Book</span>' +
-    '<span class="lock-tag">Fills in once every blank above is answered and they have consented.</span></div>';
+    '<span class="lock-tag">Fills in once they have consented.</span></div>';
 
   out += '<div class="box">' + fragOutcomes() + "</div>";
   out += '<button class="btn btn--ghost" data-reroute="1">Change service</button>';
@@ -1460,13 +1474,21 @@ function wire() {
    thing this page is not allowed to do. Only structural moves, changing service,
    step, or layout, call render(). */
 function refreshGates() {
-  var done = captureDone();
+  var done = canBook();
 
   var bookBtn = document.querySelector('[data-goto="3"]');
   if (bookBtn) bookBtn.disabled = !done;
 
   var lock = document.getElementById("captureLock");
   if (lock) lock.hidden = done;
+
+  var blank = document.getElementById("blankNote");
+  if (blank) {
+    var missing = stillBlank();
+    blank.hidden = missing.length === 0;
+    blank.innerHTML = "Still blank: " + esc(missing.join(", ")) +
+      ". Ask if the call is going well, book anyway if it is not.";
+  }
 
   each(".gate-book", function (el) { el.classList.toggle("locked", !done); });
 
@@ -1525,8 +1547,8 @@ function paintBar() {
     st.textContent = "Pick why they are calling to start.";
   } else if (d) {
     st.textContent = "Not a service we offer. Read the line, then log an outcome.";
-  } else if (!captureDone()) {
-    st.textContent = "Capture the four details and tick consent. Booking unlocks after that.";
+  } else if (!canBook()) {
+    st.textContent = "Read the consent line and tick it. That is all booking waits on.";
   } else if (!s.outcome) {
     st.innerHTML = '<span class="ok">Ready to book.</span> Pick an outcome before you hang up.';
   } else {
