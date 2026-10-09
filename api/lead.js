@@ -53,6 +53,16 @@ export const CONTRACT = [
   'ad_consent', 'ip', 'user_agent',
 ];
 
+/**
+ * The consent sentence every lead form shows, recorded server-side so the
+ * consent record never depends on what a browser chose to send. verify-site.mjs
+ * fails the build if the page wording and this copy ever drift apart.
+ */
+export const CONSENT_SENTENCE =
+  'I agree to receive calls and text messages from Killua Energy at the number I gave, about my estimate, appointments and project, including messages sent by automated technology. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase.';
+const ROOFING = ['roof_replacement', 'roof_repair', 'roof_inspection'];
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 const LONG = { problem_description: 1200, notes: 1500, consent_text: 1000, landing_page: 600, referrer: 600, page_url: 600 };
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -221,8 +231,17 @@ export default async function handler(req, res) {
   const url = process.env.KILLUA_LEAD_WEBHOOK_URL;
   if (!url) return res.status(503).json({ ok: false, error: 'lead webhook not configured' });
 
-  lead.lead_id = randomUUID();
-  lead.event_id ||= lead.lead_id;
+  // One id per submission, reused by the browser on a retry, so a lead that
+  // reached the webhook just before a timeout can be de-duplicated downstream.
+  lead.event_id = UUID.test(lead.event_id) ? lead.event_id.toLowerCase() : randomUUID();
+  lead.lead_id = lead.event_id;
+  // A browser Global Privacy Control signal overrides whatever the page sent.
+  if (req.headers['sec-gpc'] === '1') lead.ad_consent = 'denied';
+  const host = str(req.headers['x-forwarded-host'] || req.headers.host || 'killua-web-eta.vercel.app', 200);
+  const origin = `${/^(127\.0\.0\.1|localhost)(:|$)/.test(host) ? 'http' : 'https'}://${host}`;
+  lead.consent_text = `${CONSENT_SENTENCE} See our Privacy Policy and texting terms.`;
+  lead.consent_privacy_url = `${origin}/privacy/`;
+  lead.consent_texting_url = `${origin}/${ROOFING.includes(lead.service) ? 'roofing' : 'solar'}/sms/`;
   lead.received_at = new Date().toISOString();
   lead.ip = str(String(req.headers['x-forwarded-for'] || '').split(',')[0], 64);
   lead.user_agent = str(req.headers['user-agent'], 400);
@@ -237,7 +256,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const r = await withTimeout(fetch(url, { method: 'POST', headers, body: payload }), 9000);
+    const r = await fetch(url, { method: 'POST', headers, body: payload, signal: AbortSignal.timeout(9000) });
     if (!r.ok) throw new Error(`webhook ${r.status}`);
   } catch (err) {
     console.error('lead forward failed', lead.lead_id, String(err));

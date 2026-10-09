@@ -235,6 +235,43 @@ r = await fetch(`${BASE}/api/lead`);
 assert.equal(r.status, 405);
 ok('endpoint rejects missing consent and unknown services, swallows honeypot bots, refuses GET');
 
+// ------------------------------------- 8. server-side guards from review r1
+const id = '3f6c2a1e-5b7d-4c8e-9a0b-1c2d3e4f5a6b';
+r = await fetch(`${BASE}/api/lead`, {
+  method: 'POST',
+  headers: { 'content-type': 'application/json', 'sec-gpc': '1' },
+  body: JSON.stringify({ ...good, event_id: id, ad_consent: 'granted', consent_text: '', consent_privacy_url: '' }),
+});
+assert.equal(r.status, 200);
+let last = received.at(-1).body;
+assert.equal(last.ad_consent, 'denied', 'GPC must force advertising off server-side');
+assert.equal(last.lead_id, id, 'lead_id must equal the submission id');
+assert.match(last.consent_text, /^I agree to receive calls and text messages from Killua Energy/);
+assert.match(last.consent_privacy_url, /\/privacy\/$/);
+await post({ ...good, event_id: id });
+assert.equal(received.at(-1).body.lead_id, id, 'a retry must reuse the same lead_id');
+ok('GPC header forces ads off; consent wording and links recorded by the server; retries keep one lead_id');
+
+// ------------------------------------------------ 9. no JavaScript at all
+const nojs = await browser.newContext({ ...devices['iPhone 13'], javaScriptEnabled: false });
+const p2 = await nojs.newPage();
+await p2.goto(`${BASE}/go/solar-savings/`);
+const f = p2.locator('form[data-lead-form]');
+await f.locator('label.choice', { hasText: '$150 to $250' }).click();
+await f.locator('label.choice', { hasText: 'Yes' }).first().click();
+for (const [n, v] of [['street', '123 Test St'], ['city', 'Fresno'], ['zip', '93727'], ['first_name', 'TEST'], ['last_name', 'NoJS'], ['phone', '5595550123'], ['email', 'blaine+killuatest@revelationagency.com']])
+  await f.locator(`[name="${n}"]`).fill(v);
+await f.locator('input[name=consent_calls_texts]').check();
+await f.getByRole('button', { name: /Get my estimate/ }).click();
+await p2.waitForURL(/\/thank-you\//, { timeout: 15000 });
+last = received.at(-1).body;
+assert.equal(last.last_name, 'NoJS');
+assert.equal(last.monthly_bill, '150_250');
+assert.equal(last.phone, '+15595550123');
+assert.equal(last.consent_calls_texts, true);
+await nojs.close();
+ok('with JavaScript off the form shows every step, posts as plain HTML and lands on the thank-you page');
+
 assert.deepEqual(errors, [], `page errors: ${errors.join(' | ')}`);
 ok(`no script errors; ${received.length} leads reached the catcher`);
 

@@ -143,12 +143,25 @@ function trackLead(eventId: string, service: string) {
   const c = current;
   if (!c) return false;
   const w = window as any;
-  if (c.ads && cfg.metaPixel && w.fbq) w.fbq('track', 'Lead', { content_category: service }, { eventID: eventId });
-  if (c.ads && cfg.tiktokPixel && w.ttq) w.ttq.track('SubmitForm', { content_type: 'product', content_id: service }, { event_id: eventId });
-  if (c.ads && cfg.gads && cfg.gadsLeadLabel)
+  let sent = 0;
+  if (c.ads && cfg.metaPixel && w.fbq) {
+    w.fbq('track', 'Lead', { content_category: service }, { eventID: eventId });
+    sent++;
+  }
+  if (c.ads && cfg.tiktokPixel && w.ttq) {
+    w.ttq.track('SubmitForm', { content_type: 'product', content_id: service }, { event_id: eventId });
+    sent++;
+  }
+  if (c.ads && cfg.gads && cfg.gadsLeadLabel) {
     gtag('event', 'conversion', { send_to: `${cfg.gads}/${cfg.gadsLeadLabel}`, transaction_id: eventId });
-  if (c.analytics && cfg.ga4) gtag('event', 'generate_lead', { service, event_id: eventId });
-  return true;
+    sent++;
+  }
+  if (c.analytics && cfg.ga4) {
+    gtag('event', 'generate_lead', { service, event_id: eventId });
+    sent++;
+  }
+  // Only "fired" if something eligible went out; a later opt-in can still fire it.
+  return sent > 0;
 }
 
 function banner() {

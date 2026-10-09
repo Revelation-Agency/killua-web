@@ -113,6 +113,13 @@ notes.push(`${forms} lead forms: consent unchecked and required, texting and pri
 notes.push('no banned claims, no third-party script before consent, call bar and cookie banner on every page');
 notes.push('ad pages and thank-you are noindex and carry no main nav');
 
+// The server records its own copy of the consent sentence; the page must match it.
+const { CONSENT_SENTENCE } = await import('../api/lead.js');
+for (const [route, html] of pages)
+  for (const t of html.match(/<span data-consent-text>([^<]*)<\/span>/g) ?? [])
+    if (!t.includes(CONSENT_SENTENCE)) fail(`${route}: consent wording differs from api/lead.js`);
+notes.push('consent wording on every form matches the copy the server records');
+
 const privacy = pages.get('/privacy/') ?? '';
 if (!privacy.includes('No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.'))
   fail('/privacy/: texting no-sharing clause missing');

@@ -270,6 +270,14 @@ const times = [
   </div>
 </form>
 
+<noscript>
+  <style>
+    /* Without JavaScript the form is one long page and posts as plain HTML. */
+    .lead-form .lf-step[hidden]:not([disabled]) { display: block !important; margin-bottom: 1.6rem; }
+    .lead-form [data-next], .lead-form .lf-top, .lead-form .lf-progress { display: none !important; }
+  </style>
+</noscript>
+
 <script>
   import { initLeadForms } from '../../scripts/lead-form';
   initLeadForms();

@@ -120,6 +120,8 @@ function setup(form: HTMLFormElement) {
   let i = 0;
   let started = '';
   let sending = false;
+  // Kept across retries of the same answers, cleared only after a success.
+  let submissionId = '';
 
   const service = () =>
     preset || form.querySelector<HTMLInputElement>('input[name=service]:checked')?.value || '';
@@ -237,7 +239,8 @@ function setup(form: HTMLFormElement) {
     const attr = captureAttribution();
     const consentState = (window as any).killuaConsent?.get?.();
     const fbclid = attr.fbclid || '';
-    const eventId = uuid();
+    submissionId ||= uuid();
+    const eventId = submissionId;
     const abs = (p: string) => new URL(p, location.origin).href;
     const payload: Record<string, unknown> = {
       form_id: get('form_id'),
@@ -300,6 +303,7 @@ function setup(form: HTMLFormElement) {
       } catch {
         /* thank-you page simply skips the browser-side conversion */
       }
+      submissionId = '';
       location.assign(`/thank-you/?service=${encodeURIComponent(svc)}`);
     } catch (err) {
       errorBox.textContent = `That did not go through. Please try again, or call us at ${PHONE_TEXT}.`;
@@ -328,11 +332,14 @@ function setupAutocomplete(form: HTMLFormElement) {
   const input = form.querySelector<HTMLInputElement>('[data-ac]');
   const list = input && document.getElementById(input.getAttribute('aria-controls') || '');
   if (!key || !input || !list) return;
-  input.setAttribute('autocomplete', 'off');
+  // Google sees what is typed, so lookups wait until the visitor allows
+  // third-party services (the analytics choice in the cookie banner).
+  const allowed = () => !!(window as any).killuaConsent?.get?.()?.analytics;
   let token = uuid();
   let timer = 0;
   let items: { id: string; text: string }[] = [];
   let active = -1;
+  let seq = 0;
   const close = () => {
     list.hidden = true;
     input.setAttribute('aria-expanded', 'false');
@@ -388,8 +395,11 @@ function setupAutocomplete(form: HTMLFormElement) {
   input.addEventListener('input', () => {
     window.clearTimeout(timer);
     const q = input.value.trim();
-    if (q.length < 4) return close();
+    if (q.length < 4 || !allowed()) return close();
+    input.setAttribute('autocomplete', 'off');
+    const mine = ++seq;
     timer = window.setTimeout(async () => {
+      if (mine !== seq) return;
       try {
         const r = await fetch('https://places.googleapis.com/v1/places:autocomplete', {
           method: 'POST',
@@ -402,6 +412,7 @@ function setupAutocomplete(form: HTMLFormElement) {
           }),
         });
         const d = await r.json();
+        if (mine !== seq || input.value.trim() !== q) return; // a newer keystroke won
         items = (d.suggestions || [])
           .map((s: any) => s.placePrediction)
           .filter(Boolean)
