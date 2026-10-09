@@ -264,7 +264,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
       },
       {
         title: 'Permit, inspection, PG&E',
-        body: 'Same as solar: permit, inspection and the interconnection paperwork.',
+        body: 'Same as solar: we handle the permit and the inspection, then file the PG&E paperwork.',
       },
     ],
     explainTitle: 'Why batteries matter more after NEM 3.0',
@@ -329,7 +329,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
       },
       {
         q: 'Is my old warranty still good?',
-        a: 'Panel and inverter manufacturers often honor their own warranties even if the installer is gone. We can help you find out what still applies.',
+        a: 'Panel and inverter manufacturers often honor their own warranties even if the installer is gone. We will check what still applies to yours.',
       },
       {
         q: 'Do you offer ongoing maintenance?',
@@ -438,7 +438,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
       'Roof inspections before the rains, before you sell, or before you add solar. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'Roof inspection',
     h1: 'Know what your roof needs before the rains',
-    lede: 'We walk the roof, check the flashing, vents and attic side, and show you photos of what we find.',
+    lede: 'We walk the roof, check the flashing and the attic side, and show you photos of what we find.',
     photo: 'roof-inspection',
     photoAlt: 'Roofer on a ladder checking the eave and gutter of a stucco home',
     includedTitle: 'What we look at',
@@ -449,7 +449,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
       },
       {
         title: 'Flashing and penetrations',
-        body: 'Walls, chimneys, vents, skylights and any solar mounts.',
+        body: 'Everywhere something meets or passes through the roof: walls, chimneys, vents, skylights, solar mounts.',
       },
       {
         title: 'Gutters and drainage',

@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Killua Energy Inc. compliance web property: company one-pager plus A2P 10DLC policy and opt-in pages for four brands.",
+  "description": "Killua Energy web property: marketing site, /go/ ad landing pages and lead endpoint, plus the A2P 10DLC compliance pages for four brands.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
     "verify": "node scripts/verify-compliance.mjs",
-    "verify:cockpit": "node scripts/verify-cockpit.mjs"
+    "verify:cockpit": "node scripts/verify-cockpit.mjs",
+    "verify:site": "node scripts/verify-site.mjs",
+    "verify:leads": "node scripts/verify-lead-flow.mjs",
+    "slop": "node scripts/slop-gate.mjs",
+    "serve:local": "node scripts/serve-local.mjs"
   },
   "devDependencies": {
     "astro": "^5.0.0"

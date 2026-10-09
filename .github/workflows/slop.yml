@@ -1,0 +1,24 @@
+name: slop gate
+
+on: [push, pull_request]
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: npm ci
+      - run: npm run build
+      # The A2P pages must stay exactly as filed.
+      - run: npm run verify
+      # Marketing pages: claims, consent, tracking fields, no tags before consent.
+      - run: npm run verify:site
+      # SlopMonster: every shipped page and every staged ad, script and post at 5/5.
+      - run: npm run slop

@@ -34,7 +34,7 @@ const year = new Date().getFullYear();
         </div>
         <div>
           <h4>Service area</h4>
-          <p style="margin:0">{cities.join(', ')} and the Central Valley.</p>
+          <ul>{cities.map((c) => <li>{c}</li>)}</ul>
         </div>
       </div>
     )}
