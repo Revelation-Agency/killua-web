@@ -162,6 +162,8 @@ function banner() {
     ads.checked = false;
     ads.disabled = true;
     gpcNote.hidden = false;
+    // "Accept all" would overstate it: advertising stays off under GPC.
+    el.querySelector<HTMLElement>('[data-accept]')!.textContent = 'Allow analytics';
   }
   const choose = (analytics: boolean, adOk: boolean) => {
     const c: Choice = { v: 1, analytics, ads: adOk && !gpc, ts: new Date().toISOString() };

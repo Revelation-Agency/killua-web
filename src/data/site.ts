@@ -181,7 +181,7 @@ export interface ServicePage {
 
 export const taxCreditFaq: Faq = {
   q: 'Is there still a federal tax credit for home solar?',
-  a: 'No. The 30% federal credit for homeowners who buy solar or batteries ended on December 31, 2025. Some websites still advertise it. Any estimate we give you is worked out without it.',
+  a: 'No. The 30% federal credit for homeowners who buy solar or batteries ended for systems installed after December 31, 2025. Some websites still advertise it. Our estimates leave it out.',
 };
 
 export const servicePages: Record<ServiceKey, ServicePage> = {
@@ -245,7 +245,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
       'Store your solar power for the 4 to 9 PM PG&E peak and for power shutoffs. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'Battery storage',
     h1: 'Keep the noon sun for the 4 to 9 PM peak',
-    lede: 'A home battery charges from your panels during the day and runs the house through PG&E’s evening peak. When the grid goes down, it can keep the essentials on.',
+    lede: 'A home battery charges from your panels during the day and runs the house through PG&E’s evening peak. Set up for backup, it can keep the essentials on when the grid goes down.',
     photo: 'battery-garage',
     photoAlt: 'Two wall-mounted home battery units and an inverter on a clean garage wall',
     includedTitle: 'What the job covers',
@@ -379,7 +379,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
       },
       {
         q: 'Do you work on tile roofs?',
-        a: 'Yes, concrete tile and comp shingle, the two roofs you see on most Valley homes.',
+        a: 'Yes. We work on concrete tile and comp shingle roofs.',
       },
       taxCreditFaq,
     ],
@@ -500,8 +500,8 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
         body: 'We install the charger you choose, or help you pick one that fits your car and your panel.',
       },
       {
-        title: 'Works with solar',
-        body: 'If you have panels or plan to, we set up charging so more of it can come from your roof.',
+        title: 'Garage or outside',
+        body: 'Mounted in the garage or on the outside wall nearest where you park.',
       },
     ],
     explainTitle: 'Charging and your PG&E bill',
@@ -549,11 +549,11 @@ export const goPages: GoPage[] = [
     points: [
       {
         title: 'Numbers without the old tax credit',
-        body: 'The federal homeowner solar credit ended December 31, 2025. Our estimates leave it out, so the number holds up.',
+        body: 'The federal homeowner solar credit ended December 31, 2025. We leave it out of every estimate.',
       },
       {
         title: 'Sized for NEM 3.0',
-        body: 'PG&E pays little for power you send back. We size panels to the power you use, not to the biggest system that fits.',
+        body: 'Under PG&E’s current solar billing plan, credit for power sent to the grid varies by the hour and sits far below what you pay for grid power. We size panels to the power your home uses, not the biggest system that fits.',
       },
       {
         title: 'Roof checked first',
@@ -584,11 +584,11 @@ export const goPages: GoPage[] = [
       },
       {
         title: 'Backup when PG&E shuts off',
-        body: 'Circuits you choose, like the fridge, lights and Wi-Fi, stay on during outages and fire-weather shutoffs.',
+        body: 'Set up for backup, a battery keeps the circuits you choose, like the fridge, lights and Wi-Fi, running through outages and fire-weather shutoffs until it runs down.',
       },
       {
         title: 'Add to solar you already have',
-        body: 'Most existing systems can take a battery. We check your inverter and your PG&E plan first.',
+        body: 'Existing systems can often take a battery. We check your inverter and your PG&E plan first.',
       },
     ],
     faqs: [
@@ -656,8 +656,8 @@ export const goPages: GoPage[] = [
     channel: 'any',
     service: 'ev_charger',
     title: 'Home EV Charger Installation in Fresno | Killua Energy',
-    h1: 'Charge at home overnight, on PG&E’s cheapest hours',
-    lede: 'We check your electrical panel, run a dedicated circuit and install a Level 2 charger.',
+    h1: 'Charge your EV at home, overnight',
+    lede: 'We check your electrical panel, run a dedicated circuit and install a Level 2 charger. On a PG&E time-of-use plan, overnight power costs less than the evening peak.',
     points: [
       {
         title: 'Panel checked first',
@@ -668,8 +668,8 @@ export const goPages: GoPage[] = [
         body: 'Bring the charger you want, or we help you choose one.',
       },
       {
-        title: 'Ready for solar',
-        body: 'We set it up so more of your charging can come from your roof later.',
+        title: 'Overnight rates',
+        body: 'Schedule charging for the hours your PG&E time-of-use plan prices lowest.',
       },
     ],
     faqs: [
@@ -695,7 +695,7 @@ export const goPages: GoPage[] = [
       },
       {
         title: 'Tile and comp shingle',
-        body: 'The two roofs on most Valley homes.',
+        body: 'We repair and replace both.',
       },
       {
         title: 'Solar on the roof? Fine.',

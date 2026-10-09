@@ -126,8 +126,9 @@ async function metaCapi(lead, extra) {
         action_source: 'website',
         event_source_url: lead.page_url,
         user_data: {
+          // No phone, hashed or not: the texting programs promise that mobile
+          // numbers are never shared with third parties for marketing.
           em: [sha(lead.email)],
-          ph: [sha(lead.phone.replace(/\D/g, ''))],
           fn: [sha(lead.first_name.toLowerCase())],
           ln: [sha(lead.last_name.toLowerCase())],
           ct: [sha(lead.city.toLowerCase().replace(/\s+/g, ''))],
@@ -166,7 +167,6 @@ async function tiktokEvents(lead, extra) {
         event_id: lead.event_id,
         user: {
           email: sha(lead.email),
-          phone: sha(lead.phone),
           ip: lead.ip || undefined,
           user_agent: lead.user_agent || undefined,
           ttclid: lead.ttclid || undefined,

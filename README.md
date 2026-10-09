@@ -1,9 +1,50 @@
 # killua-web
 
-The public web property for **Killua Energy Inc.** (Fresno, California): one company
-one-pager plus a full set of A2P 10DLC compliance pages for each of the four brands.
+The public web property for **Killua Energy Inc.** (Fresno, California). Two things
+live in this drawer and are kept strictly apart:
 
-Static site. Astro, no database, no environment variables, no third party scripts.
+1. **The A2P 10DLC compliance pages** for the four brands (`/solar/`, `/roofing/`,
+   `/recruiting/`, `/maintenance/` and their privacy, terms and sms pages) plus the
+   company one-pager, which moved from `/` to `/company/`. Everything below the next
+   heading is about these. `npm run verify` guards them and they are byte-identical to
+   what was filed.
+2. **The Killua Energy marketing site and ad landing pages** (added October 2026): home,
+   service pages, about, contact, a website privacy policy, `/thank-you/`, and the six
+   `/go/` ad pages. They have their own layout (`src/layouts/Site.astro`), stylesheet
+   (`src/styles/site.css`) and data (`src/data/site.ts`), a multi-step lead form, a
+   cookie banner, and ad tags that load only after consent. None of that is ever loaded
+   on a compliance page.
+
+### Marketing site at a glance
+
+| Piece | Where |
+|---|---|
+| Copy and facts | `src/data/site.ts` (no reviews, counts, offers or warranty terms until Killua confirms them) |
+| Lead form | `src/components/site/LeadForm.astro` + `src/scripts/lead-form.ts` |
+| Lead endpoint | `api/lead.js` (Vercel function) → one webhook, `KILLUA_LEAD_WEBHOOK_URL` |
+| Cookie consent and ad tags | `src/scripts/consent.ts`; IDs from `PUBLIC_*` env vars, see `.env.example` |
+| Motion | `src/scripts/motion.ts` (GSAP, ScrollTrigger, SplitText, Lenis), `scene.ts` (the roofline drawing). `/go/` pages load none of it. |
+| React Bits | `src/components/react-bits/` (SpotlightCard, LightRays), MIT + Commons Clause: fine on this site, never resell |
+
+Checks, all run by `.github/workflows/slop.yml` on every push:
+
+```bash
+npm run build
+npm run verify          # A2P pages unchanged and compliant
+npm run verify:site     # marketing pages: claims, consent box, tracking fields, no tags before consent
+npm run slop            # SlopMonster copy score, 5/5 required on every page and creative/*.md
+npm run verify:leads    # walks every form in a phone-sized browser through api/lead.js (needs global Playwright)
+```
+
+The marketing pages link to the texting terms at `/solar/sms/` and `/roofing/sms/`.
+Before the marketing site goes on the same live domain as the A2P pages, note that the
+division privacy policies say the site uses no tracking pixels; see the Lane 1 report.
+
+---
+
+The rest of this file describes the compliance pages.
+
+Static, no database, no environment variables, no third party scripts.
 
 ## Why this repo exists
 
