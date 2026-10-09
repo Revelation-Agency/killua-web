@@ -45,9 +45,10 @@ function skyTo(stops: SVGStopElement[], colors: string[]) {
 export function initHeroScene(svg: SVGSVGElement, gsap: typeof GSAP, ScrollTrigger: typeof ST) {
   const p = parts(svg);
   const s = { base: 0.02, drift: 0 };
+  // Inline style, not the attribute: it has to beat the opening-frame CSS.
   const place = () => {
     const [x, y] = at(s.base + s.drift);
-    p.sun.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
+    p.sun.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
   };
   place();
   gsap.set(p.lit, { opacity: 0 });
@@ -91,7 +92,7 @@ export function initDayScene(section: HTMLElement, gsap: typeof GSAP) {
   const s = { t: 0 };
   const place = () => {
     const [x, y] = at(s.t);
-    p.sun.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
+    p.sun.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
   };
   const sky = (key: keyof typeof SKY, at: number, dur = 1) =>
     skyTo(p.stops, SKY[key]).forEach(({ el, color }) =>

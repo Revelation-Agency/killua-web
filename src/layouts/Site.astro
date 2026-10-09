@@ -84,6 +84,18 @@ const callIcon =
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />
     <script is:inline set:html={`window.__killuaCfg=${JSON.stringify(cfg)};`} />
+    {motion && (
+      <script is:inline>
+        // Motion code loads after first paint. Until it runs, the hero holds its
+        // opening frame; if it never runs, drop back to the finished frame.
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.documentElement.classList.add('motion');
+          setTimeout(function () {
+            if (!window.__motionReady) document.documentElement.classList.remove('motion');
+          }, 6000);
+        }
+      </script>
+    )}
   </head>
   <body class="has-callbar">
     <a class="skip" href="#main">Skip to content</a>

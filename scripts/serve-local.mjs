@@ -7,6 +7,7 @@
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve } from 'node:path';
+import { brotliCompressSync } from 'node:zlib';
 import handler from '../api/lead.js';
 
 const DIST = resolve('dist');
@@ -62,8 +63,14 @@ export function startServer(port = 4330) {
     }
     try {
       if ((await stat(file)).isDirectory()) file = join(file, 'index.html');
-      const body = await readFile(file);
-      res.setHeader('content-type', TYPES[extname(file)] || 'application/octet-stream');
+      let body = await readFile(file);
+      const type = TYPES[extname(file)] || 'application/octet-stream';
+      res.setHeader('content-type', type);
+      // Compress text like Vercel's edge does, so local speed tests are fair.
+      if (/text|javascript|svg|json/.test(type) && /br/.test(req.headers['accept-encoding'] || '')) {
+        body = brotliCompressSync(body);
+        res.setHeader('content-encoding', 'br');
+      }
       res.end(body);
     } catch {
       res.statusCode = 404;
@@ -73,7 +80,7 @@ export function startServer(port = 4330) {
   return new Promise((ok) => server.listen(port, '127.0.0.1', () => ok(server)));
 }
 
-if (import.meta.url === `file://${process.argv[1].replace(/\\/g, '/').replace(/^([A-Za-z]):/, '/$1:')}`) {
+if (process.argv[1] && resolve(process.argv[1]) === resolve('scripts/serve-local.mjs')) {
   const port = Number(process.argv[2] || 4330);
   await startServer(port);
   console.log(`serving dist/ and /api/lead on http://127.0.0.1:${port}`);

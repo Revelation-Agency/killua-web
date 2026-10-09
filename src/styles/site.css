@@ -97,15 +97,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: var(--grain);
-  opacity: 0.22;
-  mix-blend-mode: multiply;
-  z-index: 0;
+/* Film grain on large screens only: a full-viewport blended layer costs
+   phones real paint time for a texture nobody sees at that size. */
+@media (min-width: 64rem) and (hover: hover) {
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--grain);
+    opacity: 0.16;
+    z-index: 0;
+  }
 }
 
 main,
@@ -178,7 +181,8 @@ h2 {
   font-size: clamp(1.9rem, 4.4vw, 3.3rem);
 }
 
-h3 {
+h3,
+.h3 {
   font-size: 1.28rem;
   line-height: 1.15;
   font-stretch: 104%;
@@ -286,9 +290,7 @@ button:hover .arrow {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: color-mix(in srgb, var(--stucco) 88%, transparent);
-  backdrop-filter: saturate(1.4) blur(12px);
-  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  background: rgba(244, 238, 228, 0.97);
   border-bottom: 1px solid var(--line);
 }
 .site-header.on-dark {
@@ -481,7 +483,7 @@ button:hover .arrow {
   overflow-y: auto;
   padding: 1rem 0;
 }
-.drawer h4 {
+.drawer .drawer-h {
   margin: 1.4rem 0 0.4rem;
   font-size: 0.75rem;
   font-weight: 650;
@@ -516,9 +518,7 @@ button:hover .arrow {
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
   padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom));
-  background: color-mix(in srgb, var(--night) 92%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(19, 19, 21, 0.97);
   border-top: 1px solid rgba(244, 238, 228, 0.12);
   transform: translateY(0);
   transition: transform 0.25s ease;
@@ -1592,8 +1592,10 @@ body.has-callbar {
   color: var(--stucco);
   text-decoration: none;
 }
-.site-footer a:hover {
+.site-footer a:hover,
+.site-footer p a {
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .foot-grid {
   display: grid;
@@ -1604,7 +1606,7 @@ body.has-callbar {
     grid-template-columns: 1.4fr 1fr 1fr 1fr;
   }
 }
-.site-footer h4 {
+.site-footer .foot-h {
   margin: 0 0 0.8rem;
   font-size: 0.75rem;
   font-weight: 650;
@@ -1740,6 +1742,16 @@ body.has-callbar .cookie {
 }
 
 /* ------------------------------------------------------------ motion */
+
+/* Opening frame of the hero, held until motion.ts takes over (html.motion is
+   set in <head> only when motion is allowed). */
+.motion [data-scene='hero'] [data-sun] {
+  transform: translate(91px, 445px);
+}
+.motion [data-scene='hero'] [data-lit],
+.motion [data-scene='hero'] [data-flow] {
+  opacity: 0;
+}
 
 [data-reveal] {
   will-change: transform, opacity;

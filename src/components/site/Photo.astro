@@ -32,12 +32,12 @@ const hit = Object.entries(photos).find(([p]) => p.split('/').pop()!.replace(/\.
       src={hit[1].default}
       alt={alt}
       formats={['avif', 'webp']}
-      widths={widths}
+      widths={priority ? [480, 640, 960, 1280] : widths}
       sizes={sizes}
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : 'auto'}
       decoding={priority ? 'sync' : 'async'}
-      quality={priority ? 62 : 68}
+      quality={priority ? 50 : 62}
       fallbackFormat="jpg"
     />
   ) : (

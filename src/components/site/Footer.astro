@@ -19,11 +19,11 @@ const year = new Date().getFullYear();
           <p style="margin:0"><a href={site.licenseUrl} rel="noopener" target="_blank">{site.license}</a></p>
         </div>
         <div>
-          <h4>Services</h4>
+          <h2 class="foot-h">Services</h2>
           <ul>{services.map((s) => <li><a href={s.path}>{s.label}</a></li>)}</ul>
         </div>
         <div>
-          <h4>Company</h4>
+          <h2 class="foot-h">Company</h2>
           <ul>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
@@ -33,7 +33,7 @@ const year = new Date().getFullYear();
           </ul>
         </div>
         <div>
-          <h4>Service area</h4>
+          <h2 class="foot-h">Service area</h2>
           <ul>{cities.map((c) => <li>{c}</li>)}</ul>
         </div>
       </div>

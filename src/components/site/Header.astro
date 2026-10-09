@@ -68,11 +68,11 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
     <nav aria-label="Mobile">
       {nav.map((g) => (
         <>
-          <h4>{g.label}</h4>
+          <p class="drawer-h">{g.label}</p>
           {g.items.map((k) => <a href={serviceByKey[k].path}>{serviceByKey[k].label}</a>)}
         </>
       ))}
-      <h4>More</h4>
+      <p class="drawer-h">More</p>
       {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
     </nav>
     <div class="drawer-cta">

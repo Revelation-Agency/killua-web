@@ -24,6 +24,11 @@ const { formId, service, options, compact = false, heading } = Astro.props;
 const choices = (options ?? services.map((s) => s.key)).map((k) => serviceByKey[k]);
 const preset = service ?? (choices.length === 1 ? choices[0].key : undefined);
 const texting = preset ? serviceByKey[preset].texting : 'solar';
+// Render the first step visible in the HTML, so the form does not jump when
+// the script takes over. lead-form.ts computes the same order.
+const first = preset ? serviceByKey[preset].followUp : 'service';
+const total = (preset ? 0 : 1) + 4 + (compact ? 0 : 1);
+const hide = (step: string) => (step === first ? undefined : true);
 const tid = (n: string) => `${formId}-${n}`;
 const chevron = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const arrow = '<svg class="arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4.5-5L15 10l-4.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -61,9 +66,9 @@ const times = [
   {heading && <p class="lf-q" style="font-size:1.05rem;margin-bottom:.8rem">{heading}</p>}
   <div class="lf-top">
     <button type="button" class="lf-back" data-back hidden><Fragment set:html={chevron} />Back</button>
-    <span data-count aria-live="polite">Step 1</span>
+    <span data-count aria-live="polite">Step 1 of {total}</span>
   </div>
-  <div class="lf-progress" aria-hidden="true"><span></span></div>
+  <div class="lf-progress" aria-hidden="true"><span style={`--p:${100 / total}%`}></span></div>
 
   {/* 1. service */}
   <fieldset class="lf-step" data-step="service" hidden={preset ? true : undefined} disabled={preset ? true : undefined}>
@@ -80,7 +85,7 @@ const times = [
   {preset && <input type="hidden" name="service" value={preset} />}
 
   {/* 2. follow-up, one of four by service */}
-  <fieldset class="lf-step" data-step="bill" data-for="bill" hidden>
+  <fieldset class="lf-step" data-step="bill" data-for="bill" hidden={hide('bill')}>
     <legend>About how much is your PG&amp;E bill in a typical month?</legend>
     <div class="choices">
       {bills.map(([v, l]) => (
@@ -89,7 +94,7 @@ const times = [
     </div>
   </fieldset>
 
-  <fieldset class="lf-step" data-step="roof_age" data-for="roof_age" hidden>
+  <fieldset class="lf-step" data-step="roof_age" data-for="roof_age" hidden={hide('roof_age')}>
     <legend>How old is the roof?</legend>
     <div class="choices">
       {roofAges.map(([v, l]) => (
@@ -98,7 +103,7 @@ const times = [
     </div>
   </fieldset>
 
-  <fieldset class="lf-step" data-step="problem" data-for="problem" hidden>
+  <fieldset class="lf-step" data-step="problem" data-for="problem" hidden={hide('problem')}>
     <legend>What is going on?</legend>
     <p class="lf-hint">A sentence or two is plenty. Error codes, leaks, a dead app, anything you noticed.</p>
     <div class="field">
@@ -109,7 +114,7 @@ const times = [
     <button type="button" class="btn btn-red lf-next" data-next>Next <Fragment set:html={arrow} /></button>
   </fieldset>
 
-  <fieldset class="lf-step" data-step="ev" data-for="ev" hidden>
+  <fieldset class="lf-step" data-step="ev" data-for="ev" hidden={hide('ev')}>
     <legend>Tell us about the car and the panel</legend>
     <div class="fields">
       <div class="field">

@@ -1,4 +1,13 @@
 <script>
-  import { initMotion } from '../../scripts/motion';
-  initMotion();
+  // Loaded after the page has painted, so GSAP, Lenis and the scenes never
+  // compete with the headline for the first render.
+  const run = () =>
+    import('../../scripts/motion').then((m) => {
+      m.initMotion();
+      (window as any).__motionReady = true;
+    });
+  const idle = () =>
+    'requestIdleCallback' in window ? requestIdleCallback(run, { timeout: 1200 }) : setTimeout(run, 150);
+  if (document.readyState === 'complete') idle();
+  else addEventListener('load', idle, { once: true });
 </script>
