@@ -8,6 +8,10 @@ Service area for location targeting: Fresno, Clovis, Visalia, Merced, Lemoore, E
 
 Every ad ends on one of two actions: the short form on the landing page, or a call to (559) 691-4028. The license number to put in front of people is CSLB# 1096633.
 
+## Rendered files
+
+Finished images are in `creative/ads/`, made by `scripts/render-ads.mjs` from the photos in `creative/photos/`. Each single-image ad comes in three sizes: `meta-<ad>-1x1.png` for the feed, `meta-<ad>-4x5.png` for the taller feed slot, and `meta-<ad>-9x16.png` for Stories and Reels. The ads are `a-solar-bill`, `b-solar-battery`, `c-solar-roof`, `d-solar-repair`, `e-roofing` and `f-ev-charger`. TikTok covers are `tiktok-cover-tt-1` to `tt-5`. Contact sheets are in `creative/contact-sheet-*.png`.
+
 ## Single-image ads
 
 ### Ad A: Solar savings (bill pain)
@@ -50,7 +54,7 @@ Killua Energy designs and installs solar for homes in Fresno, Clovis and across 
 ### Ad B: Solar plus battery (rate hikes, outages, PSPS)
 
 - Landing page: `/go/solar-battery`
-- Image file: `creative/photos/ad-battery-outage-4x5.png`
+- Image file: `creative/photos/ad-battery-4x5.png`
 - On-image headline: When PG&E shuts power off
 - Button: Learn More
 
@@ -124,7 +128,7 @@ A solar system makes power while the sun is out and your house is using it. Kill
 ### Ad D: Solar repair for orphaned systems
 
 - Landing page: `/go/solar-repair`
-- Image file: `creative/photos/ad-repair-orphaned-4x5.png`
+- Image file: `creative/photos/ad-repair-4x5.png`
 - On-image headline: Installer gone? We fix solar.
 - Button: Learn More
 
@@ -161,7 +165,7 @@ Killua Energy services solar in Fresno and across the Central Valley. Use the sh
 ### Ad E: Roofing (fall roof check before the rains)
 
 - Landing page: `/go/roofing`
-- Image file: `creative/photos/ad-roof-fall-check-4x5.png`
+- Image file: `creative/photos/ad-roof-4x5.png`
 - On-image headline: Check your roof before it rains
 - Button: Learn More
 
@@ -198,7 +202,7 @@ Killua Energy replaces roofs on Fresno homes and repairs the ones that can still
 ### Ad F: EV charger installation
 
 - Landing page: `/go/ev-charger`
-- Image file: `creative/photos/ad-ev-garage-4x5.png`
+- Image file: `creative/photos/ad-ev-4x5.png`
 - On-image headline: A real charger in your garage
 - Button: Learn More
 
@@ -234,12 +238,12 @@ A charger on the garage wall means the car is ready when you are. Killua Energy,
 
 ## Carousel ads
 
-Both carousels use five square cards (1080 by 1080) and one landing page per carousel. Card images do not exist yet. The file names below are the ones to export to.
+Both carousels use five square cards (1080 by 1080) and one landing page per carousel.
 
 ### Carousel 1: How a Killua solar install goes
 
 - Landing page: `/go/solar-savings`
-- Image files: `creative/photos/carousel-process-01-1x1.png` through `creative/photos/carousel-process-05-1x1.png`
+- Rendered cards: `creative/ads/carousel-process-01-1x1.png` through `creative/ads/carousel-process-05-1x1.png`
 - Button: Learn More
 
 | Card | On-card headline | Card description |
@@ -271,7 +275,7 @@ Killua Energy, Fresno. CSLB# 1096633. Call (559) 691-4028 or use the short form.
 ### Carousel 2: The orphaned solar system
 
 - Landing page: `/go/solar-repair`
-- Image files: `creative/photos/carousel-repair-01-1x1.png` through `creative/photos/carousel-repair-05-1x1.png`
+- Rendered cards: `creative/ads/carousel-repair-01-1x1.png` through `creative/ads/carousel-repair-05-1x1.png`
 - Button: Learn More
 
 | Card | On-card headline | Card description |

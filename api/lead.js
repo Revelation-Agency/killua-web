@@ -98,6 +98,17 @@ export function validateLead(lead) {
   if (!/^\d{5}$/.test(lead.zip)) bad.push('zip');
   for (const [k, allowed] of Object.entries(ENUMS)) if (!allowed.includes(lead[k])) bad.push(k);
   if (!lead.consent_calls_texts) bad.push('consent_calls_texts');
+  // The one follow-up question each service asks.
+  const need = {
+    solar_installation: 'monthly_bill',
+    battery_storage: 'monthly_bill',
+    roof_replacement: 'roof_age',
+    roof_inspection: 'roof_age',
+    solar_repair: 'problem_description',
+    roof_repair: 'problem_description',
+    ev_charger: 'panel_location',
+  }[lead.service];
+  if (need && lead[need].length < (need === 'problem_description' ? 4 : 1)) bad.push(need);
   return bad;
 }
 
@@ -196,6 +207,23 @@ async function tiktokEvents(lead, extra) {
   return r.ok ? 'sent' : `error ${r.status}`;
 }
 
+/** A plain page for the no-JavaScript form, for every way a send can fail. */
+function page(res, status) {
+  const [title, text] =
+    status === 422
+      ? ['A few details are missing', 'Please go back and check the form, including the consent box.']
+      : ['That did not go through', 'Your request did not reach us. Please go back and try again in a minute.'];
+  res.setHeader('content-type', 'text/html; charset=utf-8');
+  return res
+    .status(status)
+    .end(
+      `<!doctype html><meta name="viewport" content="width=device-width"><title>${title}</title>` +
+        '<body style="font-family:system-ui,sans-serif;max-width:32rem;margin:3rem auto;padding:0 1rem;line-height:1.5">' +
+        `<h1>${title}</h1><p>${text}</p>` +
+        '<p><a href="javascript:history.back()">Go back</a> or call <a href="tel:+15596914028">(559) 691-4028</a>.</p>'
+    );
+}
+
 function parseBody(req) {
   let body = req.body;
   if (typeof body === 'string' || Buffer.isBuffer(body)) {
@@ -235,22 +263,12 @@ export default async function handler(req, res) {
 
   const lead = cleanLead(body);
   const bad = validateLead(lead);
-  if (bad.length && isForm) {
-    // The no-JavaScript form: a readable page, not raw JSON.
-    res.setHeader('content-type', 'text/html; charset=utf-8');
-    return res
-      .status(422)
-      .end(
-        '<!doctype html><meta name="viewport" content="width=device-width"><title>Check the form</title>' +
-          '<body style="font-family:system-ui,sans-serif;max-width:32rem;margin:3rem auto;padding:0 1rem;line-height:1.5">' +
-          '<h1>A few details are missing</h1><p>Please go back and check the form, including the consent box.</p>' +
-          '<p><a href="javascript:history.back()">Go back</a> or call <a href="tel:+15596914028">(559) 691-4028</a>.</p>'
-      );
-  }
+  // The no-JavaScript form gets a readable page, not raw JSON.
+  if (bad.length && isForm) return page(res, 422);
   if (bad.length) return res.status(422).json({ ok: false, error: 'invalid', fields: bad });
 
   const url = process.env.KILLUA_LEAD_WEBHOOK_URL;
-  if (!url) return res.status(503).json({ ok: false, error: 'lead webhook not configured' });
+  if (!url) return isForm ? page(res, 503) : res.status(503).json({ ok: false, error: 'lead webhook not configured' });
 
   // One id per submission, reused by the browser on a retry, so a lead that
   // reached the webhook just before a timeout can be de-duplicated downstream.
@@ -269,6 +287,13 @@ export default async function handler(req, res) {
   lead.environment = process.env.VERCEL_ENV || 'local';
   lead.test = isTestLead(lead);
 
+  // Server-side ad events need more than the page's say-so: the request must
+  // come from this site's own pages and carry the cookie the banner sets when
+  // advertising is allowed. Decided before the payload, so the webhook record
+  // and the ad platforms always agree.
+  const cookieAds = /(?:^|;\s*)killua_ads=1(?:;|$)/.test(String(req.headers.cookie || ''));
+  if (!(originHost === host && cookieAds)) lead.ad_consent = 'denied';
+
   const payload = JSON.stringify(Object.fromEntries(CONTRACT.map((k) => [k, lead[k]])));
   const headers = { 'content-type': 'application/json', 'user-agent': 'killua-web/lead' };
   if (process.env.KILLUA_LEAD_WEBHOOK_SECRET) {
@@ -280,14 +305,9 @@ export default async function handler(req, res) {
     if (!r.ok) throw new Error(`webhook ${r.status}`);
   } catch (err) {
     console.error('lead forward failed', lead.lead_id, String(err));
-    return res.status(502).json({ ok: false, error: 'could not deliver lead' });
+    return isForm ? page(res, 502) : res.status(502).json({ ok: false, error: 'could not deliver lead' });
   }
 
-  // Server-side ad events need more than the page's say-so: the request must
-  // come from this site's own pages and carry the cookie the banner sets when
-  // advertising is allowed. Lead delivery above never depends on this.
-  const cookieAds = /(?:^|;\s*)killua_ads=1(?:;|$)/.test(String(req.headers.cookie || ''));
-  if (!(originHost === host && cookieAds)) lead.ad_consent = 'denied';
   const extra = { fbp: str(body.fbp, 200), fbc: str(body.fbc, 400), ttp: str(body.ttp, 200) };
   const [meta, tiktok] = await Promise.allSettled([
     withTimeout(metaCapi(lead, extra), 2500),

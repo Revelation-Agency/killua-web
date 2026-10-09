@@ -123,6 +123,7 @@ function setup(form: HTMLFormElement) {
   // Tap-to-answer steps move on by themselves only after a tap or click; a
   // keyboard user arrowing through the choices moves on with Enter or Next.
   let viaPointer = false;
+  let advance = 0;
   form.addEventListener('pointerdown', (e) => {
     viaPointer = !!(e.target as Element).closest('label.choice');
   });
@@ -185,14 +186,20 @@ function setup(form: HTMLFormElement) {
 
   form.addEventListener('change', (e) => {
     const t = e.target as HTMLInputElement;
+    submissionId = ''; // changed answers after a failed send are a new submission
     if (t.type === 'radio' && t.hasAttribute('data-auto') && viaPointer) {
       viaPointer = false;
-      window.setTimeout(next, 220);
+      const from = i;
+      window.clearTimeout(advance);
+      advance = window.setTimeout(() => {
+        if (i === from) next();
+      }, 220);
     }
   });
 
   form.addEventListener('input', (e) => {
     const t = e.target as HTMLInputElement;
+    submissionId = '';
     if (t.name === 'phone') {
       const pos = t.value.length;
       t.value = formatPhone(t.value);
@@ -212,8 +219,14 @@ function setup(form: HTMLFormElement) {
     }
   });
 
-  form.querySelectorAll('[data-next]').forEach((b) => b.addEventListener('click', next));
+  form.querySelectorAll('[data-next]').forEach((b) =>
+    b.addEventListener('click', () => {
+      window.clearTimeout(advance);
+      next();
+    })
+  );
   back.addEventListener('click', () => {
+    window.clearTimeout(advance);
     i -= 1;
     show(true);
   });
@@ -376,6 +389,8 @@ function setupAutocomplete(form: HTMLFormElement) {
     if (!it || !allowed()) return;
     input.value = it.text.split(',')[0];
     const chosen = input.value;
+    const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | null;
+    const before = Object.fromEntries(['city', 'state', 'zip'].map((n) => [n, field(n)?.value ?? '']));
     try {
       const r = await fetch(
         `https://places.googleapis.com/v1/places/${encodeURIComponent(it.id)}?sessionToken=${token}`,
@@ -389,7 +404,8 @@ function setupAutocomplete(form: HTMLFormElement) {
       // The visitor kept typing while details loaded: their edit wins.
       if (input.value !== chosen) return;
       const set = (name: string, v: string) => {
-        const el = form.elements.namedItem(name) as HTMLInputElement | null;
+        const el = field(name);
+        if (name in before && el && el.value !== before[name]) return; // edited meanwhile
         if (el && v) {
           el.value = v;
           setError(el, '');

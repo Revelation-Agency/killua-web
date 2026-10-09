@@ -265,6 +265,11 @@ r = await fetch(`${BASE}/api/lead`, {
 assert.equal(r.status, 422);
 assert.match(await r.text(), /A few details are missing/);
 ok('cross-site posts refused; a bad no-JavaScript post gets a readable page, not JSON');
+r = await post({ ...good, service: 'ev_charger', panel_location: '' });
+assert.equal(r.status, 422, 'an EV lead without a panel location must be refused');
+r = await post({ ...good, ad_consent: 'granted' });
+assert.equal(received.at(-1).body.ad_consent, 'denied', 'no cookie and no same-origin: the webhook must not see granted');
+ok('server requires each service\'s follow-up answer; the webhook never sees ad consent the server did not verify');
 
 // ------------------------------------------------ 9. no JavaScript at all
 const nojs = await browser.newContext({ ...devices['iPhone 13'], javaScriptEnabled: false });
