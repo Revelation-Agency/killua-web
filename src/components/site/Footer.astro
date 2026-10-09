@@ -1,0 +1,55 @@
+---
+import { cities, services, site } from '../../data/site';
+
+interface Props {
+  variant: 'main' | 'go';
+}
+const { variant } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="shell">
+    {variant === 'main' && (
+      <div class="foot-grid">
+        <div>
+          <img src="/brand/killua-energy-light.svg" alt="Killua Energy" width="168" height="58" style="width:10rem;margin-bottom:1.2rem" />
+          <p style="margin:0 0 .3rem">{site.street}<br />{site.cityLine}</p>
+          <p style="margin:0 0 .3rem"><a href={site.phoneHref}>{site.phone}</a></p>
+          <p style="margin:0"><a href={site.licenseUrl} rel="noopener" target="_blank">{site.license}</a></p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>{services.map((s) => <li><a href={s.path}>{s.label}</a></li>)}</ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/privacy/">Privacy Policy</a></li>
+            <li><a href="/solar/sms/">Texting terms, solar</a></li>
+            <li><a href="/roofing/sms/">Texting terms, roofing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Service area</h4>
+          <p style="margin:0">{cities.join(', ')} and the Central Valley.</p>
+        </div>
+      </div>
+    )}
+    {variant === 'go' && (
+      <p style="margin:0">
+        {site.brand} · {site.street}, {site.cityLine} · <a href={site.phoneHref}>{site.phone}</a> ·{' '}
+        <a href={site.licenseUrl} rel="noopener" target="_blank">{site.license}</a>
+      </p>
+    )}
+    <div class="foot-legal">
+      <span>© {year} {site.legalName}</span>
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/privacy/#do-not-sell">Do Not Sell or Share My Personal Information</a>
+      <button type="button" data-cookie-prefs>Cookie preferences</button>
+      {variant === 'go' && <a href="/solar/sms/">Texting terms</a>}
+    </div>
+  </div>
+</footer>

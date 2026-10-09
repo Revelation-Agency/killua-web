@@ -1,0 +1,271 @@
+---
+/**
+ * Multi-step quote form. One question per step, progress bar, big tap targets.
+ * All steps live in one <form> so it still submits as a plain form if the
+ * script fails; lead-form.ts turns it into the stepped version.
+ *
+ * Field names are the contract with Lane 2's n8n front door. Do not rename one
+ * without changing the contract table in the report and in api/lead.js.
+ */
+import { services, serviceByKey, consentSentence, site, type ServiceKey } from '../../data/site';
+
+interface Props {
+  formId: string;
+  /** Pre-picked service; skips the service question when only one is allowed. */
+  service?: ServiceKey;
+  /** Limit the first question to these services. */
+  options?: ServiceKey[];
+  /** Name and contact on one step, for the short ad-page quiz. */
+  compact?: boolean;
+  heading?: string;
+}
+
+const { formId, service, options, compact = false, heading } = Astro.props;
+const choices = (options ?? services.map((s) => s.key)).map((k) => serviceByKey[k]);
+const preset = service ?? (choices.length === 1 ? choices[0].key : undefined);
+const texting = preset ? serviceByKey[preset].texting : 'solar';
+const tid = (n: string) => `${formId}-${n}`;
+const chevron = '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const arrow = '<svg class="arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4.5-5L15 10l-4.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const bills = [
+  ['under_150', 'Under $150'],
+  ['150_250', '$150 to $250'],
+  ['250_400', '$250 to $400'],
+  ['400_plus', 'Over $400'],
+  ['not_sure', 'Not sure'],
+];
+const roofAges = [
+  ['under_10', 'Under 10 years'],
+  ['10_20', '10 to 20 years'],
+  ['20_plus', 'Over 20 years'],
+  ['not_sure', 'Not sure'],
+];
+const times = [
+  ['morning', 'Morning'],
+  ['afternoon', 'Afternoon'],
+  ['evening', 'Evening'],
+  ['anytime', 'Anytime'],
+];
+---
+
+<form
+  class="lead-form"
+  id={formId}
+  data-lead-form
+  data-preset={preset ?? ''}
+  data-compact={compact ? '1' : ''}
+  action="/api/lead"
+  method="post"
+  novalidate
+>
+  {heading && <p class="lf-q" style="font-size:1.05rem;margin-bottom:.8rem">{heading}</p>}
+  <div class="lf-top">
+    <button type="button" class="lf-back" data-back hidden><Fragment set:html={chevron} />Back</button>
+    <span data-count aria-live="polite">Step 1</span>
+  </div>
+  <div class="lf-progress" aria-hidden="true"><span></span></div>
+
+  {/* 1. service */}
+  <fieldset class="lf-step" data-step="service" hidden={preset ? true : undefined} disabled={preset ? true : undefined}>
+    <legend>What do you need help with?</legend>
+    <div class="choices grid">
+      {choices.map((s) => (
+        <label class="choice">
+          <input type="radio" name="service" value={s.key} required data-auto data-texting={s.texting} />
+          <span>{s.label}</span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+  {preset && <input type="hidden" name="service" value={preset} />}
+
+  {/* 2. follow-up, one of four by service */}
+  <fieldset class="lf-step" data-step="bill" data-for="bill" hidden>
+    <legend>About how much is your PG&amp;E bill in a typical month?</legend>
+    <div class="choices">
+      {bills.map(([v, l]) => (
+        <label class="choice"><input type="radio" name="monthly_bill" value={v} required data-auto /><span>{l}</span></label>
+      ))}
+    </div>
+  </fieldset>
+
+  <fieldset class="lf-step" data-step="roof_age" data-for="roof_age" hidden>
+    <legend>How old is the roof?</legend>
+    <div class="choices">
+      {roofAges.map(([v, l]) => (
+        <label class="choice"><input type="radio" name="roof_age" value={v} required data-auto /><span>{l}</span></label>
+      ))}
+    </div>
+  </fieldset>
+
+  <fieldset class="lf-step" data-step="problem" data-for="problem" hidden>
+    <legend>What is going on?</legend>
+    <p class="lf-hint">A sentence or two is plenty. Error codes, leaks, a dead app, anything you noticed.</p>
+    <div class="field">
+      <label for={tid('problem')}>Describe the problem</label>
+      <textarea id={tid('problem')} name="problem_description" rows="4" maxlength="1200" required minlength="4"></textarea>
+      <span class="err" aria-live="polite"></span>
+    </div>
+    <button type="button" class="btn btn-red lf-next" data-next>Next <Fragment set:html={arrow} /></button>
+  </fieldset>
+
+  <fieldset class="lf-step" data-step="ev" data-for="ev" hidden>
+    <legend>Tell us about the car and the panel</legend>
+    <div class="fields">
+      <div class="field">
+        <label for={tid('ev_make')}>Car make and model <span style="font-weight:400;color:var(--ink-3)">(optional)</span></label>
+        <input id={tid('ev_make')} name="ev_make" type="text" maxlength="80" autocomplete="off" />
+      </div>
+      <div>
+        <p class="field" style="margin:0 0 .4rem"><span style="font-size:.92rem;font-weight:650">Where is your electrical panel?</span></p>
+        <div class="choices two">
+          <label class="choice"><input type="radio" name="panel_location" value="garage" required /><span>In the garage</span></label>
+          <label class="choice"><input type="radio" name="panel_location" value="outside" required /><span>Outside</span></label>
+          <label class="choice"><input type="radio" name="panel_location" value="other" required /><span>Somewhere else</span></label>
+          <label class="choice"><input type="radio" name="panel_location" value="not_sure" required /><span>Not sure</span></label>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="btn btn-red lf-next" data-next>Next <Fragment set:html={arrow} /></button>
+  </fieldset>
+
+  {/* 3. homeowner */}
+  <fieldset class="lf-step" data-step="homeowner" hidden>
+    <legend>Do you own the home?</legend>
+    <div class="choices two">
+      <label class="choice"><input type="radio" name="homeowner" value="yes" required data-auto /><span>Yes</span></label>
+      <label class="choice"><input type="radio" name="homeowner" value="no" required data-auto /><span>No, I rent</span></label>
+    </div>
+  </fieldset>
+
+  {/* 4. address */}
+  <fieldset class="lf-step" data-step="address" hidden>
+    <legend>Where is the property?</legend>
+    <div class="fields two">
+      <div class="field wide">
+        <label for={tid('street')}>Street address</label>
+        <input id={tid('street')} name="street" type="text" autocomplete="address-line1" required maxlength="120" data-ac role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls={tid('ac')} />
+        <ul class="ac-list" id={tid('ac')} role="listbox" hidden></ul>
+        <span class="err" aria-live="polite"></span>
+      </div>
+      <div class="field wide">
+        <label for={tid('city')}>City</label>
+        <input id={tid('city')} name="city" type="text" autocomplete="address-level2" required maxlength="60" />
+        <span class="err" aria-live="polite"></span>
+      </div>
+      <div class="field">
+        <label for={tid('state')}>State</label>
+        <input id={tid('state')} name="state" type="text" autocomplete="address-level1" required maxlength="2" value="CA" pattern="[A-Za-z]{2}" />
+        <span class="err" aria-live="polite"></span>
+      </div>
+      <div class="field">
+        <label for={tid('zip')}>ZIP</label>
+        <input id={tid('zip')} name="zip" type="text" inputmode="numeric" autocomplete="postal-code" required pattern="[0-9]{5}" maxlength="5" />
+        <span class="err" aria-live="polite"></span>
+      </div>
+    </div>
+    <button type="button" class="btn btn-red lf-next" data-next>Next <Fragment set:html={arrow} /></button>
+  </fieldset>
+
+  {/* 5. name (folded into the contact step when compact) */}
+  {!compact && (
+    <fieldset class="lf-step" data-step="name" hidden>
+      <legend>Who should we ask for?</legend>
+      <div class="fields two">
+        <div class="field">
+          <label for={tid('first')}>First name</label>
+          <input id={tid('first')} name="first_name" type="text" autocomplete="given-name" required maxlength="60" />
+          <span class="err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for={tid('last')}>Last name</label>
+          <input id={tid('last')} name="last_name" type="text" autocomplete="family-name" required maxlength="60" />
+          <span class="err" aria-live="polite"></span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-red lf-next" data-next>Next <Fragment set:html={arrow} /></button>
+    </fieldset>
+  )}
+
+  {/* 6. contact + consent */}
+  <fieldset class="lf-step" data-step="contact" hidden>
+    <legend>{compact ? 'Who should we call with your estimate?' : 'How do we reach you?'}</legend>
+    <div class="fields">
+      {compact && (
+        <div class="fields two">
+          <div class="field">
+            <label for={tid('first')}>First name</label>
+            <input id={tid('first')} name="first_name" type="text" autocomplete="given-name" required maxlength="60" />
+            <span class="err" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for={tid('last')}>Last name</label>
+            <input id={tid('last')} name="last_name" type="text" autocomplete="family-name" required maxlength="60" />
+            <span class="err" aria-live="polite"></span>
+          </div>
+        </div>
+      )}
+      <div class="field">
+        <label for={tid('phone')}>Mobile phone</label>
+        <input id={tid('phone')} name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required maxlength="20" />
+        <span class="err" aria-live="polite"></span>
+      </div>
+      <div class="field">
+        <label for={tid('email')}>Email</label>
+        <input id={tid('email')} name="email" type="email" inputmode="email" autocomplete="email" required maxlength="120" />
+        <span class="err" aria-live="polite"></span>
+      </div>
+      <div>
+        <p style="margin:0 0 .45rem;font-size:.92rem;font-weight:650">Best time to call <span style="font-weight:400;color:var(--ink-3)">(optional)</span></p>
+        <div class="chips">
+          {times.map(([v, l]) => (
+            <label class="chip"><input type="radio" name="best_time_to_call" value={v} /><span>{l}</span></label>
+          ))}
+        </div>
+      </div>
+      <details class="lf-optional">
+        <summary>Add a note (optional)</summary>
+        <div class="field" style="margin-top:.5rem">
+          <label for={tid('notes')} class="sr">Notes</label>
+          <textarea id={tid('notes')} name="notes" rows="3" maxlength="1500"></textarea>
+        </div>
+      </details>
+    </div>
+
+    <label class="consent" data-consent>
+      <input type="checkbox" name="consent_calls_texts" value="yes" required />
+      <span>
+        <span data-consent-text>{consentSentence}</span>
+        {' '}See our <a href="/privacy/">Privacy Policy</a> and{' '}
+        <a href={`/${texting}/sms/`} data-texting-link>texting terms</a>.
+      </span>
+    </label>
+    <span class="err" data-consent-err aria-live="polite" style="display:block;margin-top:.4rem;font-size:.88rem;color:var(--red-deep);font-weight:600"></span>
+
+    <button type="submit" class="btn btn-red lf-next" data-submit>Get my estimate <Fragment set:html={arrow} /></button>
+    <p class="lf-fine">Prefer to talk? Call <a href={site.phoneHref}>{site.phone}</a>.</p>
+    <div class="lf-error" data-error role="alert" hidden></div>
+  </fieldset>
+
+  {/* attribution, filled by attribution.ts */}
+  <input type="hidden" name="form_id" value={formId} />
+  <input type="hidden" name="utm_source" />
+  <input type="hidden" name="utm_medium" />
+  <input type="hidden" name="utm_campaign" />
+  <input type="hidden" name="utm_content" />
+  <input type="hidden" name="utm_term" />
+  <input type="hidden" name="gclid" />
+  <input type="hidden" name="fbclid" />
+  <input type="hidden" name="ttclid" />
+  <input type="hidden" name="landing_page" />
+  <input type="hidden" name="referrer" />
+  <input type="hidden" name="submitted_at" />
+  <div class="hp" aria-hidden="true">
+    <label>Leave this empty <input type="text" name="company_website" tabindex="-1" autocomplete="off" /></label>
+  </div>
+</form>
+
+<script>
+  import { initLeadForms } from '../../scripts/lead-form';
+  initLeadForms();
+</script>

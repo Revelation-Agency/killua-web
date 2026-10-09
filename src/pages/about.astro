@@ -1,0 +1,73 @@
+---
+import Site from '../layouts/Site.astro';
+import Trust from '../components/site/Trust.astro';
+import Photo from '../components/site/Photo.astro';
+import { cities, services, site } from '../data/site';
+const arrow = '<svg class="arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4.5-5L15 10l-4.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+---
+
+<Site
+  title="About Killua Energy | Fresno Solar and Roofing Contractor"
+  description="Killua Energy is a licensed California contractor (CSLB #1096633) in Fresno doing solar, batteries, roofing and EV chargers across the Central Valley."
+  darkHeader
+  quoteHref="/contact/#quote"
+>
+  <section class="page-hero">
+    <div class="shell">
+      <div style="display:grid;gap:1.2rem">
+        <span class="label">About us</span>
+        <h1>A Fresno contractor for the roof and everything on it</h1>
+        <p class="lede">
+          Killua Energy installs solar and home batteries, repairs systems other companies left behind, replaces and
+          repairs roofs, and installs EV chargers for homes across the Central Valley.
+        </p>
+      </div>
+      <div class="photo"><Photo name="fresno-street" alt="Fresno residential street at golden hour with solar on some roofs" priority sizes="(min-width: 64rem) 46vw, 92vw" /></div>
+    </div>
+  </section>
+
+  <Trust />
+
+  <section class="section">
+    <div class="shell split">
+      <div style="display:grid;gap:1rem">
+        <h2 data-split>Why one company for both trades</h2>
+        <p style="color:var(--ink-2);margin:0">
+          Solar sits on a roof for decades. When the roofer and the solar installer are two different companies, a leak
+          at a panel mount becomes an argument about whose fault it is. We do both, so the answer is always the same: ours
+          to fix.
+        </p>
+        <p style="color:var(--ink-2);margin:0">
+          It also means we look at the roof before we sell you panels, and we can take your panels off and put them back
+          when the roof is due.
+        </p>
+      </div>
+      <div class="callout" data-reveal>
+        <strong>The facts you can check</strong>
+        <p>
+          {site.legalName}, California contractor license {site.license.replace('CSLB ', '')}.
+          Office at {site.street}, {site.cityLine}. Phone {site.phone}.
+        </p>
+        <p><a href={site.licenseUrl} target="_blank" rel="noopener" style="color:var(--amber);font-weight:700">Look up our license on the CSLB site</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="shell split">
+      <div style="display:grid;gap:1rem">
+        <h2 data-split>What we do</h2>
+        <ul class="checklist">
+          {services.map((s) => (
+            <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><a href={s.path} style="font-weight:700">{s.label}</a>. {s.short}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div style="display:grid;gap:1rem;align-content:start">
+        <h2 data-split>Where we work</h2>
+        <ul class="cities">{cities.map((c) => <li>{c}</li>)}</ul>
+        <p style="margin:1rem 0 0"><a class="btn btn-red" href="/contact/#quote">Get an estimate <Fragment set:html={arrow} /></a></p>
+      </div>
+    </div>
+  </section>
+</Site>

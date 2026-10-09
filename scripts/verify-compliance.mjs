@@ -14,8 +14,10 @@ import { join } from 'node:path';
 const DIST = 'dist';
 const BRANDS = ['solar', 'roofing', 'recruiting', 'maintenance'];
 
+// The company one-pager moved from / to /company/ when the marketing site took
+// the root. Its HTML is byte-identical to what was filed; only the URL changed.
 const EXPECTED_ROUTES = [
-  '/',
+  '/company/',
   ...BRANDS.flatMap((brand) => [
     `/${brand}/`,
     `/${brand}/privacy/`,
@@ -103,7 +105,16 @@ if (!existsSync(DIST)) {
 const htmlFiles = walk(DIST).filter((file) => file.endsWith('.html'));
 
 const internalFiles = INTERNAL_ROUTES.map(routeToFile);
-const complianceFiles = htmlFiles.filter((file) => !internalFiles.includes(file));
+const expectedFiles = EXPECTED_ROUTES.map(routeToFile);
+// Everything else is the marketing site and the /go/ ad pages, which carry a
+// consented lead form and consented ad tags by design. They are checked by
+// scripts/verify-site.mjs, never by the A2P assertions below.
+const complianceFiles = htmlFiles.filter(
+  (file) => expectedFiles.includes(file) && !internalFiles.includes(file)
+);
+const marketingFiles = htmlFiles.filter(
+  (file) => !expectedFiles.includes(file) && !internalFiles.includes(file)
+);
 
 for (const route of EXPECTED_ROUTES) {
   if (!existsSync(routeToFile(route))) {
@@ -117,7 +128,8 @@ if (complianceFiles.length !== EXPECTED_ROUTES.length) {
 }
 notes.push(
   `${complianceFiles.length} compliance pages built, all ${EXPECTED_ROUTES.length} expected routes present` +
-    (INTERNAL_ROUTES.length ? `, plus ${INTERNAL_ROUTES.length} internal route excluded` : '')
+    (INTERNAL_ROUTES.length ? `, plus ${INTERNAL_ROUTES.length} internal route excluded` : '') +
+    `, ${marketingFiles.length} marketing pages left to verify-site.mjs`
 );
 
 const pages = new Map();
@@ -386,7 +398,7 @@ for (const [route, html] of pages) {
   }
   titles.set(title, route);
 }
-notes.push('all 17 pages have a distinct title and a meta description');
+notes.push(`all ${pages.size} compliance pages have a distinct title and a meta description`);
 
 // ------------------------------------------------------------------ report
 console.log('');

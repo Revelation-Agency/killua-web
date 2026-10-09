@@ -1,0 +1,31 @@
+---
+import LeadForm from './LeadForm.astro';
+import { site, type ServiceKey } from '../../data/site';
+
+interface Props {
+  formId: string;
+  service?: ServiceKey;
+  options?: ServiceKey[];
+  title?: string;
+}
+const { formId, service, options, title = 'Get a straight answer on your house' } = Astro.props;
+---
+
+<section class="section dark quote" id="quote">
+  <div class="shell quote-wrap">
+    <div style="display:grid;gap:1.2rem;align-content:start">
+      <span class="label">Free estimate</span>
+      <h2 data-split>{title}</h2>
+      <p class="lede">
+        Answer a few questions and someone from our Fresno office calls you back. If it is not a fit,
+        we will say so on that call.
+      </p>
+      <ul class="checklist" style="margin-top:.4rem">
+        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Takes about a minute</span></li>
+        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Estimates worked out without the expired federal tax credit</span></li>
+        <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4.5 10.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Rather call? <a href={site.phoneHref} style="color:var(--amber);font-weight:700">{site.phone}</a></span></li>
+      </ul>
+    </div>
+    <LeadForm formId={formId} service={service} options={options} />
+  </div>
+</section>

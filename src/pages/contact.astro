@@ -1,0 +1,34 @@
+---
+import Site from '../layouts/Site.astro';
+import LeadForm from '../components/site/LeadForm.astro';
+import { site } from '../data/site';
+---
+
+<Site
+  title="Contact Killua Energy | Fresno Solar and Roofing"
+  description="Call Killua Energy at (559) 691-4028 or send a request for a solar, battery, roofing or EV charger estimate. Office at 2224 N Fine Ave #105, Fresno."
+  darkHeader
+>
+  <section class="page-hero">
+    <div class="shell" style="align-items:start">
+      <div style="display:grid;gap:1.2rem">
+        <span class="label">Contact</span>
+        <h1>Talk to our Fresno office</h1>
+        <p class="lede">Call, or answer a few questions and we call you back.</p>
+        <div class="callout" style="background:var(--char);margin-top:.6rem">
+          <strong>Phone</strong>
+          <p><a href={site.phoneHref} style="color:var(--stucco);font-size:1.4rem;font-weight:800">{site.phone}</a></p>
+          <strong style="margin-top:.6rem">Office</strong>
+          <p><a href={site.mapUrl} target="_blank" rel="noopener" style="color:var(--stucco)">{site.street}<br />{site.cityLine}</a></p>
+          <strong style="margin-top:.6rem">Email</strong>
+          <p><a href={site.emailHref} style="color:var(--stucco)">{site.email}</a></p>
+          <strong style="margin-top:.6rem">License</strong>
+          <p><a href={site.licenseUrl} target="_blank" rel="noopener" style="color:var(--stucco)">{site.license}</a></p>
+        </div>
+      </div>
+      <div id="quote" class="quote">
+        <LeadForm formId="quote-contact" />
+      </div>
+    </div>
+  </section>
+</Site>

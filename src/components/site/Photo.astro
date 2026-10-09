@@ -1,0 +1,46 @@
+---
+/**
+ * A photo slot. Looks for src/assets/photos/<name>.* and serves it as
+ * responsive AVIF/WebP. If the slot is still empty, renders a plain toned
+ * block of the same shape, so the layout never shifts and nothing fake ships.
+ */
+import { Picture } from 'astro:assets';
+
+interface Props {
+  name: string;
+  alt: string;
+  priority?: boolean;
+  sizes?: string;
+  widths?: number[];
+}
+const {
+  name,
+  alt,
+  priority = false,
+  sizes = '(min-width: 64rem) 48vw, 100vw',
+  widths = [480, 768, 1100, 1500],
+} = Astro.props;
+const photos = import.meta.glob<{ default: ImageMetadata }>('../../assets/photos/*.{png,jpg,jpeg,webp}', {
+  eager: true,
+});
+const hit = Object.entries(photos).find(([p]) => p.split('/').pop()!.replace(/\.\w+$/, '') === name);
+---
+
+{
+  hit ? (
+    <Picture
+      src={hit[1].default}
+      alt={alt}
+      formats={['avif', 'webp']}
+      widths={widths}
+      sizes={sizes}
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : 'auto'}
+      decoding={priority ? 'sync' : 'async'}
+      quality={priority ? 62 : 68}
+      fallbackFormat="jpg"
+    />
+  ) : (
+    <div role="img" aria-label={alt} style="width:100%;height:100%;background:linear-gradient(160deg,#3a2b26,#1d1c1e 60%),#1d1c1e" />
+  )
+}

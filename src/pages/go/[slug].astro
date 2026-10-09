@@ -1,0 +1,105 @@
+---
+/**
+ * Ad landing pages. No main nav, one goal, the form above the fold on phones.
+ * No GSAP, no Lenis, no React: CSS motion only, so the form is usable sooner.
+ * noindex: these exist for paid traffic and duplicate the service pages.
+ */
+import Site from '../../layouts/Site.astro';
+import LeadForm from '../../components/site/LeadForm.astro';
+import Photo from '../../components/site/Photo.astro';
+import { goPages, site, type GoPage, type ServiceKey } from '../../data/site';
+
+export function getStaticPaths() {
+  return goPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props as { page: GoPage };
+const roofOptions: ServiceKey[] = ['roof_inspection', 'roof_repair', 'roof_replacement'];
+const isRoof = page.slug === 'roofing';
+---
+
+<Site
+  title={page.title}
+  description={page.lede}
+  variant="go"
+  darkHeader
+  noindex
+  motion={false}
+  quoteHref="#quote"
+  quoteLabel="Get my estimate"
+>
+  <section class="go-hero">
+    <div class="shell go-grid">
+      <div class="go-copy" style="display:grid;gap:.85rem">
+        <h1>{page.h1}</h1>
+        <p class="lede">{page.lede}</p>
+        <ul class="go-trust">
+          <li>{site.license}</li>
+          <li>Fresno office</li>
+          <li>No obligation</li>
+        </ul>
+        {page.photo && (
+          <div class="go-photo">
+            <Photo name={page.photo} alt={page.photoAlt ?? ''} sizes="(min-width: 60rem) 42vw, 1px" widths={[640, 1000]} />
+          </div>
+        )}
+      </div>
+      <div id="quote" style="scroll-margin-top:5rem">
+        <LeadForm
+          formId={`go-${page.slug}`}
+          service={isRoof ? undefined : page.service}
+          options={isRoof ? roofOptions : undefined}
+          compact
+        />
+      </div>
+    </div>
+  </section>
+
+  {!page.short && (
+    <section class="section" style="padding-top:clamp(2.5rem,6vw,4.5rem)">
+      <div class="shell">
+        <div class="points">
+          {page.points.map((b) => (
+            <div>
+              <h3>{b.title}</h3>
+              <p>{b.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {page.short && (
+    <section class="section" style="padding:2rem 0">
+      <div class="shell points">
+        {page.points.map((b) => (
+          <div>
+            <h3>{b.title}</h3>
+            <p>{b.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {page.faqs.length > 0 && (
+    <section class="section paper" style="padding:clamp(2.5rem,6vw,4rem) 0">
+      <div class="shell faq" style="max-width:52rem">
+        {page.faqs.map((f, n) => (
+          <details open={n === 0 ? true : undefined}>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="section" style="padding:2.5rem 0 3rem;text-align:center">
+    <div class="shell" style="display:grid;gap:1rem;justify-items:center">
+      <p style="margin:0;font-weight:700;font-size:1.2rem">Rather talk to a person?</p>
+      <a class="btn btn-red" href={site.phoneHref}>Call {site.phone}</a>
+    </div>
+  </section>
+</Site>

@@ -1,0 +1,149 @@
+---
+import { nav, navLinks, serviceByKey, site } from '../../data/site';
+
+interface Props {
+  variant: 'main' | 'go';
+  dark?: boolean;
+  quoteHref: string;
+}
+const { variant, dark = false, quoteHref } = Astro.props;
+const logo = dark ? '/brand/killua-energy-light.svg' : '/brand/killua-energy.svg';
+const phoneIcon =
+  '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4.2-2 1.4a12 12 0 0 0 6.3 6.3l1.4-2 4.2 1.4v2.6a2 2 0 0 1-2.1 2A16.6 16.6 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>';
+const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+---
+
+<header class:list={['site-header', { 'on-dark': dark, 'go-header': variant === 'go' }]}>
+  <div class="shell header-row">
+    <a class="logo" href={variant === 'go' ? undefined : '/'} aria-label="Killua Energy home">
+      <img src={logo} alt="Killua Energy" width="168" height="58" />
+    </a>
+
+    {variant === 'main' && (
+      <nav class="primary-nav" aria-label="Main">
+        {nav.map((g) => (
+          <div class="nav-group" data-nav-group>
+            <button type="button" aria-expanded="false">
+              {g.label} <Fragment set:html={chev} />
+            </button>
+            <div class="nav-menu">
+              {g.items.map((k) => (
+                <a href={serviceByKey[k].path}>
+                  <strong>{serviceByKey[k].label}</strong>
+                  <span>{serviceByKey[k].short}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+        {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+    )}
+
+    <div class="header-actions">
+      <a class="header-phone" href={site.phoneHref}>{site.phone}</a>
+      {variant === 'main' ? (
+        <>
+          <a class="btn btn-red" href={quoteHref} data-hide-sm>Get a quote</a>
+          <a class="icon-btn menu-call" href={site.phoneHref} aria-label={`Call ${site.phone}`}><Fragment set:html={phoneIcon} /></a>
+          <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-menu>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+          </button>
+        </>
+      ) : (
+        <a class="btn btn-red" href={site.phoneHref}><Fragment set:html={phoneIcon} /> Call now</a>
+      )}
+    </div>
+  </div>
+</header>
+
+{variant === 'main' && (
+  <div class="drawer" id="drawer" data-drawer aria-hidden="true">
+    <div class="header-row">
+      <a class="logo" href="/" aria-label="Killua Energy home"><img src="/brand/killua-energy-light.svg" alt="Killua Energy" width="168" height="58" /></a>
+      <button class="icon-btn" type="button" aria-label="Close menu" data-menu-close>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      </button>
+    </div>
+    <nav aria-label="Mobile">
+      {nav.map((g) => (
+        <>
+          <h4>{g.label}</h4>
+          {g.items.map((k) => <a href={serviceByKey[k].path}>{serviceByKey[k].label}</a>)}
+        </>
+      ))}
+      <h4>More</h4>
+      {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <div class="drawer-cta">
+      <a class="btn btn-red" href={quoteHref} data-menu-close>Get a quote</a>
+      <a class="btn btn-ghost" href={site.phoneHref} style="color:var(--stucco)">Call {site.phone}</a>
+    </div>
+  </div>
+)}
+
+<style>
+  @media (max-width: 40rem) {
+    [data-hide-sm] {
+      display: none;
+    }
+  }
+  @media (min-width: 64rem) {
+    .menu-call {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const groups = document.querySelectorAll<HTMLElement>('[data-nav-group]');
+  const closeAll = (except?: HTMLElement) =>
+    groups.forEach((g) => {
+      if (g === except) return;
+      g.removeAttribute('data-open');
+      g.querySelector('button')?.setAttribute('aria-expanded', 'false');
+    });
+  groups.forEach((g) => {
+    const btn = g.querySelector('button')!;
+    btn.addEventListener('click', () => {
+      const open = !g.hasAttribute('data-open');
+      closeAll(g);
+      g.toggleAttribute('data-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    g.addEventListener('mouseenter', () => {
+      if (matchMedia('(hover: hover)').matches) {
+        closeAll(g);
+        g.setAttribute('data-open', '');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+    g.addEventListener('mouseleave', () => {
+      if (matchMedia('(hover: hover)').matches) closeAll();
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('[data-nav-group]')) closeAll();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAll();
+      setDrawer(false);
+    }
+  });
+
+  const drawer = document.querySelector<HTMLElement>('[data-drawer]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu]');
+  function setDrawer(open: boolean) {
+    if (!drawer || !toggle) return;
+    drawer.toggleAttribute('data-open', open);
+    drawer.setAttribute('aria-hidden', String(!open));
+    toggle.setAttribute('aria-expanded', String(open));
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    const lenis = (window as any).__lenis;
+    open ? lenis?.stop() : lenis?.start();
+    if (open) drawer.querySelector<HTMLElement>('[data-menu-close]')?.focus();
+  }
+  toggle?.addEventListener('click', () => setDrawer(true));
+  drawer?.querySelectorAll('[data-menu-close]').forEach((b) => b.addEventListener('click', () => setDrawer(false)));
+</script>

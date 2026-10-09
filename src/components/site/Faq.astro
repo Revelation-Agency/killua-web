@@ -1,0 +1,32 @@
+---
+import type { Faq } from '../../data/site';
+interface Props {
+  items: Faq[];
+  title?: string;
+}
+const { items, title = 'Questions people ask us' } = Astro.props;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+{
+  items.length > 0 && (
+    <section class="section">
+      <div class="shell" style="display:grid;gap:2rem;max-width:58rem">
+        <h2 data-split>{title}</h2>
+        <div class="faq">
+          {items.map((f, n) => (
+            <details open={n === 0 ? true : undefined}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />
+    </section>
+  )
+}

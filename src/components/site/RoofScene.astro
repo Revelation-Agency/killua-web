@@ -1,0 +1,212 @@
+---
+/**
+ * The signature drawing: a Fresno ranch house under the sun's path, with the
+ * 4 to 9 PM PG&E peak marked on the arc. Pure inline SVG, so it costs no image
+ * request and never competes with the headline for LCP.
+ *
+ * scene.ts animates it. Without JS, or with reduced motion, it renders as a
+ * finished golden-hour frame: sun low in the west, panels lit, power flowing.
+ */
+interface Props {
+  id: string;
+  label: string;
+}
+const { id, label } = Astro.props;
+const p = id;
+
+// Sun path: ellipse centred (600, 470), rx 510, ry 400. t=0 is 7 AM, t=1 is 7 PM.
+const at = (t: number) => {
+  const th = Math.PI * (1 - t);
+  return [600 + 510 * Math.cos(th), 470 - 400 * Math.sin(th)];
+};
+const ticks = [
+  { t: 0, l: '7 AM' },
+  { t: 0.25, l: '10 AM' },
+  { t: 0.5, l: '1 PM' },
+  { t: 0.75, l: '4 PM' },
+  { t: 1, l: '7 PM' },
+].map(({ t, l }) => {
+  const [x, y] = at(t);
+  const [ox, oy] = [(x - 600) * 0.075, (y - 470) * 0.09];
+  return { x, y, lx: x + ox, ly: y + oy - 6, l };
+});
+const [px, py] = at(0.75);
+const [sx, sy] = at(0.64);
+const r = (n: number) => Math.round(n * 10) / 10;
+
+// Two rows of seven panels, inset from the hip so they sit where a real crew
+// would put them: square to the eave, even gaps, clear of the edges.
+const panels: { x: number; y: number }[] = [];
+for (let row = 0; row < 2; row++) {
+  for (let col = 0; col < 7; col++) {
+    panels.push({ x: 468 + col * 41, y: 341 + row * 25 });
+  }
+}
+const stars = [
+  [140, 70], [260, 120], [380, 52], [520, 96], [700, 44], [830, 110], [960, 64], [1080, 120], [1150, 40], [60, 150],
+];
+---
+
+<svg
+  class="roof-scene"
+  data-scene={id}
+  viewBox="0 0 1200 560"
+  role="img"
+  aria-label={label}
+  preserveAspectRatio="xMidYMax slice"
+>
+  <defs>
+    <linearGradient id={`${p}-sky`} x1="0" y1="0" x2="0" y2="1">
+      <stop data-sky="top" offset="0" stop-color="#131315" />
+      <stop data-sky="mid" offset="0.55" stop-color="#3a2224" />
+      <stop data-sky="low" offset="1" stop-color="#d9693a" />
+    </linearGradient>
+    <radialGradient id={`${p}-glow`}>
+      <stop offset="0" stop-color="#ffd38a" stop-opacity="0.9" />
+      <stop offset="0.35" stop-color="#f3a53a" stop-opacity="0.38" />
+      <stop offset="1" stop-color="#e1312b" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id={`${p}-panel`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b3a52" />
+      <stop offset="1" stop-color="#141b27" />
+    </linearGradient>
+    <linearGradient id={`${p}-wall`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9ad86" />
+      <stop offset="1" stop-color="#9c8264" />
+    </linearGradient>
+    <clipPath id={`${p}-above`}>
+      <rect x="0" y="0" width="1200" height="471" />
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="560" fill={`url(#${p}-sky)`} />
+
+  <g data-stars opacity="0">
+    {stars.map(([x, y]) => <circle cx={x} cy={y} r="1.6" fill="#f4eee4" />)}
+  </g>
+
+  <!-- sun path, ticks, and the PG&E peak window -->
+  <path
+    d="M 90 470 A 510 400 0 0 1 1110 470"
+    fill="none"
+    stroke="#f4eee4"
+    stroke-opacity="0.22"
+    stroke-width="1.5"
+    stroke-dasharray="3 9"
+  />
+  <path
+    data-peak
+    d={`M ${r(px)} ${r(py)} A 510 400 0 0 1 1110 470`}
+    fill="none"
+    stroke="#ff3b36"
+    stroke-width="5"
+    stroke-linecap="round"
+    opacity="0.85"
+  />
+  <g data-ticks font-family="Archivo, Archivo Fallback, sans-serif" font-size="15" font-weight="650" fill="#f4eee4" fill-opacity="0.62" text-anchor="middle" style="font-stretch:80%;letter-spacing:.08em">
+    {ticks.map((k) => (
+      <>
+        <circle cx={r(k.x)} cy={r(k.y)} r="3.5" fill="#f4eee4" fill-opacity="0.55" />
+        <text x={r(k.lx)} y={r(k.ly)}>{k.l}</text>
+      </>
+    ))}
+  </g>
+  <g data-peak-label font-family="Archivo, Archivo Fallback, sans-serif" font-weight="700" text-anchor="end" style="font-stretch:86%;letter-spacing:.06em">
+    <text x="1062" y="352" font-size="16" fill="#ff6a5f">PG&amp;E PEAK</text>
+    <text x="1062" y="374" font-size="16" fill="#ff6a5f">4 TO 9 PM</text>
+  </g>
+
+  <!-- sun -->
+  <g clip-path={`url(#${p}-above)`}>
+    <g data-sun transform={`translate(${r(sx)} ${r(sy)})`}>
+      <circle r="120" fill={`url(#${p}-glow)`} />
+      <circle r="34" fill="#f8b34a" />
+      <circle r="34" fill="none" stroke="#ffe0a3" stroke-opacity="0.6" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- distant foothills -->
+  <path
+    d="M0 452 L70 440 L150 446 L240 430 L330 441 L430 425 L540 438 L640 422 L760 436 L880 420 L980 434 L1080 424 L1200 438 L1200 472 L0 472 Z"
+    fill="#f4eee4"
+    fill-opacity="0.07"
+  />
+
+  <!-- valley oak -->
+  <g fill="#0f0f10">
+    <rect x="207" y="408" width="10" height="64" rx="2" />
+    <path d="M150 420 C 130 380 170 350 205 362 C 220 330 270 338 278 365 C 315 360 330 400 300 418 C 290 440 240 436 225 428 C 205 440 160 445 150 420 Z" />
+  </g>
+
+  <!-- fan palm -->
+  <g fill="#0f0f10">
+    <path d="M1131 472 L1136 300 L1140 300 L1143 472 Z" />
+    <path d="M1138 300 C 1110 290 1092 296 1080 310 C 1100 300 1118 302 1138 304 Z" />
+    <path d="M1138 300 C 1160 286 1182 290 1196 304 C 1176 297 1158 300 1138 304 Z" />
+    <path d="M1138 300 C 1128 276 1112 268 1098 270 C 1116 278 1126 290 1136 302 Z" />
+    <path d="M1138 300 C 1150 274 1166 266 1180 268 C 1164 278 1152 290 1140 302 Z" />
+    <path d="M1138 300 C 1138 278 1134 262 1126 252 C 1140 262 1144 280 1140 302 Z" />
+  </g>
+
+  <!-- ground -->
+  <rect x="0" y="470" width="1200" height="90" fill="#0f0f10" />
+  <path d="M0 470 H1200" stroke="#f4eee4" stroke-opacity="0.12" />
+
+  <!-- house -->
+  <g data-house>
+    <rect x="352" y="396" width="530" height="75" fill={`url(#${p}-wall)`} />
+    <rect x="352" y="396" width="530" height="9" fill="#000" fill-opacity="0.22" />
+    <!-- windows -->
+    <g data-windows>
+      <rect x="392" y="417" width="64" height="32" rx="2" fill="#2a2321" />
+      <rect x="490" y="417" width="64" height="32" rx="2" fill="#2a2321" />
+      <rect data-glow x="392" y="417" width="64" height="32" rx="2" fill="#ffc977" opacity="0" />
+      <rect data-glow x="490" y="417" width="64" height="32" rx="2" fill="#ffc977" opacity="0" />
+      <path d="M424 417 V449 M392 433 H456 M522 417 V449 M490 433 H554" stroke="#9c8264" stroke-width="2.5" />
+    </g>
+    <!-- door -->
+    <rect x="596" y="412" width="32" height="59" rx="1.5" fill="#3b2b26" />
+    <circle cx="621" cy="443" r="2" fill="#d9b278" />
+    <!-- garage -->
+    <rect x="688" y="414" width="148" height="57" fill="#b49a77" />
+    <path d="M688 428 H836 M688 442 H836 M688 456 H836" stroke="#8d7559" stroke-width="2" />
+    <!-- roof -->
+    <path d="M328 398 L430 326 L806 326 L906 398 Z" fill="#2a2628" />
+    <path d="M343 388 L891 388 M357 378 L877 378 M371 368 L863 368 M385 358 L849 358 M399 348 L835 348 M413 338 L821 338" stroke="#3a3537" stroke-width="1.4" />
+    <path d="M328 398 L906 398" stroke="#141213" stroke-width="5" stroke-linecap="round" />
+    <!-- rails -->
+    <path d="M462 353 H756 M462 378 H756" stroke="#8a95a6" stroke-width="2" />
+    <!-- panels -->
+    <g data-panels>
+      {panels.map(({ x, y }) => (
+        <g>
+          <rect x={x} y={y} width="37" height="21" rx="1.2" fill={`url(#${p}-panel)`} stroke="#4c5d78" stroke-width="1" />
+          <path d={`M${x + 12.3} ${y} V${y + 21} M${x + 24.6} ${y} V${y + 21} M${x} ${y + 10.5} H${x + 37}`} stroke="#3f4f68" stroke-width="0.8" />
+          <rect data-lit x={x} y={y} width="37" height="21" rx="1.2" fill="#f3a53a" opacity="0.55" />
+        </g>
+      ))}
+    </g>
+  </g>
+
+  <!-- equipment: inverter, battery with charge level, conduit -->
+  <g data-equipment>
+    <rect x="846" y="412" width="22" height="16" rx="2" fill="#d8d2c6" />
+    <rect x="845" y="432" width="26" height="36" rx="3" fill="#ece6da" />
+    <rect x="850" y="437" width="6" height="26" rx="1.5" fill="#1d1c1e" />
+    <rect data-charge x="850" y="437" width="6" height="26" rx="1.5" fill="#43c08a" style="transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.7)" />
+  </g>
+  <path d="M757 366 H857 V412" fill="none" stroke="#6f6962" stroke-width="3" stroke-linejoin="round" />
+  <path data-flow="solar" d="M757 366 H857 V412" fill="none" stroke="#f8b34a" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 13" />
+  <path d="M845 455 H600" fill="none" stroke="#6f6962" stroke-opacity="0.5" stroke-width="2.5" />
+  <path data-flow="house" d="M845 455 H600" fill="none" stroke="#f8b34a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="5 13" />
+
+  <!-- EV in the driveway -->
+  <g data-ev>
+    <path d="M925 470 C 925 452 940 446 956 444 L 978 430 C 990 423 1030 423 1046 430 L 1066 444 C 1082 446 1092 452 1092 470 Z" fill="#1d1c1e" />
+    <path d="M980 433 L 1000 432 L 1000 444 L 966 444 Z M 1008 432 L 1040 433 L 1056 444 L 1008 444 Z" fill="#3c4a5c" />
+    <circle cx="958" cy="471" r="12" fill="#0c0c0d" stroke="#3a3537" stroke-width="3" />
+    <circle cx="1060" cy="471" r="12" fill="#0c0c0d" stroke="#3a3537" stroke-width="3" />
+  </g>
+  <path d="M871 452 C 900 452 905 466 928 458" fill="none" stroke="#6f6962" stroke-width="2.5" />
+  <path data-flow="ev" d="M871 452 C 900 452 905 466 928 458" fill="none" stroke="#f8b34a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 10" />
+</svg>

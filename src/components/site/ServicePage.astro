@@ -1,0 +1,90 @@
+---
+import Site from '../../layouts/Site.astro';
+import Photo from './Photo.astro';
+import Trust from './Trust.astro';
+import Faq from './Faq.astro';
+import QuoteSection from './QuoteSection.astro';
+import ServiceGrid from './ServiceGrid';
+import Rays from './Rays';
+import { cities, servicePages, serviceByKey, site, type ServiceKey } from '../../data/site';
+
+interface Props {
+  k: ServiceKey;
+}
+const page = servicePages[Astro.props.k];
+const meta = serviceByKey[page.key];
+const related = page.related.map((r) => ({ href: serviceByKey[r].path, label: serviceByKey[r].label, short: serviceByKey[r].short }));
+const arrow = '<svg class="arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4.5-5L15 10l-4.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+---
+
+<Site title={page.title} description={page.description} darkHeader>
+  <section class="page-hero">
+    {page.rays && <div class="rays"><Rays client:idle /></div>}
+    <div class="shell">
+      <div style="display:grid;gap:1.2rem;position:relative;z-index:2">
+        <span class="label">{page.eyebrow}</span>
+        <h1>{page.h1}</h1>
+        <p class="lede">{page.lede}</p>
+        <div class="hero-ctas">
+          <a class="btn btn-red" href="#quote">Get my estimate <Fragment set:html={arrow} /></a>
+          <a class="btn btn-ghost" href={site.phoneHref} style="color:var(--stucco)">Call {site.phone}</a>
+        </div>
+      </div>
+      <div class="photo" style="position:relative;z-index:2">
+        <Photo name={page.photo} alt={page.photoAlt} priority sizes="(min-width: 64rem) 46vw, 92vw" />
+      </div>
+    </div>
+  </section>
+
+  <Trust />
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <span class="label">{meta.label}</span>
+        <h2 data-split>{page.includedTitle}</h2>
+      </div>
+      <div class="included">
+        {page.included.map((b, n) => (
+          <div data-reveal>
+            <span class="n">{String(n + 1).padStart(2, '0')}</span>
+            <h3>{b.title}</h3>
+            <p>{b.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="shell split">
+      <div style="display:grid;gap:1rem">
+        <h2 data-split>{page.explainTitle}</h2>
+        {page.explain.length > 3 ? (
+          <ul class="checklist">
+            {page.explain.map((t) => (
+              <li><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 3v8m0 4v.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span>{t}</span></li>
+            ))}
+          </ul>
+        ) : (
+          page.explain.map((t) => <p style="color:var(--ink-2);max-width:38rem;margin:0">{t}</p>)
+        )}
+      </div>
+      <div class="callout" data-reveal>
+        <strong>Where we work</strong>
+        <p>{cities.join(', ')} and the towns between them. Our office is at {site.street} in Fresno.</p>
+      </div>
+    </div>
+  </section>
+
+  <Faq items={page.faqs} />
+
+  <QuoteSection formId={`quote-${page.key}`} service={page.key} />
+
+  <section class="section dark" style="padding-top:0">
+    <div class="shell">
+      <div class="section-head"><h2>Related work</h2></div>
+      <ServiceGrid client:visible items={related} />
+    </div>
+  </section>
+</Site>

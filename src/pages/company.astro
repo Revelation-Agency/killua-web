@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import ServiceArea from '../components/ServiceArea.astro';
+import { brands, company } from '../data/company';
+
+const title =
+  'Killua Energy Inc. | Solar, Roofing, Recruiting and Maintenance in Fresno, California';
+const description =
+  'Killua Energy Inc. of Fresno, California provides solar energy systems, roofing, skilled trades recruiting and ongoing system maintenance for residential and commercial customers across the Central Valley.';
+---
+
+<Base title={title} description={description}>
+  <div class="shell">
+    <section class="section section-first">
+      <span class="eyebrow">Fresno, California</span>
+      <h1>{company.legalName}</h1>
+      <p class="lede">
+        {company.legalName} designs and installs solar energy systems, replaces and
+        repairs roofs, recruits skilled trades talent, and maintains the systems it
+        installs. We serve both residential and commercial customers across
+        California's Central Valley and the surrounding markets.
+      </p>
+      <p class="meta-line">
+        {company.addressFull} &middot;
+        <a href={company.phoneHref}>{company.phone}</a> &middot;
+        <a href={company.emailHref}>{company.email}</a>
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Our divisions</h2>
+      <p class="prose">
+        Killua Solar, Killua Roofing, Killua Recruiting and Killua Maintenance are
+        divisions of {company.legalName} Each division runs its own text messaging
+        program, and each one publishes its own privacy policy, terms of service and
+        sign up page.
+      </p>
+      <ul class="card-grid">
+        {
+          brands.map((brand) => (
+            <li class="card">
+              <h3>
+                <a href={`/${brand.slug}/`}>{brand.name}</a>
+              </h3>
+              <p>{brand.summary}</p>
+              <ul class="card-links">
+                <li>
+                  <a class="link-strong" href={`/${brand.slug}/`}>
+                    Overview
+                  </a>
+                </li>
+                <li>
+                  <a href={`/${brand.slug}/privacy/`}>Privacy Policy</a>
+                </li>
+                <li>
+                  <a href={`/${brand.slug}/terms/`}>Terms of Service</a>
+                </li>
+                <li>
+                  <a href={`/${brand.slug}/sms/`}>Text Message Sign Up</a>
+                </li>
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Who we serve</h2>
+      <p class="prose">
+        Killua Solar and Killua Roofing work with homeowners and with commercial
+        property owners. A single family home, a multi unit property, an
+        agricultural operation and a commercial building are all normal jobs for
+        us. Killua Maintenance services residential and commercial systems under a
+        service agreement or a warranty. Killua Recruiting works with people
+        looking for a career in the trades, from entry level field roles through
+        licensed and supervisory positions.
+      </p>
+      <p class="prose">
+        We do not collect leads on this website. If you want to talk to us, call or
+        email the division you need. The only forms on this site are the text
+        message sign up pages, and those exist so that anyone who wants text
+        messages from us can give consent, and read exactly what they are
+        consenting to, before we send anything.
+      </p>
+    </section>
+
+    <section class="section">
+      <ServiceArea />
+    </section>
+
+    <section class="section">
+      <ContactBlock
+        heading="Contact us"
+        intro="One office, four divisions. Call the main line and we will route you, or use the division phone number listed on that division's page."
+      />
+    </section>
+  </div>
+</Base>

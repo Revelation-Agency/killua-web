@@ -1,0 +1,136 @@
+---
+/**
+ * Layout for the marketing site and the /go/ ad pages. The A2P compliance
+ * pages use layouts/Base.astro and never load anything from here.
+ */
+import '../styles/site.css';
+import Header from '../components/site/Header.astro';
+import Footer from '../components/site/Footer.astro';
+import Motion from '../components/site/Motion.astro';
+import { cities, site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  variant?: 'main' | 'go';
+  darkHeader?: boolean;
+  noindex?: boolean;
+  quoteHref?: string;
+  quoteLabel?: string;
+  motion?: boolean;
+  preloadImage?: string;
+}
+
+const {
+  title,
+  description,
+  variant = 'main',
+  darkHeader = false,
+  noindex = false,
+  quoteHref = '#quote',
+  quoteLabel = 'Get a quote',
+  motion = variant === 'main',
+  preloadImage,
+} = Astro.props;
+
+const env = import.meta.env;
+const cfg = {
+  metaPixel: env.PUBLIC_META_PIXEL_ID || '',
+  tiktokPixel: env.PUBLIC_TIKTOK_PIXEL_ID || '',
+  ga4: env.PUBLIC_GA4_ID || '',
+  gads: env.PUBLIC_GOOGLE_ADS_ID || '',
+  gadsLeadLabel: env.PUBLIC_GOOGLE_ADS_LEAD_LABEL || '',
+  mapsKey: env.PUBLIC_GOOGLE_MAPS_KEY || '',
+};
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://killua-web-eta.vercel.app').href;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: site.brand,
+  legalName: site.legalName,
+  telephone: '+1-559-691-4028',
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.street,
+    addressLocality: 'Fresno',
+    addressRegion: 'CA',
+    postalCode: '93727',
+    addressCountry: 'US',
+  },
+  areaServed: cities.map((c) => ({ '@type': 'City', name: `${c}, CA` })),
+  url: new URL('/', canonical).href,
+};
+const callIcon =
+  '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4.2-2 1.4a12 12 0 0 0 6.3 6.3l1.4-2 4.2 1.4v2.6a2 2 0 0 1-2.1 2A16.6 16.6 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1Z" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#131315" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <script is:inline set:html={`window.__killuaCfg=${JSON.stringify(cfg)};`} />
+  </head>
+  <body class="has-callbar">
+    <a class="skip" href="#main">Skip to content</a>
+    <Header variant={variant} dark={darkHeader} quoteHref={quoteHref} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer variant={variant} />
+
+    <div class="callbar" data-callbar>
+      <a class="btn btn-ghost" href={site.phoneHref}><Fragment set:html={callIcon} />Call</a>
+      <a class="btn btn-red" href={quoteHref}>{quoteLabel}</a>
+    </div>
+
+    <section class="cookie" id="cookie" role="dialog" aria-labelledby="cookie-title" aria-live="polite" hidden>
+      <h2 id="cookie-title" tabindex="-1">Cookies on this site</h2>
+      <p>
+        We use cookies to see which ads and pages bring people to us, and to show Killua Energy ads on
+        Facebook, Instagram, TikTok and Google. Nothing loads until you choose. <a href="/privacy/">Privacy Policy</a>
+      </p>
+      <p class="gpc" data-gpc hidden>Your browser sent a Global Privacy Control signal, so advertising cookies stay off.</p>
+      <div class="prefs" data-prefs hidden>
+        <label><input type="checkbox" checked disabled /> <span><strong>Needed to run the site.</strong> Remembers this choice and keeps your form answers while you fill it out.</span></label>
+        <label><input type="checkbox" name="analytics" /> <span><strong>Analytics.</strong> Google Analytics counts visits and pages.</span></label>
+        <label><input type="checkbox" name="ads" /> <span><strong>Advertising.</strong> Meta, TikTok and Google Ads tags measure our ads and may use your visit to show you ads elsewhere.</span></label>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-dark" data-accept>Accept all</button>
+        <button type="button" class="btn btn-ghost" data-reject>Reject all</button>
+        <button type="button" class="btn btn-ghost" data-customize>Choose</button>
+        <button type="button" class="btn btn-red" data-save hidden>Save choices</button>
+      </div>
+    </section>
+
+    {motion && <Motion />}
+
+    <script>
+      import { initConsent } from '../scripts/consent';
+      initConsent();
+
+      // On phones the open keyboard and the call bar fight for the same space.
+      const bar = document.querySelector<HTMLElement>('[data-callbar]');
+      document.addEventListener('focusin', (e) => {
+        if ((e.target as HTMLElement).matches('input:not([type=radio]):not([type=checkbox]), textarea'))
+          bar?.setAttribute('data-hidden', '');
+      });
+      document.addEventListener('focusout', () => bar?.removeAttribute('data-hidden'));
+    </script>
+  </body>
+</html>

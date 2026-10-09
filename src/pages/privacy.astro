@@ -1,0 +1,79 @@
+---
+/**
+ * Privacy policy for the marketing site and /go/ ad pages, which can load ad
+ * and analytics tags after consent. The division policies at /<brand>/privacy/
+ * cover the texting programs and are left exactly as filed.
+ */
+import Site from '../layouts/Site.astro';
+import { NO_SHARING_CLAUSE } from '../data/company';
+import { site } from '../data/site';
+const effective = 'October 8, 2026';
+---
+
+<Site
+  title="Website Privacy Policy | Killua Energy"
+  description="How Killua Energy handles information from this website, cookies, ad tags, and your California privacy rights."
+  quoteHref="/contact/#quote"
+  motion={false}
+>
+  <section class="section">
+    <div class="shell prose">
+      <span class="label">Privacy</span>
+      <h1 style="font-size:clamp(2.2rem,5vw,3.4rem);margin:1rem 0">Website Privacy Policy</h1>
+      <p><strong>Effective {effective}.</strong> This policy covers this website, including our ad landing pages. {site.legalName} ("Killua Energy", "we") is a California contractor ({site.license}) at {site.street}, {site.cityLine}.</p>
+      <p>Our text messaging programs have their own policies: <a href="/solar/privacy/">Killua Solar</a> and <a href="/roofing/privacy/">Killua Roofing</a>. Those policies govern any text messages we send you.</p>
+
+      <h2>What we collect</h2>
+      <ul>
+        <li><strong>What you type into our forms:</strong> name, phone, email, property address, whether you own the home, the service you want, and anything you tell us about your bill, roof, solar system or car.</li>
+        <li><strong>How you reached us:</strong> the ad campaign codes in the link you clicked (such as utm codes and Google, Meta or TikTok click IDs), the first page you visited, and the site that referred you.</li>
+        <li><strong>Your consent record:</strong> whether you agreed to calls and texts, the exact wording you agreed to, and when.</li>
+        <li><strong>Technical data:</strong> your IP address and browser type, which our hosting provider logs with every request.</li>
+      </ul>
+
+      <h2>Cookies and ad tags</h2>
+      <p>When you first visit, a banner asks what you allow. Until you choose, no analytics or advertising tags load.</p>
+      <ul>
+        <li><strong>Needed:</strong> remembers your cookie choice and holds your form answers and ad campaign codes for the length of your visit.</li>
+        <li><strong>Analytics (if you allow it):</strong> Google Analytics counts visits and pages.</li>
+        <li><strong>Advertising (if you allow it):</strong> the Meta Pixel, TikTok Pixel and Google Ads tag measure whether our ads led to a request, and may let those companies use your visit to show you ads. If you allow advertising and send a request, we also send Meta and TikTok a confirmation of that request from our server, with your email and phone scrambled (hashed) before sending, so they can match it to the ad.</li>
+      </ul>
+      <p>You can change your choice any time with <button type="button" data-cookie-prefs style="border:0;background:none;padding:0;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer">Cookie preferences</button>. If your browser sends a Global Privacy Control signal, we treat it as an opt-out of advertising tags.</p>
+
+      <h2>How we use it</h2>
+      <ul>
+        <li>To call, text or email you about the estimate or service you asked for, if you agreed to that.</li>
+        <li>To schedule visits and do the work.</li>
+        <li>To see which ads and pages bring in requests, so we spend less on the ones that do not.</li>
+        <li>To keep the records contractor licensing, permits and warranties require.</li>
+      </ul>
+
+      <h2>Who we share it with</h2>
+      <ul>
+        <li><strong>Service providers</strong> who run our website hosting, customer records, phone and text systems, email and scheduling, under contracts that limit their use of it.</li>
+        <li><strong>Ad platforms</strong> (Meta, TikTok and Google) only if you allowed advertising, as described above. Under California law this can count as "sharing" for cross-context behavioral advertising.</li>
+        <li><strong>When the law requires it,</strong> or to protect our rights or someone's safety.</li>
+      </ul>
+      <p>We do not sell your information for money.</p>
+      <p>{NO_SHARING_CLAUSE}</p>
+
+      <h2 id="do-not-sell">Do Not Sell or Share My Personal Information</h2>
+      <p>To opt out of sharing for advertising on this browser, use this button. It turns the advertising tags off and keeps them off.</p>
+      <p><button type="button" class="btn btn-dark" data-optout>Opt out of sharing</button></p>
+      <p data-optout-done hidden style="color:var(--ok);font-weight:700">Done. Advertising tags are off on this browser.</p>
+      <p>To opt out for information we already hold, email <a href={site.emailHref}>{site.email}</a> or call <a href={site.phoneHref}>{site.phone}</a>.</p>
+
+      <h2>Your California rights</h2>
+      <p>California residents can ask what personal information we hold about them, ask us to correct or delete it, and opt out of its sale or sharing. We will not treat you differently for using these rights. To make a request, email <a href={site.emailHref}>{site.email}</a> or call <a href={site.phoneHref}>{site.phone}</a>. We will confirm who you are before acting on it, and you can have an authorized agent ask for you.</p>
+
+      <h2>How long we keep it</h2>
+      <p>Requests that do not become a job are kept for up to two years. Customer and project records are kept as long as warranties run and licensing and tax rules require.</p>
+
+      <h2>Children</h2>
+      <p>This site is meant for adults. We do not knowingly collect information from anyone under 16.</p>
+
+      <h2>Changes and contact</h2>
+      <p>If we change this policy, the new version goes on this page with a new effective date. Questions: <a href={site.emailHref}>{site.email}</a>, <a href={site.phoneHref}>{site.phone}</a>, or by mail to {site.legalName}, {site.street}, {site.cityLine}.</p>
+    </div>
+  </section>
+</Site>

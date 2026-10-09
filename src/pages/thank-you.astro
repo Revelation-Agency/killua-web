@@ -1,0 +1,48 @@
+---
+import Site from '../layouts/Site.astro';
+import { site } from '../data/site';
+---
+
+<Site
+  title="Thanks, we got your request | Killua Energy"
+  description="Your request reached Killua Energy."
+  noindex
+  motion={false}
+  quoteHref={site.phoneHref}
+  quoteLabel="Call us"
+>
+  <section class="section">
+    <div class="shell" style="display:grid;gap:1.2rem;max-width:44rem">
+      <span class="label">Request received</span>
+      <h1 style="font-size:clamp(2.2rem,6vw,3.8rem)">Thanks. Your request is in.</h1>
+      <p class="lede">
+        Someone from Killua Energy will call you, at the time you picked if you chose one.
+      </p>
+      <p class="lede">Need us sooner? Call <a href={site.phoneHref} style="font-weight:700">{site.phone}</a>.</p>
+      <p><a class="btn btn-dark" href="/">Back to the home page</a></p>
+    </div>
+  </section>
+
+  <script>
+    // Fire the browser-side conversion once per lead, with the event id the
+    // server already sent to Meta and TikTok, so the two are de-duplicated.
+    type Last = { event_id: string; service: string; fired: boolean };
+    function fire() {
+      let last: Last | null = null;
+      try {
+        last = JSON.parse(sessionStorage.getItem('killua_last_lead') || 'null');
+      } catch {
+        return;
+      }
+      if (!last || last.fired) return;
+      const api = (window as any).killuaConsent;
+      if (api?.trackLead?.(last.event_id, last.service)) {
+        last.fired = true;
+        sessionStorage.setItem('killua_last_lead', JSON.stringify(last));
+      }
+    }
+    // Tag scripts load async after consent; give the queues a tick to exist.
+    window.addEventListener('killua:consent', () => setTimeout(fire, 0));
+    setTimeout(fire, 0);
+  </script>
+</Site>

@@ -1,100 +1,170 @@
 ---
-import Base from '../layouts/Base.astro';
-import ContactBlock from '../components/ContactBlock.astro';
-import ServiceArea from '../components/ServiceArea.astro';
-import { brands, company } from '../data/company';
+import Site from '../layouts/Site.astro';
+import RoofScene from '../components/site/RoofScene.astro';
+import Trust from '../components/site/Trust.astro';
+import Photo from '../components/site/Photo.astro';
+import Faq from '../components/site/Faq.astro';
+import QuoteSection from '../components/site/QuoteSection.astro';
+import ServiceGrid from '../components/site/ServiceGrid';
+import { cities, serviceByKey, site, taxCreditFaq, type ServiceKey } from '../data/site';
 
-const title =
-  'Killua Energy Inc. | Solar, Roofing, Recruiting and Maintenance in Fresno, California';
-const description =
-  'Killua Energy Inc. of Fresno, California provides solar energy systems, roofing, skilled trades recruiting and ongoing system maintenance for residential and commercial customers across the Central Valley.';
+const cardKeys: ServiceKey[] = ['solar_installation', 'battery_storage', 'solar_repair', 'roof_replacement', 'roof_repair', 'ev_charger'];
+const cards = cardKeys.map((k) => ({ href: serviceByKey[k].path, label: serviceByKey[k].label, short: serviceByKey[k].short }));
+const arrow = '<svg class="arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4.5-5L15 10l-4.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+const day = [
+  { time: '7 AM', title: 'The panels wake up', body: 'Morning sun starts making power, and the house uses it first.' },
+  { time: '1 PM', title: 'The roof makes more than the house needs', body: 'The extra charges the battery instead of going back to PG&E at the low export rate.' },
+  { time: '4 PM', title: 'PG&E’s peak starts', body: 'On most PG&E time-of-use plans, power now costs the most it will all day. The sun is already dropping.' },
+  { time: '7 PM', title: 'Sun’s down. The battery takes over.', body: 'The house runs on power you made at noon, right through the most expensive hours.' },
+  { time: '9 PM', title: 'Peak is over', body: 'Cheaper grid power is back for the night. Tomorrow the sun fills the battery again.' },
+];
+
+const faqs = [
+  taxCreditFaq,
+  {
+    q: 'Do you work on solar another company installed?',
+    a: 'Yes. We repair and maintain systems no matter who put them in, including ones whose installer has closed.',
+  },
+  {
+    q: 'Do you work on commercial buildings?',
+    a: 'Yes, homes and commercial properties. Call the office to talk through a commercial job.',
+  },
+  {
+    q: 'Do you cover my town?',
+    a: `We work across the Central Valley: ${cities.join(', ')} and the towns between them.`,
+  },
+];
 ---
 
-<Base title={title} description={description}>
-  <div class="shell">
-    <section class="section section-first">
-      <span class="eyebrow">Fresno, California</span>
-      <h1>{company.legalName}</h1>
-      <p class="lede">
-        {company.legalName} designs and installs solar energy systems, replaces and
-        repairs roofs, recruits skilled trades talent, and maintains the systems it
-        installs. We serve both residential and commercial customers across
-        California's Central Valley and the surrounding markets.
-      </p>
-      <p class="meta-line">
-        {company.addressFull} &middot;
-        <a href={company.phoneHref}>{company.phone}</a> &middot;
-        <a href={company.emailHref}>{company.email}</a>
-      </p>
-    </section>
+<Site
+  title="Killua Energy | Solar, Batteries, Roofing and EV Chargers in Fresno"
+  description="Solar, home batteries, roofing and EV chargers for Central Valley homes, from a licensed Fresno contractor. CSLB #1096633. Call (559) 691-4028."
+  darkHeader
+>
+  <section class="hero">
+    <div class="shell hero-inner">
+      <div style="display:grid;gap:1.25rem">
+        <span class="label">Fresno and the Central Valley</span>
+        <h1>Make power at noon. <em>Use it at 6&nbsp;PM.</em></h1>
+        <p class="lede">
+          Solar, home batteries, roofing and EV chargers for Central Valley homes, built around PG&amp;E’s 4 to 9 PM
+          peak.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-red" href="#quote">Get my estimate <Fragment set:html={arrow} /></a>
+          <a class="btn btn-ghost hero-call" href={site.phoneHref}>Call {site.phone}</a>
+        </div>
+      </div>
+    </div>
+    <div class="scene">
+      <RoofScene id="hero" label="Illustration of a Fresno ranch house with solar panels as the sun moves toward the 4 to 9 PM PG&E peak, with power flowing to a battery, the house and an electric car" />
+    </div>
+  </section>
 
-    <section class="section">
-      <h2>Our divisions</h2>
-      <p class="prose">
-        Killua Solar, Killua Roofing, Killua Recruiting and Killua Maintenance are
-        divisions of {company.legalName} Each division runs its own text messaging
-        program, and each one publishes its own privacy policy, terms of service and
-        sign up page.
-      </p>
-      <ul class="card-grid">
-        {
-          brands.map((brand) => (
-            <li class="card">
-              <h3>
-                <a href={`/${brand.slug}/`}>{brand.name}</a>
-              </h3>
-              <p>{brand.summary}</p>
-              <ul class="card-links">
-                <li>
-                  <a class="link-strong" href={`/${brand.slug}/`}>
-                    Overview
-                  </a>
-                </li>
-                <li>
-                  <a href={`/${brand.slug}/privacy/`}>Privacy Policy</a>
-                </li>
-                <li>
-                  <a href={`/${brand.slug}/terms/`}>Terms of Service</a>
-                </li>
-                <li>
-                  <a href={`/${brand.slug}/sms/`}>Text Message Sign Up</a>
-                </li>
-              </ul>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+  <Trust />
 
-    <section class="section">
-      <h2>Who we serve</h2>
-      <p class="prose">
-        Killua Solar and Killua Roofing work with homeowners and with commercial
-        property owners. A single family home, a multi unit property, an
-        agricultural operation and a commercial building are all normal jobs for
-        us. Killua Maintenance services residential and commercial systems under a
-        service agreement or a warranty. Killua Recruiting works with people
-        looking for a career in the trades, from entry level field roles through
-        licensed and supervisory positions.
-      </p>
-      <p class="prose">
-        We do not collect leads on this website. If you want to talk to us, call or
-        email the division you need. The only forms on this site are the text
-        message sign up pages, and those exist so that anyone who wants text
-        messages from us can give consent, and read exactly what they are
-        consenting to, before we send anything.
-      </p>
-    </section>
+  <section class="section dark">
+    <div class="shell">
+      <div class="section-head">
+        <span class="label">What we do</span>
+        <h2 data-split>Install it, fix it, keep it running</h2>
+        <p class="lede">One licensed Fresno contractor for the roof, the panels, the battery and the charger.</p>
+      </div>
+      <ServiceGrid client:visible items={cards} />
+    </div>
+  </section>
 
-    <section class="section">
-      <ServiceArea />
-    </section>
+  <section class="day" data-day aria-labelledby="day-title">
+    <div class="shell day-stage">
+      <div class="day-head" style="display:grid;gap:.8rem;max-width:44rem">
+        <span class="label" style="color:rgba(244,238,228,.72)">A day on a Fresno roof</span>
+        <h2 id="day-title">Why batteries matter more than they used to</h2>
+      </div>
+      <div class="scene">
+        <RoofScene id="day" label="The same house through one day, from 7 AM to 9 PM, showing panels charging a battery at midday and the battery powering the house through the 4 to 9 PM peak" />
+      </div>
+      <div class="day-captions">
+        {day.map((d) => (
+          <div class="day-cap">
+            <span class="time">{d.time}</span>
+            <h3>{d.title}</h3>
+            <p>{d.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-    <section class="section">
-      <ContactBlock
-        heading="Contact us"
-        intro="One office, four divisions. Call the main line and we will route you, or use the division phone number listed on that division's page."
-      />
-    </section>
-  </div>
-</Base>
+  <section class="section paper">
+    <div class="shell split">
+      <div class="photo" data-reveal>
+        <Photo name="solar-repair" alt="Technician testing solar panel wiring on a roof" />
+      </div>
+      <div style="display:grid;gap:1rem">
+        <span class="label">Solar repair</span>
+        <h2 data-split>Installer went out of business?</h2>
+        <p style="color:var(--ink-2);margin:0">
+          Plenty of California solar companies have closed since 2023. When the inverter dies or the app goes
+          blank, their customers have nobody to call. We repair and maintain those systems, and we check the roof
+          around them while we are up there.
+        </p>
+        <p style="margin:.4rem 0 0"><a class="btn btn-dark" href="/solar-repair/">See solar repair <Fragment set:html={arrow} /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell split flip">
+      <div class="photo" data-reveal>
+        <Photo name="roof-install" alt="Crew laying new comp shingles on a single-story home" />
+      </div>
+      <div style="display:grid;gap:1rem">
+        <span class="label">Roofing</span>
+        <h2 data-split>Check the roof before the panels go on</h2>
+        <p style="color:var(--ink-2);margin:0">
+          Panels stay up for decades. If the roof under them needs replacing in a few years, someone has to pay to
+          take them off and put them back. We do both trades, so we look at the roof first and tell you what it needs.
+        </p>
+        <p style="margin:.4rem 0 0"><a class="btn btn-dark" href="/roof-inspection/">See roof inspections <Fragment set:html={arrow} /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section paper">
+    <div class="shell">
+      <div class="section-head">
+        <span class="label">How it works</span>
+        <h2 data-split>From first call to PG&amp;E sign-off</h2>
+      </div>
+      <ol class="steps">
+        <li data-reveal><h3>You call or send the form</h3><p>Tell us what you need. It takes about a minute.</p></li>
+        <li data-reveal><h3>We look at the bill and the roof</h3><p>A year of PG&amp;E usage and a look at the roof decide the design.</p></li>
+        <li data-reveal><h3>You get a written price</h3><p>No tax credit that no longer exists folded into the number.</p></li>
+        <li data-reveal><h3>Permit, install, sign-off</h3><p>We pull the permit, do the work, and file with PG&amp;E.</p></li>
+      </ol>
+      <div class="callout" style="margin-top:2rem;max-width:46rem" data-reveal>
+        <strong>About that federal tax credit</strong>
+        <p>
+          The 30% federal credit for homeowners who buy solar or batteries ended on December 31, 2025. If a quote
+          still counts it, ask for the number without it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="shell split">
+      <div style="display:grid;gap:1rem">
+        <span class="label">Service area</span>
+        <h2 data-split>Across the Central Valley</h2>
+        <p class="lede">From our office on N Fine Ave in Fresno, north to Manteca and south to Bakersfield.</p>
+      </div>
+      <ul class="cities">{cities.map((c) => <li>{c}</li>)}</ul>
+    </div>
+  </section>
+
+  <Faq items={faqs} />
+
+  <QuoteSection formId="quote-home" />
+</Site>
