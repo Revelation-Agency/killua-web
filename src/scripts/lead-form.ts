@@ -57,7 +57,7 @@ function setError(input: HTMLElement, msg: string) {
 
 function checkField(el: HTMLInputElement | HTMLTextAreaElement): string {
   const v = el.value.trim();
-  if (el.required && !v) return 'Please fill this in.';
+  if ((el.required || el.hasAttribute('data-req')) && !v) return 'Please fill this in.';
   if (!v) return '';
   if (el.name === 'phone' && tenDigits(v).length !== 10) return 'Enter a 10-digit phone number.';
   if (el.name === 'email' && !EMAIL.test(v)) return 'Check the email address.';
@@ -71,7 +71,9 @@ function checkField(el: HTMLInputElement | HTMLTextAreaElement): string {
 function validateStep(step: HTMLElement): boolean {
   let firstBad: HTMLElement | null = null;
   const radios = new Set<string>();
-  step.querySelectorAll<HTMLInputElement>('input[type=radio][required]').forEach((r) => radios.add(r.name));
+  step
+    .querySelectorAll<HTMLInputElement>('input[type=radio][required], input[type=radio][data-req]')
+    .forEach((r) => radios.add(r.name));
   for (const name of radios) {
     if (!step.querySelector(`input[name="${name}"]:checked`)) {
       firstBad ??= step.querySelector<HTMLElement>(`input[name="${name}"]`);
@@ -116,7 +118,15 @@ function setup(form: HTMLFormElement) {
   const bar = form.querySelector<HTMLElement>('.lf-progress span')!;
   const errorBox = form.querySelector<HTMLElement>('[data-error]')!;
   const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit]')!;
-  const textingLink = form.querySelector<HTMLAnchorElement>('[data-texting-link]')!;
+  // Browser validation stays on for the no-JavaScript fallback only.
+  form.noValidate = true;
+  // Tap-to-answer steps move on by themselves only after a tap or click; a
+  // keyboard user arrowing through the choices moves on with Enter or Next.
+  let viaPointer = false;
+  form.addEventListener('pointerdown', (e) => {
+    viaPointer = !!(e.target as Element).closest('label.choice');
+  });
+  form.addEventListener('keydown', () => (viaPointer = false));
   let i = 0;
   let started = '';
   let sending = false;
@@ -175,10 +185,8 @@ function setup(form: HTMLFormElement) {
 
   form.addEventListener('change', (e) => {
     const t = e.target as HTMLInputElement;
-    if (t.name === 'service') {
-      textingLink.href = `/${TEXTING[t.value] || 'solar'}/sms/`;
-    }
-    if (t.type === 'radio' && t.hasAttribute('data-auto')) {
+    if (t.type === 'radio' && t.hasAttribute('data-auto') && viaPointer) {
+      viaPointer = false;
       window.setTimeout(next, 220);
     }
   });
@@ -265,7 +273,7 @@ function setup(form: HTMLFormElement) {
       consent_calls_texts: true,
       consent_text: form.querySelector('[data-consent-text]')?.textContent?.trim() ?? '',
       consent_privacy_url: abs('/privacy/'),
-      consent_texting_url: abs(textingLink.getAttribute('href') || '/solar/sms/'),
+      consent_texting_url: abs(`/${TEXTING[svc] || 'solar'}/sms/`),
       ...Object.fromEntries(ATTR_PARAMS.map((p) => [p, attr[p] || ''])),
       landing_page: attr.landing_page || location.href,
       referrer: attr.referrer || '',
@@ -365,7 +373,9 @@ function setupAutocomplete(form: HTMLFormElement) {
   const pick = async (n: number) => {
     const it = items[n];
     close();
-    if (!it) return;
+    if (!it || !allowed()) return;
+    input.value = it.text.split(',')[0];
+    const chosen = input.value;
     try {
       const r = await fetch(
         `https://places.googleapis.com/v1/places/${encodeURIComponent(it.id)}?sessionToken=${token}`,
@@ -376,6 +386,8 @@ function setupAutocomplete(form: HTMLFormElement) {
         const c = (d.addressComponents || []).find((x: any) => x.types?.includes(t));
         return c ? (short ? c.shortText : c.longText) : '';
       };
+      // The visitor kept typing while details loaded: their edit wins.
+      if (input.value !== chosen) return;
       const set = (name: string, v: string) => {
         const el = form.elements.namedItem(name) as HTMLInputElement | null;
         if (el && v) {

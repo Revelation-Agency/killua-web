@@ -23,7 +23,7 @@ interface Props {
 const { formId, service, options, compact = false, heading } = Astro.props;
 const choices = (options ?? services.map((s) => s.key)).map((k) => serviceByKey[k]);
 const preset = service ?? (choices.length === 1 ? choices[0].key : undefined);
-const texting = preset ? serviceByKey[preset].texting : 'solar';
+const textingBrands = [...new Set(preset ? [serviceByKey[preset].texting] : choices.map((c) => c.texting))];
 // Render the first step visible in the HTML, so the form does not jump when
 // the script takes over. lead-form.ts computes the same order.
 const first = preset ? serviceByKey[preset].followUp : 'service';
@@ -61,7 +61,6 @@ const times = [
   data-compact={compact ? '1' : ''}
   action="/api/lead"
   method="post"
-  novalidate
 >
   {heading && <p class="lf-q" style="font-size:1.05rem;margin-bottom:.8rem">{heading}</p>}
   <div class="lf-top">
@@ -81,39 +80,49 @@ const times = [
         </label>
       ))}
     </div>
+      <button type="button" class="btn btn-ghost lf-next lf-quiet" data-next>Next</button>
   </fieldset>
   {preset && <input type="hidden" name="service" value={preset} />}
 
   {/* 2. follow-up, one of four by service */}
+  {(!preset || first === 'bill') && (
   <fieldset class="lf-step" data-step="bill" data-for="bill" hidden={hide('bill')}>
     <legend>About how much is your PG&amp;E bill in a typical month?</legend>
     <div class="choices">
       {bills.map(([v, l]) => (
-        <label class="choice"><input type="radio" name="monthly_bill" value={v} required data-auto /><span>{l}</span></label>
+        <label class="choice"><input type="radio" name="monthly_bill" value={v} data-req data-auto /><span>{l}</span></label>
       ))}
     </div>
+      <button type="button" class="btn btn-ghost lf-next lf-quiet" data-next>Next</button>
   </fieldset>
+  )}
 
+  {(!preset || first === 'roof_age') && (
   <fieldset class="lf-step" data-step="roof_age" data-for="roof_age" hidden={hide('roof_age')}>
     <legend>How old is the roof?</legend>
     <div class="choices">
       {roofAges.map(([v, l]) => (
-        <label class="choice"><input type="radio" name="roof_age" value={v} required data-auto /><span>{l}</span></label>
+        <label class="choice"><input type="radio" name="roof_age" value={v} data-req data-auto /><span>{l}</span></label>
       ))}
     </div>
+      <button type="button" class="btn btn-ghost lf-next lf-quiet" data-next>Next</button>
   </fieldset>
+  )}
 
+  {(!preset || first === 'problem') && (
   <fieldset class="lf-step" data-step="problem" data-for="problem" hidden={hide('problem')}>
     <legend>What is going on?</legend>
     <p class="lf-hint">A sentence or two is plenty. Error codes, leaks, a dead app, anything you noticed.</p>
     <div class="field">
       <label for={tid('problem')}>Describe the problem</label>
-      <textarea id={tid('problem')} name="problem_description" rows="4" maxlength="1200" required minlength="4"></textarea>
+      <textarea id={tid('problem')} name="problem_description" rows="4" maxlength="1200" data-req minlength="4"></textarea>
       <span class="err" aria-live="polite"></span>
     </div>
     <button type="button" class="btn btn-red lf-next" data-next>Next <Fragment set:html={arrow} /></button>
   </fieldset>
+  )}
 
+  {(!preset || first === 'ev') && (
   <fieldset class="lf-step" data-step="ev" data-for="ev" hidden={hide('ev')}>
     <legend>Tell us about the car and the panel</legend>
     <div class="fields">
@@ -124,15 +133,16 @@ const times = [
       <div>
         <p class="field" style="margin:0 0 .4rem"><span style="font-size:.92rem;font-weight:650">Where is your electrical panel?</span></p>
         <div class="choices two">
-          <label class="choice"><input type="radio" name="panel_location" value="garage" required /><span>In the garage</span></label>
-          <label class="choice"><input type="radio" name="panel_location" value="outside" required /><span>Outside</span></label>
-          <label class="choice"><input type="radio" name="panel_location" value="other" required /><span>Somewhere else</span></label>
-          <label class="choice"><input type="radio" name="panel_location" value="not_sure" required /><span>Not sure</span></label>
+          <label class="choice"><input type="radio" name="panel_location" value="garage" data-req /><span>In the garage</span></label>
+          <label class="choice"><input type="radio" name="panel_location" value="outside" data-req /><span>Outside</span></label>
+          <label class="choice"><input type="radio" name="panel_location" value="other" data-req /><span>Somewhere else</span></label>
+          <label class="choice"><input type="radio" name="panel_location" value="not_sure" data-req /><span>Not sure</span></label>
         </div>
       </div>
     </div>
     <button type="button" class="btn btn-red lf-next" data-next>Next <Fragment set:html={arrow} /></button>
   </fieldset>
+  )}
 
   {/* 3. homeowner */}
   <fieldset class="lf-step" data-step="homeowner" hidden>
@@ -141,6 +151,7 @@ const times = [
       <label class="choice"><input type="radio" name="homeowner" value="yes" required data-auto /><span>Yes</span></label>
       <label class="choice"><input type="radio" name="homeowner" value="no" required data-auto /><span>No, I rent</span></label>
     </div>
+      <button type="button" class="btn btn-ghost lf-next lf-quiet" data-next>Next</button>
   </fieldset>
 
   {/* 4. address */}
@@ -242,7 +253,11 @@ const times = [
       <span>
         <span data-consent-text>{consentSentence}</span>
         {' '}See our <a href="/privacy/">Privacy Policy</a> and{' '}
-        <a href={`/${texting}/sms/`} data-texting-link>texting terms</a>.
+        {textingBrands.length === 1 ? (
+          <a href={`/${textingBrands[0]}/sms/`}>texting terms</a>
+        ) : (
+          <>texting terms for <a href="/solar/sms/">solar</a> and <a href="/roofing/sms/">roofing</a></>
+        )}.
       </span>
     </label>
     <span class="err" data-consent-err aria-live="polite" style="display:block;margin-top:.4rem;font-size:.88rem;color:var(--red-deep);font-weight:600"></span>

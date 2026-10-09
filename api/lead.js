@@ -218,6 +218,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ ok: false, error: 'method not allowed' });
   }
   const isForm = String(req.headers['content-type'] || '').includes('application/x-www-form-urlencoded');
+  const host = str(req.headers['x-forwarded-host'] || req.headers.host || 'killua-web-eta.vercel.app', 200);
+  // Browsers send Origin on every form POST. Another site posting here is refused.
+  let originHost = '';
+  try {
+    originHost = req.headers.origin ? new URL(req.headers.origin).host : '';
+  } catch {
+    originHost = 'invalid';
+  }
+  if (originHost && originHost !== host) return res.status(403).json({ ok: false, error: 'cross-site post' });
   const body = parseBody(req);
   if (!body) return res.status(400).json({ ok: false, error: 'bad request' });
 
@@ -226,6 +235,18 @@ export default async function handler(req, res) {
 
   const lead = cleanLead(body);
   const bad = validateLead(lead);
+  if (bad.length && isForm) {
+    // The no-JavaScript form: a readable page, not raw JSON.
+    res.setHeader('content-type', 'text/html; charset=utf-8');
+    return res
+      .status(422)
+      .end(
+        '<!doctype html><meta name="viewport" content="width=device-width"><title>Check the form</title>' +
+          '<body style="font-family:system-ui,sans-serif;max-width:32rem;margin:3rem auto;padding:0 1rem;line-height:1.5">' +
+          '<h1>A few details are missing</h1><p>Please go back and check the form, including the consent box.</p>' +
+          '<p><a href="javascript:history.back()">Go back</a> or call <a href="tel:+15596914028">(559) 691-4028</a>.</p>'
+      );
+  }
   if (bad.length) return res.status(422).json({ ok: false, error: 'invalid', fields: bad });
 
   const url = process.env.KILLUA_LEAD_WEBHOOK_URL;
@@ -237,7 +258,6 @@ export default async function handler(req, res) {
   lead.lead_id = lead.event_id;
   // A browser Global Privacy Control signal overrides whatever the page sent.
   if (req.headers['sec-gpc'] === '1') lead.ad_consent = 'denied';
-  const host = str(req.headers['x-forwarded-host'] || req.headers.host || 'killua-web-eta.vercel.app', 200);
   const origin = `${/^(127\.0\.0\.1|localhost)(:|$)/.test(host) ? 'http' : 'https'}://${host}`;
   lead.consent_text = `${CONSENT_SENTENCE} See our Privacy Policy and texting terms.`;
   lead.consent_privacy_url = `${origin}/privacy/`;
@@ -263,6 +283,11 @@ export default async function handler(req, res) {
     return res.status(502).json({ ok: false, error: 'could not deliver lead' });
   }
 
+  // Server-side ad events need more than the page's say-so: the request must
+  // come from this site's own pages and carry the cookie the banner sets when
+  // advertising is allowed. Lead delivery above never depends on this.
+  const cookieAds = /(?:^|;\s*)killua_ads=1(?:;|$)/.test(String(req.headers.cookie || ''));
+  if (!(originHost === host && cookieAds)) lead.ad_consent = 'denied';
   const extra = { fbp: str(body.fbp, 200), fbc: str(body.fbc, 400), ttp: str(body.ttp, 200) };
   const [meta, tiktok] = await Promise.allSettled([
     withTimeout(metaCapi(lead, extra), 2500),

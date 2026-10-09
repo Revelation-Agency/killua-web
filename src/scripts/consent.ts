@@ -121,9 +121,18 @@ function loadGtag(c: Choice) {
   if (c.ads && cfg.gads) gtag('config', cfg.gads);
 }
 
+/** First-party flag the lead endpoint checks before any server-side ad event. */
+function adsCookie(on: boolean) {
+  const secure = location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = on
+    ? `killua_ads=1; Path=/; Max-Age=31536000; SameSite=Lax${secure}`
+    : `killua_ads=; Path=/; Max-Age=0; SameSite=Lax${secure}`;
+}
+
 function apply(c: Choice) {
   const before = current;
   current = c;
+  adsCookie(c.ads);
   // Withdrawing consent after tags loaded: the only honest way to unload them
   // is a fresh page, so reload once with the new choice saved.
   if (before && ((before.ads && !c.ads) || (before.analytics && !c.analytics)) && (loaded.meta || loaded.tiktok || loaded.gtag)) {

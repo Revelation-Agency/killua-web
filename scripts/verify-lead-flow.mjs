@@ -251,6 +251,20 @@ assert.match(last.consent_privacy_url, /\/privacy\/$/);
 await post({ ...good, event_id: id });
 assert.equal(received.at(-1).body.lead_id, id, 'a retry must reuse the same lead_id');
 ok('GPC header forces ads off; consent wording and links recorded by the server; retries keep one lead_id');
+r = await fetch(`${BASE}/api/lead`, {
+  method: 'POST',
+  headers: { 'content-type': 'application/json', origin: 'https://evil.example' },
+  body: JSON.stringify(good),
+});
+assert.equal(r.status, 403);
+r = await fetch(`${BASE}/api/lead`, {
+  method: 'POST',
+  headers: { 'content-type': 'application/x-www-form-urlencoded' },
+  body: 'first_name=TEST',
+});
+assert.equal(r.status, 422);
+assert.match(await r.text(), /A few details are missing/);
+ok('cross-site posts refused; a bad no-JavaScript post gets a readable page, not JSON');
 
 // ------------------------------------------------ 9. no JavaScript at all
 const nojs = await browser.newContext({ ...devices['iPhone 13'], javaScriptEnabled: false });
