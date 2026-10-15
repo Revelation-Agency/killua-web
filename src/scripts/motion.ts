@@ -123,8 +123,8 @@ export function initMotion() {
   document.addEventListener('killua:menuchange', event => {
     const open = (event as CustomEvent).detail.open;
     if (!open && !context) { refresh(); return; }
-    ScrollTrigger.getAll().forEach(trigger => open ? trigger.disable(false) : trigger.enable(false, false));
-    if (!open) ScrollTrigger.update();
+    ScrollTrigger.getAll().forEach(trigger => open ? trigger.disable(false, true) : trigger.enable(false, false));
+    if (!open) ScrollTrigger.refresh();
   });
   document.fonts.ready.then(() => {
     fontsReady = true;

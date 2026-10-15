@@ -49,6 +49,7 @@ try {
     page.on('pageerror', error => errors.push(error.message));
     await page.addInitScript(()=>localStorage.setItem('killua_consent_v1',JSON.stringify({v:1,analytics:false,ads:false,ts:'test'})));
     await page.goto(base, {waitUntil:'networkidle'});
+    await page.evaluate(()=>document.fonts.ready);
     await page.waitForFunction(()=>window.__motionReady === true);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false,`Overflow at ${width}x${height}`);
     if (width<1024) {
