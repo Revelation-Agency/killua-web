@@ -4,6 +4,7 @@ import Photo from '../components/site/Photo.astro';
 import Trust from '../components/site/Trust.astro';
 import Faq from '../components/site/Faq.astro';
 import QuoteSection from '../components/site/QuoteSection.astro';
+import EnergySystem from '../components/site/EnergySystem.astro';
 import { cities, site, taxCreditFaq } from '../data/site';
 const arrow = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.6"/></svg>';
 const offerings = [
@@ -21,7 +22,7 @@ const faqs = [
 ];
 ---
 <Site title="Killua Energy | Solar, Roofing & Home Energy in Fresno" description="Your home, fully powered. Solar, battery storage, roofing, solar repair and EV chargers from Killua Energy in Fresno and the Central Valley. CSLB #1096633." darkHeader>
-  <section class="cinema-hero" aria-labelledby="hero-title">
+  <section class="cinema-hero" aria-labelledby="hero-title" data-ambient>
     <div class="cinema-image" data-parallax><Photo name="hero-twilight" alt="Illustrative California home with rooftop solar and warmly lit windows at twilight" priority sizes="100vw" widths={[480,768,1200,1672]} quality={70} /></div>
     <div class="cinema-shade"></div>
     <div class="shell cinema-content">
@@ -36,13 +37,15 @@ const faqs = [
   <section class="section intro-section" id="intro">
     <div class="shell intro-grid"><div><p class="eyebrow">01 / THE WHOLE HOME</p><h2 data-split>Good energy starts<br />with a better plan.</h2></div><div class="intro-copy" data-reveal><p>Your roof. Your power. Your next move.</p><p>They work better when someone sees the whole picture. From the roof to the charger in your garage, we help every part work together.</p><a class="line-link" href="/about/">Meet Killua Energy <Fragment set:html={arrow}/></a></div></div>
   </section>
+  <div class="energy-band" data-ambient aria-hidden="true"><div class="energy-band-track">{[0,1].map(()=> <div class="energy-band-set"><span>Built for your everyday.</span><i>↗</i><span class="outline">Powered by possibility.</span><i>↗</i></div>)}</div></div>
   <section class="section service-showcase" id="services">
     <div class="shell"><div class="editorial-head"><div><p class="eyebrow">02 / BUILT AROUND YOUR HOME</p><h2 data-split>More possibility.<br />Under one roof.</h2></div><p>Start with what you need today.<br />Make room for what comes next.</p></div>
       <div class="photo-services">{offerings.map((s)=><a class="photo-service" href={s.href} data-reveal><div class="service-image"><Photo name={s.image} alt={`${s.label} concept for a California home`} sizes="(min-width: 64rem) 46vw, 100vw"/></div><div class="service-image-shade"></div><span class="service-number">{s.n} / {s.label}</span><div class="photo-service-copy"><span class="tiny-label">{s.tag}</span><h3>{s.title}</h3><p>{s.body}</p><span class="service-arrow"><Fragment set:html={arrow}/></span></div></a>)}</div>
       <div class="service-repair-link"><span>Already have solar? Let’s keep it working.</span><a class="line-link" href="/solar-repair/">Explore solar repair & maintenance <Fragment set:html={arrow}/></a></div>
     </div>
   </section>
-  <section class="energy-story section" aria-labelledby="energy-title">
+  <EnergySystem />
+  <section class="energy-story section" aria-labelledby="energy-title" data-ambient>
     <div class="shell"><div class="editorial-head"><div><p class="eyebrow">03 / A DIFFERENT KIND OF POWER COUPLE</p><h2 id="energy-title" data-split>The sun clocks out.<br />Your energy doesn’t have to.</h2></div><p>Solar makes it. A battery saves it.<br />Explore how they work through the day.</p></div>
       <div class="energy-explorer" data-energy data-phase="day">
         <div class="energy-visual"><Photo name="solar-home" alt="Illustrative solar home used to explain daytime generation and evening storage" sizes="(min-width: 64rem) 65vw, 100vw"/><div class="energy-tint"></div><div class="energy-tag"><span class="live-dot"></span><span data-energy-tag>Solar generation</span></div><div class="energy-time" data-energy-time>12:00 <small>PM</small></div><div class="energy-caption">A day at home, illustrated.</div></div>

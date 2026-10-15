@@ -9,10 +9,23 @@ import LightRays from '../react-bits/LightRays';
 export default function Rays() {
   const [on, setOn] = useState(false);
   useEffect(() => {
-    const ok =
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
-      window.matchMedia('(min-width: 48rem)').matches;
-    setOn(ok);
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const wide = window.matchMedia('(min-width: 48rem)');
+    const sync = () => setOn(!reduced.matches && wide.matches && !document.hidden && document.documentElement.dataset.motion !== 'paused' && !document.documentElement.hasAttribute('data-menu-open'));
+    sync();
+    reduced.addEventListener('change', sync);
+    wide.addEventListener('change', sync);
+    document.addEventListener('killua:motionchange', sync);
+    document.addEventListener('visibilitychange', sync);
+    const observer = new MutationObserver(sync);
+    observer.observe(document.documentElement, { attributes:true, attributeFilter:['data-menu-open'] });
+    return () => {
+      reduced.removeEventListener('change', sync);
+      wide.removeEventListener('change', sync);
+      document.removeEventListener('killua:motionchange', sync);
+      document.removeEventListener('visibilitychange', sync);
+      observer.disconnect();
+    };
   }, []);
   if (!on) return null;
   return (

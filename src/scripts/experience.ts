@@ -29,3 +29,59 @@ const updateProgress = () => {
 addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(updateProgress)}},{passive:true});
 addEventListener('resize',updateProgress);
 updateProgress();
+
+// Run ambient effects only on screen. Background tabs and an open menu pause them.
+const ambientSections = Array.from(document.querySelectorAll<HTMLElement>('[data-ambient]'));
+const visibleSections = new Set<HTMLElement>();
+const syncAmbient = () => {
+  const canMove = !document.hidden && !document.querySelector('[data-drawer][data-open]');
+  ambientSections.forEach(section => section.toggleAttribute('data-visible', canMove && visibleSections.has(section)));
+};
+const ambientObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => entry.isIntersecting ? visibleSections.add(entry.target as HTMLElement) : visibleSections.delete(entry.target as HTMLElement));
+  syncAmbient();
+}, { threshold: 0 });
+ambientSections.forEach(section => ambientObserver.observe(section));
+document.addEventListener('visibilitychange', syncAmbient);
+const menu = document.querySelector('[data-drawer]');
+if (menu) new MutationObserver(syncAmbient).observe(menu, { attributes: true, attributeFilter: ['data-open'] });
+
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+let userPaused = false;
+const motionButtons = document.querySelectorAll<HTMLButtonElement>('[data-motion-control]');
+function syncMotion() {
+  const paused = motionPreference.matches || userPaused;
+  document.documentElement.dataset.motion = paused ? 'paused' : 'active';
+  motionButtons.forEach(button => {
+    button.hidden = motionPreference.matches;
+    button.setAttribute('aria-pressed', String(paused));
+    button.setAttribute('aria-label', paused ? 'Play animations' : 'Pause animations');
+    button.title = paused ? 'Play animations' : 'Pause animations';
+  });
+  document.dispatchEvent(new Event('killua:motionchange'));
+}
+motionButtons.forEach(button => button.addEventListener('click', () => { userPaused = !userPaused; syncMotion(); }));
+motionPreference.addEventListener('change', syncMotion);
+syncMotion();
+
+document.querySelectorAll<HTMLElement>('[data-system]').forEach(system => {
+  system.querySelectorAll<HTMLButtonElement>('[data-system-choice]').forEach(button => {
+    button.addEventListener('click', () => {
+      const choice = button.dataset.systemChoice;
+      system.dataset.system = choice;
+      system.querySelectorAll('[data-system-choice]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      system.querySelectorAll<HTMLElement>('[data-system-panel]').forEach(panel => { panel.hidden = panel.dataset.systemPanel !== choice; });
+    });
+  });
+});
+
+if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelectorAll<HTMLElement>('.photo-service').forEach(card => {
+    card.addEventListener('pointermove', event => {
+      if (document.documentElement.dataset.motion === 'paused') return;
+      const box = card.getBoundingClientRect();
+      card.style.setProperty('--pointer-x', `${event.clientX - box.left}px`);
+      card.style.setProperty('--pointer-y', `${event.clientY - box.top}px`);
+    }, { passive: true });
+  });
+}

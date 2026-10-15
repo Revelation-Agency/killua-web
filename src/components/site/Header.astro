@@ -44,6 +44,7 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
       <a class="header-phone" href={site.phoneHref}>{site.phone}</a>
       {variant === 'main' ? (
         <>
+          <button class="icon-btn motion-control" type="button" data-motion-control aria-label="Pause animations" aria-pressed="false" title="Pause animations" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="motion-pause-icon" d="M9 6v12M15 6v12" stroke="currentColor" stroke-width="2"/><path class="motion-play-icon" d="m9 6 9 6-9 6Z" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <a class="btn btn-red" href={quoteHref} data-hide-sm>Get a quote</a>
           <a class="icon-btn menu-call" href={site.phoneHref} aria-label={`Call ${site.phone}`}><Fragment set:html={phoneIcon} /></a>
           <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-menu>
@@ -65,6 +66,7 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
       </button>
     </div>
+    <div class="drawer-content" data-lenis-prevent>
     <nav aria-label="Mobile">
       {nav.map((g) => (
         <>
@@ -78,6 +80,7 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
     <div class="drawer-cta">
       <a class="btn btn-red" href={quoteHref} data-menu-close>Get a quote</a>
       <a class="btn btn-ghost" href={site.phoneHref} style="color:var(--stucco)">Call {site.phone}</a>
+    </div>
     </div>
   </div>
 )}
@@ -134,14 +137,31 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
 
   const drawer = document.querySelector<HTMLElement>('[data-drawer]');
   const toggle = document.querySelector<HTMLButtonElement>('[data-menu]');
+  let menuScroll = 0;
   function setDrawer(open: boolean) {
     if (!drawer || !toggle) return;
+    if (open === drawer.hasAttribute('data-open')) return;
+    if (open) document.dispatchEvent(new CustomEvent('killua:menuchange', { detail: { open: true } }));
+    document.documentElement.toggleAttribute('data-menu-open', open);
     drawer.toggleAttribute('data-open', open);
     drawer.setAttribute('aria-hidden', String(!open));
     if (open) drawer.setAttribute('aria-modal', 'true');
     else drawer.removeAttribute('aria-modal');
     toggle.setAttribute('aria-expanded', String(open));
     document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      menuScroll = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${menuScroll}px`;
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      window.scrollTo({ top: menuScroll, behavior: 'instant' });
+      document.dispatchEvent(new CustomEvent('killua:menuchange', { detail: { open: false } }));
+    }
+    document.querySelectorAll<HTMLElement>('body > :not(.drawer):not(script):not(style)').forEach(el => { el.inert = open; });
     const lenis = (window as any).__lenis;
     open ? lenis?.stop() : lenis?.start();
     if (open) drawer.querySelector<HTMLElement>('[data-menu-close]')?.focus();
@@ -156,5 +176,6 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
     if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
   });
   toggle?.addEventListener('click', () => setDrawer(true));
-  drawer?.querySelectorAll('[data-menu-close]').forEach((b) => b.addEventListener('click', () => setDrawer(false)));
+  drawer?.querySelectorAll('[data-menu-close], nav a').forEach((b) => b.addEventListener('click', () => setDrawer(false)));
+  matchMedia('(min-width: 64rem)').addEventListener('change', e => { if (e.matches) setDrawer(false); });
 </script>

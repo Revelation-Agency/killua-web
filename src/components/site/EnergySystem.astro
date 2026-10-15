@@ -1,0 +1,70 @@
+---
+const parts = [
+  { key: 'solar', number: '01', label: 'Capture', title: 'Put your roof to work.', copy: 'Solar panels turn sunlight into electricity for your home. A layout designed around your roof and usage makes every part of the system count.', href: '/solar-installation/', link: 'Explore solar' },
+  { key: 'storage', number: '02', label: 'Store', title: 'Keep some sunshine for later.', copy: 'A compatible battery stores extra energy for later use. Choose the circuits you want backed up and plan around the way your household uses power.', href: '/battery-storage/', link: 'Explore batteries' },
+  { key: 'roof', number: '03', label: 'Protect', title: 'Start with a sound foundation.', copy: 'The roof underneath matters as much as the panels above it. We look at its condition, attachments and weather protection before planning the work.', href: '/roof-replacement/', link: 'Explore roofing' },
+  { key: 'ev', number: '04', label: 'Charge', title: 'Make the driveway your next stop.', copy: 'A dedicated home charger brings charging into your routine. We check your electrical panel, parking location and vehicle to plan the installation.', href: '/ev-chargers/', link: 'Explore EV charging' },
+];
+---
+<section class="system-section section" aria-labelledby="system-heading" data-system="solar" data-ambient>
+  <div class="shell">
+    <div class="editorial-head"><div><p class="eyebrow">CONNECTED BY DESIGN</p><h2 id="system-heading" data-split>One home.<br />Working together.</h2></div><p>Follow the energy.<br />Choose a part of the home to explore.</p></div>
+    <div class="system-stage">
+      <div class="system-drawing">
+        <span class="system-caption">KILLUA / THE CONNECTED HOME</span>
+        <svg viewBox="0 0 1000 610" fill="none" aria-hidden="true" class="system-svg">
+          <defs>
+            <linearGradient id="wall-front" x1="335" y1="295" x2="690" y2="530" gradientUnits="userSpaceOnUse"><stop stop-color="#526369"/><stop offset="1" stop-color="#202e35"/></linearGradient>
+            <linearGradient id="wall-side" x1="550" y1="320" x2="750" y2="380" gradientUnits="userSpaceOnUse"><stop stop-color="#1c3039"/><stop offset="1" stop-color="#344953"/></linearGradient>
+            <linearGradient id="roof-surface" x1="300" y1="245" x2="710" y2="345" gradientUnits="userSpaceOnUse"><stop stop-color="#506671"/><stop offset="1" stop-color="#22343e"/></linearGradient>
+            <linearGradient id="panel-surface" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#25505f"/><stop offset="1" stop-color="#102530"/></linearGradient>
+            <linearGradient id="window-light"><stop stop-color="#ffe2a7"/><stop offset="1" stop-color="#a87f50"/></linearGradient>
+            <radialGradient id="ground-glow"><stop stop-color="#78b8b9" stop-opacity=".13"/><stop offset="1" stop-color="#78b8b9" stop-opacity="0"/></radialGradient>
+          </defs>
+          <ellipse cx="510" cy="405" rx="450" ry="190" fill="url(#ground-glow)"/>
+          <g stroke="#88abb7" stroke-opacity=".11" stroke-width="1">
+            {Array.from({length:11},(_,i)=><path d={`M ${90+i*48} ${360-i*19} l 420 170`}/>)}
+            {Array.from({length:11},(_,i)=><path d={`M ${90+i*48} ${360+i*19} l 420 -170`}/>)}
+          </g>
+          <g class="system-orbit" stroke="#c1d2d7" stroke-opacity=".2"><ellipse cx="510" cy="369" rx="435" ry="185"/><ellipse cx="510" cy="369" rx="402" ry="161" stroke-dasharray="1 12"/></g>
+          <path d="m224 365 266-119 300 124-265 128Z" fill="#203238" stroke="#657f87" stroke-opacity=".5"/>
+          <path d="m224 365 1 12 300 126v-5m0 5 265-120v-13" stroke="#52666d"/>
+          <g class="system-house">
+            <path d="m337 291 209 87v117l-209-87Z" fill="url(#wall-front)" stroke="#7d9197"/>
+            <path d="m546 378 168-77v118l-168 76Z" fill="url(#wall-side)" stroke="#66828a"/>
+            <path d="m546 378-209-87 99-82 210 86Z" fill="url(#roof-surface)" stroke="#a4bbc3"/>
+            <path d="m546 378 100-83 68 6Z" fill="#283c45" stroke="#7c969e"/>
+            <path class="roof-outline" d="m323 291 113-94 226 93 67 8-183 94Z" stroke="#ef7560" stroke-width="2"/>
+            <g stroke="#80949c" stroke-opacity=".35">{Array.from({length:7},(_,i)=><path d={`m${350+i*12} ${279-i*10} 205 85`}/>)}</g>
+            <g class="solar-array" transform="matrix(.9,.37,-.65,.55,428,228)">
+              <rect x="-5" y="-5" width="183" height="106" rx="2" fill="#0c1e27" stroke="#91bbc6" stroke-width="2"/>
+              {Array.from({length:6},(_,i)=>Array.from({length:3},(_,j)=><rect x={i*29} y={j*32} width="26" height="29" rx="1" fill="url(#panel-surface)" stroke="#70a6b7" stroke-width=".65"/>))}
+              <path d="M0 48h171M85 0v94" stroke="#aedce1" stroke-opacity=".4"/>
+            </g>
+            <g fill="url(#window-light)" stroke="#10272f" stroke-width="5"><path d="m361 340 61 25v57l-61-25Z"/><path d="m448 376 62 26v57l-62-26Z"/><path d="m576 391 48-22v61l-48 22Z"/></g>
+            <path d="m392 353 0 57m88-21v57m120-66v60" stroke="#273d44" stroke-width="3"/>
+            <path d="m651 357 37-17v90l-37 16Z" fill="#10272d" stroke="#657f87"/>
+            <path d="m674 389 0 9" stroke="#d4c3a0" stroke-width="3"/>
+            <path d="m337 408 209 87 168-76" stroke="#91a8af" stroke-width="3"/>
+          </g>
+          <g class="system-sun" stroke="#e6b581"><circle cx="209" cy="162" r="28" fill="#e6b581" fill-opacity=".09"/><circle class="sun-ring" cx="209" cy="162" r="48" stroke-dasharray="1 10"/>{Array.from({length:12},(_,i)=><path d="M209 96v12" transform={`rotate(${i*30} 209 162)`} stroke-opacity=".5"/>)}</g>
+          <g class="system-battery"><path d="m227 399 39-18 34 14v79l-39 18-34-14Z" fill="#20353e" stroke="#92b2bb"/><path d="m227 399 34 14 39-18m-39 18v79" stroke="#6c8c98"/><path d="m268 428 23-10v38l-23 10Z" fill="#0f242b" stroke="#577b87"/>{[0,1,2,3].map(i=><path class="battery-cell" style={`--cell:${i}`} d={`m273 ${453-i*8} 13-6`} stroke="#b9e9cc" stroke-width="3"/>)}<path d="m234 416 19 8" stroke="#d7e1e1" stroke-width="2"/></g>
+          <g class="system-charger"><path d="m775 331 24-11 19 9v84l-24 11-19-9Z" fill="#31434b" stroke="#91a7b1"/><path d="m775 331 19 9 24-11m-24 11v84" stroke="#75959f"/><path d="m799 349 12-5v18l-12 5Z" fill="#e66a52"/><path d="M813 381c39-20 34 53 13 58" stroke="#94adba" stroke-width="3"/><path d="m826 439-10 13" stroke="#d9e6e8" stroke-width="6"/></g>
+          <g class="system-car"><path d="m657 472 66-34 60 4 61 39 6 24-56 30-115-34Z" fill="#354750" stroke="#93aab4"/><path d="m696 462 37-19 47 6 32 22-46 22Z" fill="#132b36" stroke="#7796a5"/><path d="m733 443 1 37m32 13 28 42m-137-63 110 34 77-25" stroke="#819aa6"/><ellipse cx="693" cy="502" rx="10" ry="15" fill="#0c1a20" stroke="#75949d" transform="rotate(-19 693 502)"/><ellipse cx="821" cy="514" rx="10" ry="15" fill="#0c1a20" stroke="#75949d" transform="rotate(23 821 514)"/><path d="m666 481 17 5m101 31 14 4" stroke="#f8d4ab" stroke-width="3"/></g>
+          <g stroke="#ee785f" stroke-width="2" stroke-linecap="round">
+            <path class="energy-path solar-path" d="M244 180 329 214 397 263"/>
+            <path class="energy-path storage-path" d="m405 326-89 42-35 48"/>
+            <path class="energy-path ev-path" d="m632 463 72-22 57-28 30-40"/>
+          </g>
+          <g fill="#ec826a" class="system-points"><circle cx="397" cy="263" r="4"/><circle cx="281" cy="416" r="4"/><circle cx="791" cy="373" r="4"/></g>
+          <g stroke="#8bb0ba" stroke-opacity=".4"><path d="M405 204v-47h127m-254 333v49h130m387-212 54-25h46"/><circle cx="405" cy="204" r="3"/><circle cx="278" cy="490" r="3"/></g>
+        </svg>
+        <span class="system-footnote">An illustrated system. Your home shapes the design.</span>
+      </div>
+      <div class="system-detail">
+        <div class="system-selector" role="group" aria-label="Explore the home energy system">{parts.map((part,i)=><button type="button" data-system-choice={part.key} aria-controls={`system-${part.key}`} aria-pressed={i===0}><span>{part.number}</span>{part.label}</button>)}</div>
+        <div class="system-descriptions" aria-live="polite" aria-atomic="true">{parts.map((part,i)=><div id={`system-${part.key}`} data-system-panel={part.key} hidden={i!==0}><span class="eyebrow">{part.number} / {part.label.toUpperCase()}</span><h3>{part.title}</h3><p>{part.copy}</p><a class="line-link" href={part.href}>{part.link}<span aria-hidden="true">↗</span></a></div>)}</div>
+      </div>
+    </div>
+  </div>
+</section>
