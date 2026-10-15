@@ -109,7 +109,8 @@ try {
     // Reset after the header scrolls into view and prove offscreen effects sleep.
     await page.evaluate(()=>window.scrollTo(0,0));await page.waitForTimeout(400);
     assert.equal(await page.locator('.solar-path').evaluate(el=>getComputedStyle(el).animationPlayState),'paused');
-    await page.emulateMedia({reducedMotion:'reduce'});await page.waitForTimeout(100);
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.waitForFunction(()=>document.documentElement.dataset.motion==='paused');
     assert.equal(await page.locator('html').getAttribute('data-motion'),'paused');
     assert.equal(await page.locator('.sun-ring').evaluate(el=>getComputedStyle(el).animationName),'none');
     assert.equal(await page.locator('h1').evaluate(el=>getComputedStyle(el).opacity),'1');
