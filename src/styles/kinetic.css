@@ -12,9 +12,6 @@ html[data-menu-open] .cookie{visibility:hidden!important;pointer-events:none!imp
 .drawer .drawer-cta .btn{min-height:3.1rem;font-size:.85rem}
 .drawer[data-open] nav a{animation:menu-enter .38s both}
 @keyframes menu-enter{from{opacity:.25;transform:translateX(-12px)}to{opacity:1;transform:none}}
-.motion-control{flex-shrink:0;color:inherit;width:40px;height:40px;border:1px solid #87999c40;border-radius:50%;opacity:.85}
-.motion-control[hidden]{display:none}.motion-control svg{width:20px;height:20px}.motion-play-icon{display:none}
-.motion-control[aria-pressed=true] .motion-pause-icon{display:none}.motion-control[aria-pressed=true] .motion-play-icon{display:block}
 /* Motion runs only while these sections are visible. */
 .cinema-image img{animation:cinema-drift 18s ease-in-out infinite alternate;animation-play-state:paused}
 [data-visible] .cinema-image img{animation-play-state:running}
@@ -66,7 +63,7 @@ html[data-menu-open] .cookie{visibility:hidden!important;pointer-events:none!imp
 .footer-wordmark{overflow:hidden}.footer-wordmark span{display:inline-block}
 .flow-line:after{animation-play-state:paused}.energy-story[data-visible] .flow-line:after{animation-play-state:running}
 @media(max-width:63.99rem){.system-stage{grid-template-columns:1fr}.system-drawing{min-height:0;padding:2.5rem 0}.system-detail{border-left:0;border-top:1px solid #abc1c424;padding:2rem}.system-selector{margin-bottom:2rem}.system-descriptions{min-height:230px}.system-descriptions h3{max-width:none;font-size:2.3rem}.system-caption{left:1.5rem;top:1.2rem}.system-footnote{left:1.5rem;bottom:1rem}.process-track:before{display:none}}
-@media(max-width:47.99rem){.header-actions{gap:.35rem}.motion-control{width:34px;height:34px}.system-drawing{padding:3rem 0 2.5rem}.system-svg{width:115%;max-width:none;margin-left:-7.5%}.system-caption,.system-footnote{font-size:.55rem}.system-detail{padding:1.5rem}.system-selector{gap:.2rem}.system-selector button{font-size:.75rem;min-height:58px}.system-descriptions{min-height:290px}.system-descriptions h3{font-size:2.2rem}.energy-band{padding:1.1rem 0}.energy-band-set{gap:1.8rem;padding-right:1.8rem}.cinema-bottom{bottom:2rem}.process-track li{border-top-color:#bfc7c2}}
+@media(max-width:47.99rem){.header-actions{gap:.35rem}.system-drawing{padding:3rem 0 2.5rem}.system-svg{width:115%;max-width:none;margin-left:-7.5%}.system-caption,.system-footnote{font-size:.55rem}.system-detail{padding:1.5rem}.system-selector{gap:.2rem}.system-selector button{font-size:.75rem;min-height:58px}.system-descriptions{min-height:290px}.system-descriptions h3{font-size:2.2rem}.energy-band{padding:1.1rem 0}.energy-band-set{gap:1.8rem;padding-right:1.8rem}.cinema-bottom{bottom:2rem}.process-track li{border-top-color:#bfc7c2}}
 html[data-motion=paused] *,html[data-motion=paused] *:before,html[data-motion=paused] *:after{animation-play-state:paused!important;transition:none!important;scroll-behavior:auto!important}
 /* Entrance effects must never leave content hidden when motion is paused. */
 html[data-motion=paused] :is(.hero-eyebrow,.cinema-content h1,.cinema-lede,.cinema-actions,.drawer nav a,.system-descriptions>div){animation:none!important}

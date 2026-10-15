@@ -44,7 +44,6 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
       <a class="header-phone" href={site.phoneHref}>{site.phone}</a>
       {variant === 'main' ? (
         <>
-          <button class="icon-btn motion-control" type="button" data-motion-control aria-label="Pause animations" aria-pressed="false" title="Pause animations" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="motion-pause-icon" d="M9 6v12M15 6v12" stroke="currentColor" stroke-width="2"/><path class="motion-play-icon" d="m9 6 9 6-9 6Z" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <a class="btn btn-red" href={quoteHref} data-hide-sm>Get a quote</a>
           <a class="icon-btn menu-call" href={site.phoneHref} aria-label={`Call ${site.phone}`}><Fragment set:html={phoneIcon} /></a>
           <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer" data-menu>

@@ -394,7 +394,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
     h1: 'Fix the leak before the rain finds it',
     lede: 'Cracked tiles, lifted shingles, worn flashing and leaks around vents or solar mounts. We find the cause and fix it.',
     photo: 'roof-repair',
-    photoAlt: 'Gloved hands replacing a cracked concrete roof tile',
+    photoAlt: 'Gloved hands fitting an intact replacement tile into a terracotta roof',
     includedTitle: 'Common repairs',
     included: [
       {
@@ -484,7 +484,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
     h1: 'Charge the car overnight in your own garage',
     lede: 'We install Level 2 chargers on their own circuit, after checking that your electrical panel can carry the load.',
     photo: 'ev-charger',
-    photoAlt: 'Wall-mounted EV charger plugged into an electric car in a tidy garage',
+    photoAlt: 'Tesla parked straight in a garage, connected to a wall charger beside a Powerwall 3',
     includedTitle: 'What the job covers',
     included: [
       {
@@ -679,7 +679,7 @@ export const goPages: GoPage[] = [
       },
     ],
     photo: 'ev-charger',
-    photoAlt: 'EV charger plugged into a car in a garage',
+    photoAlt: 'Tesla connected to a wall charger beside a Powerwall 3 in a clean garage',
   },
   {
     slug: 'roofing',

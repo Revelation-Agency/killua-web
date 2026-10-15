@@ -52,16 +52,18 @@ function headlines() {
   document.querySelectorAll<HTMLElement>('[data-split]').forEach((el) => {
     if (el.getBoundingClientRect().top <= window.innerHeight * .92) return;
     SplitText.create(el, {
-      type: 'lines',
+      type: 'lines,words',
       mask: 'lines',
       linesClass: 'split-line',
       autoSplit: true,
       onSplit(self) {
-        return gsap.from(self.lines, {
+        return gsap.from(self.words, {
           yPercent: 108,
-          duration: 0.95,
+          rotation: 2,
+          transformOrigin: '0% 100%',
+          duration: 0.9,
           ease: 'expo.out',
-          stagger: 0.09,
+          stagger: { amount: 0.3 },
           scrollTrigger: { trigger: el, start: 'top 86%', once: true },
         });
       },
@@ -99,6 +101,11 @@ export function initMotion() {
     context = gsap.context(() => {
       headlines();
       reveals();
+      // Small editorial accents arrive with their section; body copy stays readable.
+      document.querySelectorAll<HTMLElement>('.section .eyebrow, .section-head > .label, .craft-copy > p:not(.eyebrow), .split > div > p').forEach(el => {
+        if (el.closest('[data-reveal]') || el.querySelector('.btn') || el.getBoundingClientRect().top <= innerHeight * .92) return;
+        gsap.from(el, { y: 16, opacity: 0, duration: .85, ease: 'power3.out', scrollTrigger: {trigger:el,start:'top 91%',once:true} });
+      });
       const desktop = matchMedia('(min-width: 64rem) and (hover: hover)').matches;
       if (desktop) document.querySelectorAll<HTMLElement>('[data-parallax]').forEach(el => {
         gsap.fromTo(el, { yPercent: -3, scale: 1.08 }, { yPercent: 3, ease:'none', scrollTrigger: {trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:1} });

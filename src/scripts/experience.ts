@@ -47,20 +47,11 @@ const menu = document.querySelector('[data-drawer]');
 if (menu) new MutationObserver(syncAmbient).observe(menu, { attributes: true, attributeFilter: ['data-open'] });
 
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
-let userPaused = false;
-const motionButtons = document.querySelectorAll<HTMLButtonElement>('[data-motion-control]');
 function syncMotion() {
-  const paused = motionPreference.matches || userPaused;
+  const paused = motionPreference.matches;
   document.documentElement.dataset.motion = paused ? 'paused' : 'active';
-  motionButtons.forEach(button => {
-    button.hidden = motionPreference.matches;
-    button.setAttribute('aria-pressed', String(paused));
-    button.setAttribute('aria-label', paused ? 'Play animations' : 'Pause animations');
-    button.title = paused ? 'Play animations' : 'Pause animations';
-  });
   document.dispatchEvent(new Event('killua:motionchange'));
 }
-motionButtons.forEach(button => button.addEventListener('click', () => { userPaused = !userPaused; syncMotion(); }));
 motionPreference.addEventListener('change', syncMotion);
 syncMotion();
 

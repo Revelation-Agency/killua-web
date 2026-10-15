@@ -104,10 +104,7 @@ try {
     assert.notEqual(await page.locator('.solar-path').evaluate(el=>getComputedStyle(el).strokeDashoffset),flowBefore,'Energy path is not moving');
     if(out && width===1440)await page.screenshot({path:`${out}/energy-system-desktop.png`});
     if(out && width===390 && height===844)await page.screenshot({path:`${out}/energy-system-phone.png`});
-    await page.getByRole('button',{name:'Pause animations',exact:true}).click();
-    assert.equal(await page.locator('.solar-path').evaluate(el=>getComputedStyle(el).animationPlayState),'paused');
-    assert.equal(await page.locator('html').getAttribute('data-motion'),'paused');
-    await page.getByRole('button',{name:'Play animations',exact:true}).click();
+    assert.equal(await page.locator('[data-motion-control]').count(),0,'Removed motion button is still present');
     assert.equal(await page.locator('html').getAttribute('data-motion'),'active');
     // Reset after the header scrolls into view and prove offscreen effects sleep.
     await page.evaluate(()=>window.scrollTo(0,0));await page.waitForTimeout(400);
@@ -116,8 +113,8 @@ try {
     assert.equal(await page.locator('html').getAttribute('data-motion'),'paused');
     assert.equal(await page.locator('.sun-ring').evaluate(el=>getComputedStyle(el).animationName),'none');
     assert.equal(await page.locator('h1').evaluate(el=>getComputedStyle(el).opacity),'1');
-    evidence.push({width,height,menuLinksReachable:width<1024?9:'desktop',motionControls:true,reducedMotion:true});
-    console.log(`PASS ${width}x${height}: navigation, energy controls, motion pause and reduced motion`);
+    evidence.push({width,height,menuLinksReachable:width<1024?9:'desktop',noPauseButton:true,reducedMotion:true});
+    console.log(`PASS ${width}x${height}: navigation, energy controls, no pause button and reduced motion`);
     await context.close();
   }
   assert.deepEqual(errors,[]);

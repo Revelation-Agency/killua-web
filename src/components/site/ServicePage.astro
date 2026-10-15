@@ -18,10 +18,10 @@ const arrow = '<svg class="arrow" viewBox="0 0 20 20" fill="none" aria-hidden="t
 ---
 
 <Site title={page.title} description={page.description} darkHeader>
-  <section class="page-hero">
+  <section class="page-hero" data-ambient data-service={page.key}>
     {page.rays && <div class="rays"><Rays client:media="(min-width: 48rem)" /></div>}
     <div class="shell">
-      <div style="display:grid;gap:1.2rem;position:relative;z-index:2">
+      <div class="page-hero-copy">
         <span class="label">{page.eyebrow}</span>
         <h1>{page.h1}</h1>
         <p class="lede">{page.lede}</p>
