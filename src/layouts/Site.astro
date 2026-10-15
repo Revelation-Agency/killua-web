@@ -4,10 +4,13 @@
  * pages use layouts/Base.astro and never load anything from here.
  */
 import '../styles/site.css';
+import '../styles/premium.css';
 import Header from '../components/site/Header.astro';
 import Footer from '../components/site/Footer.astro';
 import Motion from '../components/site/Motion.astro';
 import { cities, site } from '../data/site';
+import { getImage } from 'astro:assets';
+import socialPhoto from '../assets/photos/hero-twilight.png';
 
 interface Props {
   title: string;
@@ -43,6 +46,7 @@ const cfg = {
   mapsKey: env.PUBLIC_GOOGLE_MAPS_KEY || '',
 };
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://killua-web-eta.vercel.app').href;
+const socialImage = await getImage({ src: socialPhoto, width: 1200, format: 'jpg', quality: 75 });
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'HomeAndConstructionBusiness',
@@ -79,6 +83,10 @@ const callIcon =
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Killua Energy" />
+    <meta property="og:image" content={new URL(socialImage.src, canonical).href} />
+    <meta property="og:image:alt" content="A solar-powered California home at twilight" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
@@ -98,6 +106,7 @@ const callIcon =
     )}
   </head>
   <body class="has-callbar">
+    <div class="scroll-progress" aria-hidden="true"></div>
     <a class="skip" href="#main">Skip to content</a>
     <Header variant={variant} dark={darkHeader} quoteHref={quoteHref} />
     <main id="main">
@@ -109,6 +118,7 @@ const callIcon =
       <a class="btn btn-ghost" href={site.phoneHref}><Fragment set:html={callIcon} />Call</a>
       <a class="btn btn-red" href={quoteHref}>{quoteLabel}</a>
     </div>
+    <noscript><style>.callbar{display:none!important}body.has-callbar{padding-bottom:0!important}</style></noscript>
 
     <section class="cookie" id="cookie" role="dialog" aria-labelledby="cookie-title" aria-live="polite" hidden>
       <h2 id="cookie-title" tabindex="-1">Cookies on this site</h2>
@@ -133,16 +143,22 @@ const callIcon =
     {motion && <Motion />}
 
     <script>
+      import '../scripts/experience';
       import { initConsent } from '../scripts/consent';
       initConsent();
 
       // On phones the open keyboard and the call bar fight for the same space.
       const bar = document.querySelector<HTMLElement>('[data-callbar]');
+      let formVisible = false;
+      let keyboardOpen = false;
+      const syncBar = () => bar?.toggleAttribute('data-hidden', formVisible || keyboardOpen);
+      const form = document.querySelector('[data-lead-form]');
+      if (form) new IntersectionObserver(([entry]) => { formVisible = entry.isIntersecting; syncBar(); }, { threshold: 0 }).observe(form);
       document.addEventListener('focusin', (e) => {
-        if ((e.target as HTMLElement).matches('input:not([type=radio]):not([type=checkbox]), textarea'))
-          bar?.setAttribute('data-hidden', '');
+        keyboardOpen = (e.target as HTMLElement).matches('input:not([type=radio]):not([type=checkbox]), textarea');
+        syncBar();
       });
-      document.addEventListener('focusout', () => bar?.removeAttribute('data-hidden'));
+      document.addEventListener('focusout', () => { keyboardOpen = false; syncBar(); });
     </script>
   </body>
 </html>

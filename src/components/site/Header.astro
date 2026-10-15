@@ -58,7 +58,7 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
 </header>
 
 {variant === 'main' && (
-  <div class="drawer" id="drawer" data-drawer aria-hidden="true">
+  <div class="drawer" id="drawer" data-drawer aria-hidden="true" role="dialog" aria-label="Navigation menu">
     <div class="header-row">
       <a class="logo" href="/" aria-label="Killua Energy home"><img src="/brand/killua-energy-light.svg" alt="Killua Energy" width="168" height="58" /></a>
       <button class="icon-btn" type="button" aria-label="Close menu" data-menu-close>
@@ -138,12 +138,23 @@ const chev = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m
     if (!drawer || !toggle) return;
     drawer.toggleAttribute('data-open', open);
     drawer.setAttribute('aria-hidden', String(!open));
+    if (open) drawer.setAttribute('aria-modal', 'true');
+    else drawer.removeAttribute('aria-modal');
     toggle.setAttribute('aria-expanded', String(open));
     document.documentElement.style.overflow = open ? 'hidden' : '';
     const lenis = (window as any).__lenis;
     open ? lenis?.stop() : lenis?.start();
     if (open) drawer.querySelector<HTMLElement>('[data-menu-close]')?.focus();
+    else if (drawer.contains(document.activeElement)) toggle.focus();
   }
+  drawer?.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !drawer.hasAttribute('data-open')) return;
+    const items = Array.from(drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')).filter(el => el.getClientRects().length);
+    const first = items[0], last = items[items.length - 1];
+    if (!drawer.contains(document.activeElement)) { e.preventDefault(); first?.focus(); return; }
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+    if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+  });
   toggle?.addEventListener('click', () => setDrawer(true));
   drawer?.querySelectorAll('[data-menu-close]').forEach((b) => b.addEventListener('click', () => setDrawer(false)));
 </script>

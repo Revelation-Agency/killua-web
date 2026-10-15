@@ -12,13 +12,15 @@ interface Props {
   priority?: boolean;
   sizes?: string;
   widths?: number[];
+  quality?: number;
 }
 const {
   name,
   alt,
   priority = false,
   sizes = '(min-width: 64rem) 48vw, 100vw',
-  widths = [480, 768, 1100, 1500],
+  widths,
+  quality = 62,
 } = Astro.props;
 const photos = import.meta.glob<{ default: ImageMetadata }>('../../assets/photos/*.{png,jpg,jpeg,webp}', {
   eager: true,
@@ -32,12 +34,12 @@ const hit = Object.entries(photos).find(([p]) => p.split('/').pop()!.replace(/\.
       src={hit[1].default}
       alt={alt}
       formats={['avif', 'webp']}
-      widths={priority ? [480, 640, 960, 1280] : widths}
+      widths={widths ?? (priority ? [480, 640, 960, 1280] : [480, 768, 1100, 1500])}
       sizes={sizes}
       loading={priority ? 'eager' : 'lazy'}
       fetchpriority={priority ? 'high' : 'auto'}
       decoding={priority ? 'sync' : 'async'}
-      quality={priority ? 50 : 62}
+      quality={quality}
       fallbackFormat="jpg"
     />
   ) : (

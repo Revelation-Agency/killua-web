@@ -44,6 +44,7 @@ const year = new Date().getFullYear();
         <a href={site.licenseUrl} rel="noopener" target="_blank">{site.license}</a>
       </p>
     )}
+    {variant === 'main' && <div class="footer-wordmark" aria-hidden="true">KILLUA<span>.</span></div>}
     <div class="foot-legal">
       <span>© {year} {site.legalName}</span>
       <a href="/privacy/">Privacy Policy</a>
@@ -51,5 +52,6 @@ const year = new Date().getFullYear();
       <button type="button" data-cookie-prefs>Cookie preferences</button>
       {variant === 'go' && <a href="/solar/sms/">Texting terms</a>}
     </div>
+    <p class="imagery-note">Concept imagery illustrates our services and is not a portfolio of completed installations.</p>
   </div>
 </footer>

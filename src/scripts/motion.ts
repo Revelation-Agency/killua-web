@@ -11,7 +11,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import Lenis from 'lenis';
-import { initDayScene, initHeroScene } from './scene';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -75,15 +74,15 @@ function reveals() {
 }
 
 export function initMotion() {
-  const hero = document.querySelector<SVGSVGElement>('[data-scene="hero"]');
-  const day = document.querySelector<HTMLElement>('[data-day]');
   if (reduce) {
-    day?.classList.add('day-static');
     return;
   }
   smoothScroll();
-  if (hero) initHeroScene(hero, gsap, ScrollTrigger);
-  if (day) initDayScene(day, gsap);
+  if (matchMedia('(min-width: 64rem) and (hover: hover)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-parallax]').forEach(el => {
+      gsap.fromTo(el, { yPercent: -3, scale: 1.08 }, { yPercent: 3, ease:'none', scrollTrigger: {trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:1} });
+    });
+  }
   // Splitting before the web font lands would measure lines in the fallback.
   document.fonts.ready.then(() => {
     headlines();

@@ -1,170 +1,58 @@
 ---
 import Site from '../layouts/Site.astro';
-import RoofScene from '../components/site/RoofScene.astro';
-import Trust from '../components/site/Trust.astro';
 import Photo from '../components/site/Photo.astro';
+import Trust from '../components/site/Trust.astro';
 import Faq from '../components/site/Faq.astro';
 import QuoteSection from '../components/site/QuoteSection.astro';
-import ServiceGrid from '../components/site/ServiceGrid';
-import { cities, serviceByKey, site, taxCreditFaq, type ServiceKey } from '../data/site';
-
-const cardKeys: ServiceKey[] = ['solar_installation', 'battery_storage', 'solar_repair', 'roof_replacement', 'roof_repair', 'ev_charger'];
-const cards = cardKeys.map((k) => ({ href: serviceByKey[k].path, label: serviceByKey[k].label, short: serviceByKey[k].short }));
-const arrow = '<svg class="arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4.5-5L15 10l-4.5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-const day = [
-  { time: '7 AM', title: 'The panels wake up', body: 'Morning sun starts making power, and the house uses it first.' },
-  { time: '1 PM', title: 'The roof makes more than the house needs', body: 'The extra charges the battery instead of going back to PG&E at the low export rate.' },
-  { time: '4 PM', title: 'PG&E’s peak starts', body: 'On most PG&E time-of-use plans, power now costs the most it will all day. The sun is already dropping.' },
-  { time: '7 PM', title: 'Sun’s down. The battery takes over.', body: 'The house runs on power you made at noon, right through the most expensive hours.' },
-  { time: '9 PM', title: 'Peak is over', body: 'Cheaper grid power is back for the night. Tomorrow the sun fills the battery again.' },
+import { cities, site, taxCreditFaq } from '../data/site';
+const arrow = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.6"/></svg>';
+const offerings = [
+  { n:'01', title:'Solar, designed around you.', label:'Solar installation', body:'Turn the Central Valley sun into power for the home you actually live in.', image:'solar-home', href:'/solar-installation/', tag:'MAKE YOUR OWN POWER' },
+  { n:'02', title:'Save the sun for later.', label:'Battery storage', body:'Store daytime energy for evening use and the essentials you want backed up.', image:'battery-garage', href:'/battery-storage/', tag:'KEEP IT FOR TONIGHT' },
+  { n:'03', title:'A better roof above it all.', label:'Roofing', body:'Inspections, repairs and replacements. The foundation of a lasting solar system.', image:'roof-install', href:'/roof-replacement/', tag:'PROTECT WHAT MATTERS' },
+  { n:'04', title:'Wake up ready to go.', label:'EV charging', body:'A dedicated home charger, installed around your car, panel and daily routine.', image:'ev-charger', href:'/ev-chargers/', tag:'BRING CHARGING HOME' },
 ];
-
 const faqs = [
-  taxCreditFaq,
-  {
-    q: 'Do you work on solar another company installed?',
-    a: 'Yes. We repair and maintain systems no matter who put them in, including ones whose installer has closed.',
-  },
-  {
-    q: 'Do you work on commercial buildings?',
-    a: 'Yes, homes and commercial properties. Call the office to talk through a commercial job.',
-  },
-  {
-    q: 'Do you cover my town?',
-    a: `We work across the Central Valley: ${cities.join(', ')} and the towns between them.`,
-  },
+ {q:'Where should I start: solar, a battery, or the roof?',a:'Start with the home you have. We look at your energy use, roof condition and goals, then recommend what makes sense to do first. You can request a single service or discuss the whole picture.'},
+ {q:'Can you work on solar another company installed?',a:'Yes. We diagnose and repair existing systems, including systems whose original installer has closed. We check the electrical system and the roof attachments.'},
+ {q:'Do you serve commercial properties too?',a:'Yes. Killua Energy works with residential and commercial properties. Call our Fresno office to discuss the building and scope.'},
+ taxCreditFaq,
+ {q:'What happens after I request an estimate?',a:'Our Fresno office follows up using the details you provide. We discuss the project, answer your questions and arrange the next step. Your estimate is based on your home, not a generic savings promise.'},
 ];
 ---
-
-<Site
-  title="Killua Energy | Solar, Batteries, Roofing and EV Chargers in Fresno"
-  description="Solar, home batteries, roofing and EV chargers for Central Valley homes, from a licensed Fresno contractor. CSLB #1096633. Call (559) 691-4028."
-  darkHeader
->
-  <section class="hero">
-    <div class="shell hero-inner">
-      <div style="display:grid;gap:1.25rem">
-        <span class="label">Fresno and the Central Valley</span>
-        <h1>Make power at noon. <em>Use it at 6&nbsp;PM.</em></h1>
-        <p class="lede">
-          Solar, home batteries, roofing and EV chargers for Central Valley homes, built around PG&amp;E’s 4 to 9 PM
-          peak.
-        </p>
-        <div class="hero-ctas">
-          <a class="btn btn-red" href="#quote">Get my estimate <Fragment set:html={arrow} /></a>
-          <a class="btn btn-ghost hero-call" href={site.phoneHref}>Call {site.phone}</a>
-        </div>
-      </div>
+<Site title="Killua Energy | Solar, Roofing & Home Energy in Fresno" description="Your home, fully powered. Solar, battery storage, roofing, solar repair and EV chargers from Killua Energy in Fresno and the Central Valley. CSLB #1096633." darkHeader>
+  <section class="cinema-hero" aria-labelledby="hero-title">
+    <div class="cinema-image" data-parallax><Photo name="hero-twilight" alt="Illustrative California home with rooftop solar and warmly lit windows at twilight" priority sizes="100vw" widths={[480,768,1200,1672]} quality={70} /></div>
+    <div class="cinema-shade"></div>
+    <div class="shell cinema-content">
+      <p class="eyebrow hero-eyebrow"><span class="live-dot"></span> FRESNO ROOTS. CENTRAL VALLEY REACH.</p>
+      <h1 id="hero-title">Your home.<br /><span>Fully powered.</span></h1>
+      <p class="cinema-lede">Solar. Storage. Roofing. One local team.<br />Built for the way you live, from the roof down.</p>
+      <div class="cinema-actions"><a class="btn btn-red" href="#quote">Let’s talk about your home <Fragment set:html={arrow}/></a><a class="text-link" href="#services">Explore our services <span>↘</span></a></div>
     </div>
-    <div class="scene">
-      <RoofScene id="hero" label="Illustration of a Fresno ranch house with solar panels as the sun moves toward the 4 to 9 PM PG&E peak, with power flowing to a battery, the house and an electric car" />
-    </div>
+    <div class="shell cinema-bottom"><div><span class="tiny-label">LOCAL EXPERTISE</span><span>Solar + roofing, together.</span></div><a href="#intro" class="scroll-cue" aria-label="Explore the website"><span>SCROLL TO EXPLORE</span><span class="scroll-ring">↓</span></a><div class="hero-license"><span class="tiny-label">CALIFORNIA CONTRACTOR</span><a href={site.licenseUrl} target="_blank" rel="noopener">{site.license} ↗</a></div></div>
   </section>
-
   <Trust />
-
-  <section class="section dark">
-    <div class="shell">
-      <div class="section-head">
-        <span class="label">What we do</span>
-        <h2 data-split>Install it, fix it, keep it running</h2>
-        <p class="lede">One licensed Fresno contractor for the roof, the panels, the battery and the charger.</p>
-      </div>
-      <ServiceGrid client:visible items={cards} />
+  <section class="section intro-section" id="intro">
+    <div class="shell intro-grid"><div><p class="eyebrow">01 / THE WHOLE HOME</p><h2 data-split>Good energy starts<br />with a better plan.</h2></div><div class="intro-copy" data-reveal><p>Your roof. Your power. Your next move.</p><p>They work better when someone sees the whole picture. From the roof to the charger in your garage, we help every part work together.</p><a class="line-link" href="/about/">Meet Killua Energy <Fragment set:html={arrow}/></a></div></div>
+  </section>
+  <section class="section service-showcase" id="services">
+    <div class="shell"><div class="editorial-head"><div><p class="eyebrow">02 / BUILT AROUND YOUR HOME</p><h2 data-split>More possibility.<br />Under one roof.</h2></div><p>Start with what you need today.<br />Make room for what comes next.</p></div>
+      <div class="photo-services">{offerings.map((s)=><a class="photo-service" href={s.href} data-reveal><div class="service-image"><Photo name={s.image} alt={`${s.label} concept for a California home`} sizes="(min-width: 64rem) 46vw, 100vw"/></div><div class="service-image-shade"></div><span class="service-number">{s.n} / {s.label}</span><div class="photo-service-copy"><span class="tiny-label">{s.tag}</span><h3>{s.title}</h3><p>{s.body}</p><span class="service-arrow"><Fragment set:html={arrow}/></span></div></a>)}</div>
+      <div class="service-repair-link"><span>Already have solar? Let’s keep it working.</span><a class="line-link" href="/solar-repair/">Explore solar repair & maintenance <Fragment set:html={arrow}/></a></div>
     </div>
   </section>
-
-  <section class="day" data-day aria-labelledby="day-title">
-    <div class="shell day-stage">
-      <div class="day-head" style="display:grid;gap:.8rem;max-width:44rem">
-        <span class="label" style="color:rgba(244,238,228,.72)">A day on a Fresno roof</span>
-        <h2 id="day-title">Why batteries matter more than they used to</h2>
-      </div>
-      <div class="scene">
-        <RoofScene id="day" label="The same house through one day, from 7 AM to 9 PM, showing panels charging a battery at midday and the battery powering the house through the 4 to 9 PM peak" />
-      </div>
-      <div class="day-captions">
-        {day.map((d) => (
-          <div class="day-cap">
-            <span class="time">{d.time}</span>
-            <h3>{d.title}</h3>
-            <p>{d.body}</p>
-          </div>
-        ))}
+  <section class="energy-story section" aria-labelledby="energy-title">
+    <div class="shell"><div class="editorial-head"><div><p class="eyebrow">03 / A DIFFERENT KIND OF POWER COUPLE</p><h2 id="energy-title" data-split>The sun clocks out.<br />Your energy doesn’t have to.</h2></div><p>Solar makes it. A battery saves it.<br />Explore how they work through the day.</p></div>
+      <div class="energy-explorer" data-energy data-phase="day">
+        <div class="energy-visual"><Photo name="solar-home" alt="Illustrative solar home used to explain daytime generation and evening storage" sizes="(min-width: 64rem) 65vw, 100vw"/><div class="energy-tint"></div><div class="energy-tag"><span class="live-dot"></span><span data-energy-tag>Solar generation</span></div><div class="energy-time" data-energy-time>12:00 <small>PM</small></div><div class="energy-caption">A day at home, illustrated.</div></div>
+        <div class="energy-panel"><div class="energy-tabs" role="group" aria-label="Choose a time of day"><button type="button" aria-pressed="true" data-energy-choice="day">Day</button><button type="button" aria-pressed="false" data-energy-choice="evening">Evening</button><button type="button" aria-pressed="false" data-energy-choice="night">Night</button></div><div class="energy-reading" aria-live="polite" aria-atomic="true"><span class="eyebrow" data-energy-kicker>CAPTURE + STORE</span><h3 data-energy-title>Let the roof do the work.</h3><p data-energy-copy>Your panels supply the home while the sun is up. With a compatible battery, extra solar can be stored for later.</p><div class="energy-flow"><span data-energy-from>SUN</span><span class="flow-line"></span><span data-energy-to>HOME + BATTERY</span></div></div><a href="/battery-storage/" class="line-link">Explore home batteries <Fragment set:html={arrow}/></a><p class="energy-note">Illustrative only. Operation depends on your system and utility plan. Backup duration varies with stored charge and household use.</p></div>
       </div>
     </div>
   </section>
-
-  <section class="section paper">
-    <div class="shell split">
-      <div class="photo" data-reveal>
-        <Photo name="solar-repair" alt="Technician testing solar panel wiring on a roof" />
-      </div>
-      <div style="display:grid;gap:1rem">
-        <span class="label">Solar repair</span>
-        <h2 data-split>Installer went out of business?</h2>
-        <p style="color:var(--ink-2);margin:0">
-          Plenty of California solar companies have closed since 2023. When the inverter dies or the app goes
-          blank, their customers have nobody to call. We repair and maintain those systems, and we check the roof
-          around them while we are up there.
-        </p>
-        <p style="margin:.4rem 0 0"><a class="btn btn-dark" href="/solar-repair/">See solar repair <Fragment set:html={arrow} /></a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="shell split flip">
-      <div class="photo" data-reveal>
-        <Photo name="roof-install" alt="Crew laying new comp shingles on a single-story home" />
-      </div>
-      <div style="display:grid;gap:1rem">
-        <span class="label">Roofing</span>
-        <h2 data-split>Check the roof before the panels go on</h2>
-        <p style="color:var(--ink-2);margin:0">
-          Panels stay up for decades. If the roof under them needs replacing in a few years, someone has to pay to
-          take them off and put them back. We do both trades, so we look at the roof first and tell you what it needs.
-        </p>
-        <p style="margin:.4rem 0 0"><a class="btn btn-dark" href="/roof-inspection/">See roof inspections <Fragment set:html={arrow} /></a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section paper">
-    <div class="shell">
-      <div class="section-head">
-        <span class="label">How it works</span>
-        <h2 data-split>From first call to PG&amp;E sign-off</h2>
-      </div>
-      <ol class="steps">
-        <li data-reveal><h3>You call or send the form</h3><p>Tell us what you need. It takes about a minute.</p></li>
-        <li data-reveal><h3>We look at the bill and the roof</h3><p>A year of PG&amp;E usage and a look at the roof decide the design.</p></li>
-        <li data-reveal><h3>You get a written price</h3><p>No tax credit that no longer exists folded into the number.</p></li>
-        <li data-reveal><h3>Permit, install, sign-off</h3><p>We pull the permit, do the work, and file with PG&amp;E.</p></li>
-      </ol>
-      <div class="callout" style="margin-top:2rem;max-width:46rem" data-reveal>
-        <strong>About that federal tax credit</strong>
-        <p>
-          The 30% federal credit for homeowners who buy solar or batteries ended on December 31, 2025. If a quote
-          still counts it, ask for the number without it.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section dark">
-    <div class="shell split">
-      <div style="display:grid;gap:1rem">
-        <span class="label">Service area</span>
-        <h2 data-split>Across the Central Valley</h2>
-        <p class="lede">From our office on N Fine Ave in Fresno, north to Manteca and south to Bakersfield.</p>
-      </div>
-      <ul class="cities">{cities.map((c) => <li>{c}</li>)}</ul>
-    </div>
-  </section>
-
-  <Faq items={faqs} />
-
-  <QuoteSection formId="quote-home" />
+  <section class="craft-section section"><div class="shell craft-grid"><div class="craft-photo" data-reveal><Photo name="solar-repair" alt="Illustrative close-up of gloved hands checking solar panel connections"/><span class="photo-label">THE DETAILS MAKE THE DIFFERENCE.</span></div><div class="craft-copy"><p class="eyebrow">04 / BUILT TO KEEP WORKING</p><h2 data-split>Still your home.<br />Still our kind of work.</h2><p>A blank monitoring app. A roof leak. An installer who stopped answering. You deserve a clear next step.</p><p>We diagnose solar systems other companies installed and repair the roof around them, too. One conversation can get the whole picture.</p><div class="craft-links"><a href="/solar-repair/">Solar repair <Fragment set:html={arrow}/></a><a href="/roof-repair/">Roof repair <Fragment set:html={arrow}/></a><a href="/roof-inspection/">Roof inspections <Fragment set:html={arrow}/></a></div></div></div></section>
+  <section class="section process-section"><div class="shell"><div class="editorial-head"><div><p class="eyebrow">05 / FROM IDEA TO INSTALL</p><h2 data-split>Clear from the<br />first conversation.</h2></div><p>Real questions. A plan for your property.<br />A written scope before work begins.</p></div><ol class="process-track"><li data-reveal><span>01</span><h3>Tell us what’s next.</h3><p>A lower energy bill, backup power, a roof repair or an EV in the driveway. We start with you.</p></li><li data-reveal><span>02</span><h3>Look at the whole home.</h3><p>Your usage, roof and electrical setup shape the recommendation. No one-size-fits-all system.</p></li><li data-reveal><span>03</span><h3>Make an informed call.</h3><p>Review the recommended work and written price. Understand what is included before you decide.</p></li><li data-reveal><span>04</span><h3>Bring the plan to life.</h3><p>For installation projects, we handle the permits, work and inspections, plus utility paperwork where needed.</p></li></ol></div></section>
+  <section class="valley-section"><div class="valley-photo" data-parallax><Photo name="fresno-street" alt="Illustrative Central Valley neighborhood in warm evening light" sizes="100vw"/></div><div class="valley-shade"></div><div class="shell valley-content"><p class="eyebrow">06 / HOME IS THE CENTRAL VALLEY</p><h2 data-split>Local roots.<br />Valley-wide care.</h2><p>From our Fresno office to the communities around it.<br />Residential and commercial projects, close to home.</p><ul class="valley-cities">{cities.map(c=><li>{c}</li>)}</ul><a class="btn btn-light" href="/contact/">Talk to our Fresno team <Fragment set:html={arrow}/></a></div></section>
+  <Faq items={faqs} title="A few things you may be wondering." />
+  <QuoteSection formId="quote-home" title="Your next chapter starts at home." />
 </Site>
