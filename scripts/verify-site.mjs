@@ -8,7 +8,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 
 const DIST = 'dist';
-const NOT_MARKETING = ['solar', 'roofing', 'recruiting', 'maintenance', 'company', 'cockpit'];
+const NOT_MARKETING = ['solar', 'roofing', 'recruiting', 'maintenance', 'company', 'cockpit', 'dashboard'];
 const HIDDEN = [
   'form_id', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
   'gclid', 'fbclid', 'ttclid', 'landing_page', 'referrer', 'submitted_at',
