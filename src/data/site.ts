@@ -1,5 +1,5 @@
 /**
- * Facts and copy for the Killua Energy marketing site and the /go/ ad pages.
+ * Facts and copy for the Killua Home Services marketing site and the /go/ ad pages.
  *
  * The A2P compliance pages (/solar/, /roofing/, /recruiting/, /maintenance/ and
  * their privacy, terms and sms pages) read src/data/company.ts and are not
@@ -14,7 +14,7 @@
  */
 
 export const site = {
-  brand: 'Killua Energy',
+  brand: 'Killua Home Services',
   legalName: 'Killua Energy Inc.',
   license: 'CSLB #1096633',
   licenseNumber: '1096633',
@@ -187,7 +187,7 @@ export const taxCreditFaq: Faq = {
 export const servicePages: Record<ServiceKey, ServicePage> = {
   solar_installation: {
     key: 'solar_installation',
-    title: 'Solar Installation in Fresno and the Central Valley | Killua Energy',
+    title: 'Solar Installation in Fresno and the Central Valley | Killua Home Services',
     description:
       'Solar panels designed from a year of your PG&E usage and your roof. Licensed Fresno contractor, CSLB #1096633. Call (559) 691-4028.',
     eyebrow: 'Solar installation',
@@ -240,7 +240,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
   },
   battery_storage: {
     key: 'battery_storage',
-    title: 'Home Battery Storage in Fresno | Killua Energy',
+    title: 'Home Battery Storage in Fresno | Killua Home Services',
     description:
       'Store your solar power for the 4 to 9 PM PG&E peak and for power shutoffs. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'Battery storage',
@@ -288,7 +288,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
   },
   solar_repair: {
     key: 'solar_repair',
-    title: 'Solar Repair and Maintenance in Fresno | Killua Energy',
+    title: 'Solar Repair and Maintenance in Fresno | Killua Home Services',
     description:
       'Installer went out of business? We repair and maintain solar systems other companies installed. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'Solar repair',
@@ -340,7 +340,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
   },
   roof_replacement: {
     key: 'roof_replacement',
-    title: 'Roof Replacement in Fresno and the Central Valley | Killua Energy',
+    title: 'Roof Replacement in Fresno and the Central Valley | Killua Home Services',
     description:
       'Comp shingle and tile roof replacement. If you have solar, we take it off and put it back. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'Roof replacement',
@@ -387,7 +387,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
   },
   roof_repair: {
     key: 'roof_repair',
-    title: 'Roof Repair in Fresno | Killua Energy',
+    title: 'Roof Repair in Fresno | Killua Home Services',
     description:
       'Roof leaks, cracked tiles, lifted shingles and flashing repairs across the Central Valley. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'Roof repair',
@@ -433,7 +433,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
   },
   roof_inspection: {
     key: 'roof_inspection',
-    title: 'Roof Inspection in Fresno and the Central Valley | Killua Energy',
+    title: 'Roof Inspection in Fresno and the Central Valley | Killua Home Services',
     description:
       'Roof inspections before the rains, before you sell, or before you add solar. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'Roof inspection',
@@ -477,7 +477,7 @@ export const servicePages: Record<ServiceKey, ServicePage> = {
   },
   ev_charger: {
     key: 'ev_charger',
-    title: 'EV Charger Installation in Fresno | Killua Energy',
+    title: 'EV Charger Installation in Fresno | Killua Home Services',
     description:
       'Level 2 EV charger installation, checked against your electrical panel. Licensed Fresno contractor, CSLB #1096633.',
     eyebrow: 'EV chargers',
@@ -543,7 +543,7 @@ export const goPages: GoPage[] = [
     slug: 'solar-savings',
     channel: 'meta',
     service: 'solar_installation',
-    title: 'See What Solar Would Do to Your PG&E Bill | Killua Energy',
+    title: 'See What Solar Would Do to Your PG&E Bill | Killua Home Services',
     h1: 'See what solar would do to your PG&E bill',
     lede: 'Four quick questions. A Fresno installer calls you with numbers for your house, worked out for 2026.',
     points: [
@@ -574,7 +574,7 @@ export const goPages: GoPage[] = [
     slug: 'solar-battery',
     channel: 'meta',
     service: 'battery_storage',
-    title: 'Solar and Battery for the 4 to 9 PM Peak and Power Shutoffs | Killua Energy',
+    title: 'Solar and Battery for the 4 to 9 PM Peak and Power Shutoffs | Killua Home Services',
     h1: 'Keep the lights on through the 4 to 9 PM peak and the next shutoff',
     lede: 'Solar with a battery stores the noon sun for PG&E’s most expensive hours and for outages.',
     points: [
@@ -605,7 +605,7 @@ export const goPages: GoPage[] = [
     slug: 'solar-tt',
     channel: 'tiktok',
     service: 'solar_installation',
-    title: 'Fresno Solar Estimate | Killua Energy',
+    title: 'Fresno Solar Estimate | Killua Home Services',
     h1: 'Fresno sun. Smaller PG&E bill.',
     lede: 'Tap through four questions. We call with real numbers.',
     points: [
@@ -625,7 +625,7 @@ export const goPages: GoPage[] = [
     slug: 'solar-repair',
     channel: 'meta',
     service: 'solar_repair',
-    title: 'Solar Repair When Your Installer Is Gone | Killua Energy',
+    title: 'Solar Repair When Your Installer Is Gone | Killua Home Services',
     h1: 'Installer disappeared? We fix and maintain your system.',
     lede: 'Dead inverter, blank monitoring app, or a bill that crept back up. We repair solar systems other companies installed.',
     points: [
@@ -655,7 +655,7 @@ export const goPages: GoPage[] = [
     slug: 'ev-charger',
     channel: 'any',
     service: 'ev_charger',
-    title: 'Home EV Charger Installation in Fresno | Killua Energy',
+    title: 'Home EV Charger Installation in Fresno | Killua Home Services',
     h1: 'Charge your EV at home, overnight',
     lede: 'We check your electrical panel, run a dedicated circuit and install a Level 2 charger. On a PG&E time-of-use plan, overnight power costs less than the evening peak.',
     points: [
@@ -685,7 +685,7 @@ export const goPages: GoPage[] = [
     slug: 'roofing',
     channel: 'any',
     service: 'roof_inspection',
-    title: 'Roof Check Before the Rains | Killua Energy',
+    title: 'Roof Check Before the Rains | Killua Home Services',
     h1: 'Get your roof checked before the rains',
     lede: 'Inspection, repair or replacement for Central Valley homes, from a Fresno contractor that also does solar.',
     points: [

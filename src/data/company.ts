@@ -8,7 +8,7 @@
 
 export const company = {
   legalName: 'Killua Energy Inc.',
-  shortName: 'Killua Energy',
+  shortName: 'Killua Home Services',
   street: '2224 N Fine Ave #105',
   city: 'Fresno',
   state: 'CA',
