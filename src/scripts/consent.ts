@@ -1,7 +1,7 @@
 /**
  * Cookie consent for California visitors, and the only place ad or analytics
- * tags are loaded. Nothing from Meta, TikTok or Google runs until the visitor
- * says yes. A Global Privacy Control signal keeps advertising off regardless.
+ * tags are loaded. Analytics and advertising load by default unless the visitor
+ * opts out. A Global Privacy Control signal keeps advertising off regardless.
  *
  * IDs come from PUBLIC_* environment variables at build time; an empty ID
  * means that tag is simply never loaded.
@@ -133,6 +133,8 @@ function apply(c: Choice) {
   const before = current;
   current = c;
   adsCookie(c.ads);
+  // Acknowledging the active choice must not configure tags a second time.
+  if (before && before.ads === c.ads && before.analytics === c.analytics) return;
   // Withdrawing consent after tags loaded: the only honest way to unload them
   // is a fresh page, so reload once with the new choice saved.
   if (before && ((before.ads && !c.ads) || (before.analytics && !c.analytics)) && (loaded.meta || loaded.tiktok || loaded.gtag)) {
@@ -184,7 +186,7 @@ function banner() {
     ads.checked = false;
     ads.disabled = true;
     gpcNote.hidden = false;
-    // "Accept all" would overstate it: advertising stays off under GPC.
+    // Make clear that advertising stays off under GPC.
     el.querySelector<HTMLElement>('[data-accept]')!.textContent = 'Allow analytics';
   }
   const choose = (analytics: boolean, adOk: boolean) => {
@@ -198,6 +200,8 @@ function banner() {
   el.querySelector('[data-save]')!.addEventListener('click', () => choose(a.checked, ads.checked));
   const customize = el.querySelector<HTMLButtonElement>('[data-customize]')!;
   customize.addEventListener('click', () => {
+    a.checked = !!current?.analytics;
+    ads.checked = !!current?.ads && !gpc;
     prefs.hidden = false;
     customize.hidden = true;
     el.querySelector<HTMLElement>('[data-save]')!.hidden = false;
@@ -243,6 +247,7 @@ export function initConsent() {
     if (gpc && stored.ads) stored.ads = false;
     apply(stored);
   } else {
+    apply({ v: 1, analytics: true, ads: !gpc, ts: new Date().toISOString() });
     const el = document.getElementById('cookie');
     if (el) el.hidden = false;
   }
