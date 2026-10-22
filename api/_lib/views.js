@@ -214,11 +214,8 @@ export function ads(b, now = Date.now()) {
     meta: {
       ...snapInfo(metaS),
       account: md?.account || null,
-      ranges: md ? Object.fromEntries(Object.entries(md.ranges).map(([k, v]) => [k, { since: v.since, until: v.until, ...v.account }])) : null,
-      campaigns: md ? md.ranges.since_launch.campaigns.map((c) => ({ ...c, d7: pick(md.ranges.d7.campaigns, c.id), today: pick(md.ranges.today.campaigns, c.id) })) : [],
+      ranges: md ? Object.fromEntries(Object.entries(md.ranges).map(([k, v]) => [k, { since: v.since, until: v.until, account: v.account, campaigns: v.campaigns, adsets: v.adsets, ads: v.ads }])) : null,
       campaigns_without_spend: md ? md.campaigns.filter((c) => !md.ranges.since_launch.campaigns.some((x) => x.id === c.id)).map((c) => ({ id: c.id, name: c.name, status: c.effective_status, daily_budget: c.daily_budget })) : [],
-      adsets: md ? md.ranges.since_launch.adsets : [],
-      ads: md ? md.ranges.since_launch.ads : [],
       daily: metaDaily,
     },
     google: {
@@ -231,10 +228,6 @@ export function ads(b, now = Date.now()) {
     other_ads_status: snapInfo(b.push.other_ads),
   };
 }
-const pick = (list, id) => {
-  const x = list.find((c) => c.id === id);
-  return x ? { spend: x.spend, leads: x.leads, clicks: x.clicks, impressions: x.impressions, cost_per_lead: x.cost_per_lead } : null;
-};
 
 // ------------------------------------------------------------------ every lead
 export function leads(b, { days = 120, now = Date.now() } = {}) {
@@ -376,6 +369,7 @@ const WHAT = {
   sales_agent: 'What the AI sales assistant did for each lead',
   other_ads: 'TikTok and any other ad platform numbers',
 };
+const PULL = ['ghl', 'meta', 'google_ads', 'gsc'];
 const KIND = { ghl: 'Pulled twice a day', meta: 'Pulled twice a day', google_ads: 'Pulled twice a day', gsc: 'Pulled twice a day', nexa: 'Pushed by an agent', email_leads: 'Pushed by an agent', sales_agent: 'Pushed by an agent', other_ads: 'Pushed by an agent' };
 
 export function connections(b, now = Date.now()) {
@@ -384,7 +378,8 @@ export function connections(b, now = Date.now()) {
     const status = s?.status || 'not_connected';
     items.push({
       id, label: s?.label || id, what: WHAT[id], how: KIND[id], status, stale: !!s?.stale,
-      as_of: s?.as_of || null, checked_at: s?.checked_at || null, error: s?.error || null, notes: s?.notes || [], needs: s?.needs || [],
+      as_of: s?.as_of || null, checked_at: s?.checked_at || null, error: s?.error || null, notes: s?.notes || [],
+      needs: s?.needs?.length || status === 'ok' ? s?.needs || [] : [{ who: 'Revelation', what: PULL.includes(id) ? 'No refresh has run yet. Blaine can press Refresh now, or wait for the next scheduled one; if it still says not connected, the credentials below are missing.' : 'Nothing has been sent in yet. See docs/dashboard-setup.md, Ingest.' }],
     });
   };
   add('ghl', b.snaps.ghl || { label: 'GoHighLevel' });

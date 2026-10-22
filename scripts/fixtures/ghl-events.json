@@ -1,0 +1,54 @@
+{
+ "events": [
+  {
+   "id": "ev1",
+   "title": "Jane Adams: solar visit",
+   "calendarId": "cal_robin",
+   "contactId": "c_jane",
+   "appointmentStatus": "confirmed",
+   "startTime": "2026-10-23T18:00:00-07:00",
+   "endTime": "2026-10-23T19:00:00-07:00",
+   "dateAdded": "2026-10-20T19:00:00Z",
+   "assignedUserId": "u_robin"
+  },
+  {
+   "id": "ev2",
+   "title": "Wendy Winner: closing",
+   "calendarId": "cal_robin",
+   "contactId": "c_won",
+   "appointmentStatus": "showed",
+   "startTime": "2026-10-19T11:00:00-07:00",
+   "endTime": "2026-10-19T12:00:00-07:00",
+   "dateAdded": "2026-10-14T19:00:00Z",
+   "assignedUserId": "u_robin"
+  },
+  {
+   "id": "ev3",
+   "title": "Filler3: no show",
+   "calendarId": "cal_robin",
+   "contactId": "c_f3",
+   "appointmentStatus": "noshow",
+   "startTime": "2026-10-15T11:00:00-07:00",
+   "endTime": "2026-10-15T12:00:00-07:00",
+   "dateAdded": "2026-10-10T19:00:00Z"
+  },
+  {
+   "id": "ev4",
+   "title": "Filler4: cancelled",
+   "calendarId": "cal_general",
+   "contactId": "c_f4",
+   "appointmentStatus": "cancelled",
+   "startTime": "2026-10-16T11:00:00-07:00",
+   "endTime": "2026-10-16T12:00:00-07:00",
+   "dateAdded": "2026-10-11T19:00:00Z"
+  },
+  {
+   "id": "ev5",
+   "title": "Dentist",
+   "calendarId": "2tn3NQUMCfrluZO4jABH",
+   "startTime": "2026-10-22T09:00:00-07:00",
+   "endTime": "2026-10-22T10:00:00-07:00",
+   "dateAdded": "2026-10-01T19:00:00Z"
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#131315">
+<title>Killua Home Services · Marketing &amp; Sales Dashboard</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>/*CSS*/</style>
+</head>
+<body>
+<header class="top">
+  <div class="shell">
+    <img src="/brand/killua-mark.svg" alt="">
+    <div class="brand"><b>Killua Home Services</b><span>Marketing &amp; Sales Dashboard</span></div>
+    <div class="top-r">
+      <span class="who" id="who"></span>
+      <button class="btn ghost small" id="refresh" type="button" hidden>Refresh now</button>
+      <form method="post" action="/api/dash/logout"><button class="btn ghost small" type="submit">Sign out</button></form>
+    </div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Sections"><div class="shell" id="tabs"></div></nav>
+<main class="shell" id="view" aria-live="polite"><div class="loading"><span class="spin"></span> Loading</div></main>
+<script src="/dashboard/app.js" defer></script>
+</body>
+</html>

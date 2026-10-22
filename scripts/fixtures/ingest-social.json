@@ -1,0 +1,13 @@
+{
+ "records": [
+  {
+   "id": "ingest_post_1",
+   "platform": "instagram",
+   "status": "scheduled",
+   "scheduled_at": "2026-10-23 10:00",
+   "title": "Fall savings reel",
+   "caption": "Lock in your rate before the credit changes. <b>Ask us how.</b>",
+   "link": "https://example.com/reel"
+  }
+ ]
+}

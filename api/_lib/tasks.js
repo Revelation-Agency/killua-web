@@ -4,7 +4,7 @@
  * task's own history.
  */
 import { randomBytes } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
+import seedFile from '../../scripts/seed-tasks.json' with { type: 'json' };
 import { sha, str } from './util.js';
 import { readDoc, readModifyWrite } from './store.js';
 
@@ -20,14 +20,9 @@ export const PRIORITIES = ['low', 'normal', 'high', 'urgent'];
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 const EMPTY = { tasks: [], seeded: [] };
 
+/** The PM's starting list (scripts/seed-tasks.json), bundled with the function. */
 export async function loadSeed() {
-  try {
-    const raw = await readFile(new URL('../../scripts/seed-tasks.json', import.meta.url), 'utf8');
-    const arr = JSON.parse(raw);
-    return Array.isArray(arr) ? arr : [];
-  } catch {
-    return [];
-  }
+  return Array.isArray(seedFile) ? seedFile : [];
 }
 
 /** Seed files may say "Waiting on Killua" or "Medium"; map those words to the stored keys. */

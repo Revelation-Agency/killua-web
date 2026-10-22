@@ -1,0 +1,298 @@
+{
+ "account": {
+  "name": "VIP-Taj",
+  "currency": "USD",
+  "account_status": 1,
+  "spend_cap": "500000",
+  "amount_spent": "21500",
+  "balance": "1200",
+  "timezone_name": "America/Los_Angeles"
+ },
+ "campaigns": [
+  {
+   "id": "111",
+   "name": "VIP-Taj Solar Leads",
+   "status": "ACTIVE",
+   "effective_status": "ACTIVE",
+   "daily_budget": "4000",
+   "objective": "OUTCOME_LEADS"
+  },
+  {
+   "id": "222",
+   "name": "Roofing test",
+   "status": "ACTIVE",
+   "effective_status": "ACTIVE",
+   "daily_budget": "500",
+   "objective": "OUTCOME_LEADS"
+  },
+  {
+   "id": "333",
+   "name": "Old paused",
+   "status": "PAUSED",
+   "effective_status": "PAUSED",
+   "daily_budget": "1000",
+   "objective": "OUTCOME_LEADS"
+  }
+ ],
+ "adsets": [
+  {
+   "id": "1111",
+   "name": "Homeowners 30mi",
+   "status": "ACTIVE",
+   "effective_status": "ACTIVE",
+   "daily_budget": "4000",
+   "campaign_id": "111"
+  },
+  {
+   "id": "2222",
+   "name": "Roof owners",
+   "status": "ACTIVE",
+   "effective_status": "ACTIVE",
+   "daily_budget": "500",
+   "campaign_id": "222"
+  }
+ ],
+ "ads": [
+  {
+   "id": "11111",
+   "name": "Video 1",
+   "status": "ACTIVE",
+   "effective_status": "ACTIVE",
+   "campaign_id": "111",
+   "adset_id": "1111"
+  },
+  {
+   "id": "11112",
+   "name": "Image 2",
+   "status": "ACTIVE",
+   "effective_status": "ACTIVE",
+   "campaign_id": "111",
+   "adset_id": "1111"
+  },
+  {
+   "id": "22221",
+   "name": "Roof image",
+   "status": "ACTIVE",
+   "effective_status": "ACTIVE",
+   "campaign_id": "222",
+   "adset_id": "2222"
+  }
+ ],
+ "names": {
+  "campaigns": {
+   "111": "VIP-Taj Solar Leads",
+   "222": "Roofing test"
+  },
+  "adsets": {
+   "1111": "Homeowners 30mi",
+   "2222": "Roof owners"
+  },
+  "ads": {
+   "11111": "Video 1",
+   "11112": "Image 2",
+   "22221": "Roof image"
+  }
+ },
+ "daily": [
+  {
+   "day": "2026-10-17",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11111",
+   "spend": 25,
+   "impressions": 2500,
+   "clicks": 41,
+   "link": 31,
+   "leads": 2
+  },
+  {
+   "day": "2026-10-17",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11112",
+   "spend": 15,
+   "impressions": 1600,
+   "clicks": 20,
+   "link": 14,
+   "leads": 1
+  },
+  {
+   "day": "2026-10-17",
+   "campaign_id": "222",
+   "adset_id": "2222",
+   "ad_id": "22221",
+   "spend": 5,
+   "impressions": 600,
+   "clicks": 8,
+   "link": 5,
+   "leads": 0
+  },
+  {
+   "day": "2026-10-18",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11111",
+   "spend": 25,
+   "impressions": 2600,
+   "clicks": 42,
+   "link": 32,
+   "leads": 2
+  },
+  {
+   "day": "2026-10-18",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11112",
+   "spend": 15,
+   "impressions": 1600,
+   "clicks": 20,
+   "link": 14,
+   "leads": 1
+  },
+  {
+   "day": "2026-10-18",
+   "campaign_id": "222",
+   "adset_id": "2222",
+   "ad_id": "22221",
+   "spend": 5,
+   "impressions": 600,
+   "clicks": 8,
+   "link": 5,
+   "leads": 0
+  },
+  {
+   "day": "2026-10-19",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11111",
+   "spend": 25,
+   "impressions": 2700,
+   "clicks": 43,
+   "link": 33,
+   "leads": 2
+  },
+  {
+   "day": "2026-10-19",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11112",
+   "spend": 15,
+   "impressions": 1600,
+   "clicks": 20,
+   "link": 14,
+   "leads": 1
+  },
+  {
+   "day": "2026-10-19",
+   "campaign_id": "222",
+   "adset_id": "2222",
+   "ad_id": "22221",
+   "spend": 5,
+   "impressions": 600,
+   "clicks": 8,
+   "link": 5,
+   "leads": 0
+  },
+  {
+   "day": "2026-10-20",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11111",
+   "spend": 25,
+   "impressions": 2800,
+   "clicks": 44,
+   "link": 34,
+   "leads": 2
+  },
+  {
+   "day": "2026-10-20",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11112",
+   "spend": 15,
+   "impressions": 1600,
+   "clicks": 20,
+   "link": 14,
+   "leads": 1
+  },
+  {
+   "day": "2026-10-20",
+   "campaign_id": "222",
+   "adset_id": "2222",
+   "ad_id": "22221",
+   "spend": 5,
+   "impressions": 600,
+   "clicks": 8,
+   "link": 5,
+   "leads": 0
+  },
+  {
+   "day": "2026-10-21",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11111",
+   "spend": 25,
+   "impressions": 2900,
+   "clicks": 45,
+   "link": 35,
+   "leads": 2
+  },
+  {
+   "day": "2026-10-21",
+   "campaign_id": "111",
+   "adset_id": "1111",
+   "ad_id": "11112",
+   "spend": 15,
+   "impressions": 1600,
+   "clicks": 20,
+   "link": 14,
+   "leads": 1
+  },
+  {
+   "day": "2026-10-21",
+   "campaign_id": "222",
+   "adset_id": "2222",
+   "ad_id": "22221",
+   "spend": 5,
+   "impressions": 600,
+   "clicks": 8,
+   "link": 5,
+   "leads": 0
+  }
+ ],
+ "page": {
+  "published": {
+   "data": [
+    {
+     "id": "PG_1",
+     "message": "Fall solar savings are here.",
+     "created_time": "2026-10-18T17:00:00+0000",
+     "permalink_url": "https://www.facebook.com/KilluaHome/posts/1",
+     "reactions": {
+      "summary": {
+       "total_count": 12
+      }
+     },
+     "comments": {
+      "summary": {
+       "total_count": 3
+      }
+     },
+     "shares": {
+      "count": 2
+     }
+    }
+   ]
+  },
+  "scheduled": {
+   "data": [
+    {
+     "id": "PG_2",
+     "message": "Roof check week.",
+     "scheduled_publish_time": 1761500000,
+     "permalink_url": ""
+    }
+   ]
+  }
+ }
+}

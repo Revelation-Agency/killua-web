@@ -1,0 +1,70 @@
+{
+ "c_jane": [
+  {
+   "id": "m1",
+   "direction": "outbound",
+   "messageType": "TYPE_SMS",
+   "dateAdded": "2026-10-20T16:00:20Z",
+   "source": "workflow"
+  },
+  {
+   "id": "m2",
+   "direction": "outbound",
+   "messageType": "TYPE_CALL",
+   "dateAdded": "2026-10-20T16:12:00Z",
+   "userId": "u_robin",
+   "meta": {
+    "call": {
+     "duration": 240,
+     "status": "completed"
+    }
+   }
+  },
+  {
+   "id": "m3",
+   "direction": "inbound",
+   "messageType": "TYPE_SMS",
+   "dateAdded": "2026-10-20T16:30:00Z"
+  }
+ ],
+ "c_dana": [
+  {
+   "id": "m4",
+   "direction": "outbound",
+   "messageType": "TYPE_SMS",
+   "dateAdded": "2026-10-20T20:20:00Z",
+   "userId": "u_robin"
+  }
+ ],
+ "c_sam": [
+  {
+   "id": "m5",
+   "direction": "outbound",
+   "messageType": "TYPE_SMS",
+   "dateAdded": "2026-10-19T17:00:30Z",
+   "source": "workflow"
+  },
+  {
+   "id": "m6",
+   "direction": "outbound",
+   "messageType": "TYPE_SMS",
+   "dateAdded": "2026-10-19T20:00:00Z",
+   "userId": "u_robin"
+  }
+ ],
+ "c_bob": [
+  {
+   "id": "m7",
+   "direction": "outbound",
+   "messageType": "TYPE_CALL",
+   "dateAdded": "2026-10-21T15:12:00Z",
+   "userId": "u_robin",
+   "meta": {
+    "call": {
+     "duration": 0,
+     "status": "no-answer"
+    }
+   }
+  }
+ ]
+}

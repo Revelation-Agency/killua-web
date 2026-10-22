@@ -53,7 +53,7 @@ export async function run(ctx) {
     if (!data.daily.length) notes.push('Search Console has not reported any data for this site yet. New sites take a few days.');
     return okSnapshot(id, label, data, { notes });
   } catch (e) {
-    if (e.status === 403) {
+    if (e.status === 403 || e.status === 404) {
       return errorSnapshot(id, label, 'Search Console will not show this site to the dashboard.', [{ who: 'Blaine', what: `In Search Console, open Settings, Users and permissions, and add ${sa.email} as a user (Restricted is enough). Check GSC_SITE_URL matches the property exactly.` }]);
     }
     if (e.status === 400 || e.status === 401) {

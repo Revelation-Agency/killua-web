@@ -14,7 +14,10 @@
     "verify:site": "node scripts/verify-site.mjs",
     "verify:leads": "node scripts/verify-lead-flow.mjs",
     "slop": "node scripts/slop-gate.mjs",
-    "serve:local": "node scripts/serve-local.mjs"
+    "serve:local": "node scripts/serve-local.mjs",
+    "verify:dashboard": "node scripts/verify-dashboard.mjs",
+    "dash:user": "node scripts/dash-user.mjs",
+    "dash:local": "node scripts/dash-local.mjs"
   },
   "devDependencies": {
     "astro": "^5.0.0"

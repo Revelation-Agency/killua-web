@@ -1,0 +1,4612 @@
+{
+ "opportunities": [
+  {
+   "id": "opp_c_jane",
+   "name": "Jane Adams",
+   "contactId": "c_jane",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Facebook / Instagram ads",
+   "createdAt": "2026-10-20T16:00:00.000Z",
+   "updatedAt": "2026-10-20T16:00:00.000Z",
+   "contact": {
+    "id": "c_jane",
+    "name": "Jane Adams",
+    "email": "jane.adams@gmail.com",
+    "phone": "+15595552111"
+   }
+  },
+  {
+   "id": "opp_c_carl",
+   "name": "Carl Silent",
+   "contactId": "c_carl",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Facebook / Instagram ads",
+   "createdAt": "2026-10-21T14:00:00.000Z",
+   "updatedAt": "2026-10-21T14:00:00.000Z",
+   "contact": {
+    "id": "c_carl",
+    "name": "Carl Silent",
+    "email": "carl@gmail.com",
+    "phone": "+15595552133"
+   }
+  },
+  {
+   "id": "opp_c_dana",
+   "name": "Dana Typo",
+   "contactId": "c_dana",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-10-20T20:00:00.000Z",
+   "updatedAt": "2026-10-20T20:00:00.000Z",
+   "contact": {
+    "id": "c_dana",
+    "name": "Dana Typo",
+    "email": "dana@real.com",
+    "phone": "+15595552144"
+   }
+  },
+  {
+   "id": "opp_c_sam",
+   "name": "Sam Slow",
+   "contactId": "c_sam",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-10-19T17:00:00.000Z",
+   "updatedAt": "2026-10-19T17:00:00.000Z",
+   "contact": {
+    "id": "c_sam",
+    "name": "Sam Slow",
+    "email": "sam@gmail.com",
+    "phone": "+15595552155"
+   }
+  },
+  {
+   "id": "opp_c_test",
+   "name": "TEST Lead",
+   "contactId": "c_test",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Facebook",
+   "createdAt": "2026-10-21T12:00:00.000Z",
+   "updatedAt": "2026-10-21T12:00:00.000Z",
+   "contact": {
+    "id": "c_test",
+    "name": "TEST Lead",
+    "email": "test@example.com",
+    "phone": "+15595550100"
+   }
+  },
+  {
+   "id": "opp_c_won",
+   "name": "Wendy Winner",
+   "contactId": "c_won",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 24000,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-02T17:00:00.000Z",
+   "updatedAt": "2026-09-02T17:00:00.000Z",
+   "contact": {
+    "id": "c_won",
+    "name": "Wendy Winner",
+    "email": "wendy@gmail.com",
+    "phone": "+15595552166"
+   }
+  },
+  {
+   "id": "opp_c_f0",
+   "name": "Filler0 Patel",
+   "contactId": "c_f0",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-07-06T13:13:38.171Z",
+   "updatedAt": "2026-07-06T13:13:38.171Z",
+   "contact": {
+    "id": "c_f0",
+    "name": "Filler0 Patel",
+    "email": "filler0@example-home.com",
+    "phone": "+15596002000"
+   }
+  },
+  {
+   "id": "opp_c_f1",
+   "name": "Filler1 Smith",
+   "contactId": "c_f1",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-13T18:40:27.452Z",
+   "updatedAt": "2026-09-13T18:40:27.452Z",
+   "contact": {
+    "id": "c_f1",
+    "name": "Filler1 Smith",
+    "email": "filler1@example-home.com",
+    "phone": "+15596002001"
+   }
+  },
+  {
+   "id": "opp_c_f2",
+   "name": "Filler2 Smith",
+   "contactId": "c_f2",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-18T12:55:59.029Z",
+   "updatedAt": "2026-07-18T12:55:59.029Z",
+   "contact": {
+    "id": "c_f2",
+    "name": "Filler2 Smith",
+    "email": "filler2@example-home.com",
+    "phone": "+15596002002"
+   }
+  },
+  {
+   "id": "opp_c_f3",
+   "name": "Filler3 Kim",
+   "contactId": "c_f3",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-11T01:46:17.298Z",
+   "updatedAt": "2026-09-11T01:46:17.298Z",
+   "contact": {
+    "id": "c_f3",
+    "name": "Filler3 Kim",
+    "email": "filler3@example-home.com",
+    "phone": "+15596002003"
+   }
+  },
+  {
+   "id": "opp_c_f4",
+   "name": "Filler4 Kim",
+   "contactId": "c_f4",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-19T00:07:52.909Z",
+   "updatedAt": "2026-07-19T00:07:52.909Z",
+   "contact": {
+    "id": "c_f4",
+    "name": "Filler4 Kim",
+    "email": "filler4@example-home.com",
+    "phone": "+15596002004"
+   }
+  },
+  {
+   "id": "opp_c_f5",
+   "name": "Filler5 Smith",
+   "contactId": "c_f5",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-28T17:04:00.663Z",
+   "updatedAt": "2026-08-28T17:04:00.663Z",
+   "contact": {
+    "id": "c_f5",
+    "name": "Filler5 Smith",
+    "email": "filler5@example-home.com",
+    "phone": "+15596002005"
+   }
+  },
+  {
+   "id": "opp_c_f6",
+   "name": "Filler6 Kim",
+   "contactId": "c_f6",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-29T00:34:25.334Z",
+   "updatedAt": "2026-07-29T00:34:25.334Z",
+   "contact": {
+    "id": "c_f6",
+    "name": "Filler6 Kim",
+    "email": "filler6@example-home.com",
+    "phone": "+15596002006"
+   }
+  },
+  {
+   "id": "opp_c_f7",
+   "name": "Filler7 Lopez",
+   "contactId": "c_f7",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-05T12:33:40.463Z",
+   "updatedAt": "2026-08-05T12:33:40.463Z",
+   "contact": {
+    "id": "c_f7",
+    "name": "Filler7 Lopez",
+    "email": "filler7@example-home.com",
+    "phone": "+15596002007"
+   }
+  },
+  {
+   "id": "opp_c_f8",
+   "name": "Filler8 Smith",
+   "contactId": "c_f8",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-21T04:25:13.607Z",
+   "updatedAt": "2026-07-21T04:25:13.607Z",
+   "contact": {
+    "id": "c_f8",
+    "name": "Filler8 Smith",
+    "email": "filler8@example-home.com",
+    "phone": "+15596002008"
+   }
+  },
+  {
+   "id": "opp_c_f9",
+   "name": "Filler9 Smith",
+   "contactId": "c_f9",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-27T00:52:32.447Z",
+   "updatedAt": "2026-09-27T00:52:32.447Z",
+   "contact": {
+    "id": "c_f9",
+    "name": "Filler9 Smith",
+    "email": "filler9@example-home.com",
+    "phone": "+15596002009"
+   }
+  },
+  {
+   "id": "opp_c_f10",
+   "name": "Filler10 Ng",
+   "contactId": "c_f10",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-07-22T11:51:22.192Z",
+   "updatedAt": "2026-07-22T11:51:22.192Z",
+   "contact": {
+    "id": "c_f10",
+    "name": "Filler10 Ng",
+    "email": "filler10@example-home.com",
+    "phone": "+15596002010"
+   }
+  },
+  {
+   "id": "opp_c_f11",
+   "name": "Filler11 Kim",
+   "contactId": "c_f11",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-29T01:10:48.876Z",
+   "updatedAt": "2026-07-29T01:10:48.876Z",
+   "contact": {
+    "id": "c_f11",
+    "name": "Filler11 Kim",
+    "email": "filler11@example-home.com",
+    "phone": "+15596002011"
+   }
+  },
+  {
+   "id": "opp_c_f12",
+   "name": "Filler12 Patel",
+   "contactId": "c_f12",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-04T03:30:23.247Z",
+   "updatedAt": "2026-08-04T03:30:23.247Z",
+   "contact": {
+    "id": "c_f12",
+    "name": "Filler12 Patel",
+    "email": "filler12@example-home.com",
+    "phone": "+15596002012"
+   }
+  },
+  {
+   "id": "opp_c_f13",
+   "name": "Filler13 Ng",
+   "contactId": "c_f13",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-06T06:37:45.449Z",
+   "updatedAt": "2026-09-06T06:37:45.449Z",
+   "contact": {
+    "id": "c_f13",
+    "name": "Filler13 Ng",
+    "email": "filler13@example-home.com",
+    "phone": "+15596002013"
+   }
+  },
+  {
+   "id": "opp_c_f14",
+   "name": "Filler14 Lopez",
+   "contactId": "c_f14",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-27T03:21:45.448Z",
+   "updatedAt": "2026-08-27T03:21:45.448Z",
+   "contact": {
+    "id": "c_f14",
+    "name": "Filler14 Lopez",
+    "email": "filler14@example-home.com",
+    "phone": "+15596002014"
+   }
+  },
+  {
+   "id": "opp_c_f15",
+   "name": "Filler15 Ng",
+   "contactId": "c_f15",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-03T11:55:26.689Z",
+   "updatedAt": "2026-09-03T11:55:26.689Z",
+   "contact": {
+    "id": "c_f15",
+    "name": "Filler15 Ng",
+    "email": "filler15@example-home.com",
+    "phone": "+15596002015"
+   }
+  },
+  {
+   "id": "opp_c_f16",
+   "name": "Filler16 Lopez",
+   "contactId": "c_f16",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-13T06:37:38.382Z",
+   "updatedAt": "2026-09-13T06:37:38.382Z",
+   "contact": {
+    "id": "c_f16",
+    "name": "Filler16 Lopez",
+    "email": "filler16@example-home.com",
+    "phone": "+15596002016"
+   }
+  },
+  {
+   "id": "opp_c_f17",
+   "name": "Filler17 Smith",
+   "contactId": "c_f17",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-08-24T09:51:01.457Z",
+   "updatedAt": "2026-08-24T09:51:01.457Z",
+   "contact": {
+    "id": "c_f17",
+    "name": "Filler17 Smith",
+    "email": "filler17@example-home.com",
+    "phone": "+15596002017"
+   }
+  },
+  {
+   "id": "opp_c_f18",
+   "name": "Filler18 Lopez",
+   "contactId": "c_f18",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-07-22T19:41:20.998Z",
+   "updatedAt": "2026-07-22T19:41:20.998Z",
+   "contact": {
+    "id": "c_f18",
+    "name": "Filler18 Lopez",
+    "email": "filler18@example-home.com",
+    "phone": "+15596002018"
+   }
+  },
+  {
+   "id": "opp_c_f19",
+   "name": "Filler19 Lopez",
+   "contactId": "c_f19",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-28T16:44:52.555Z",
+   "updatedAt": "2026-07-28T16:44:52.555Z",
+   "contact": {
+    "id": "c_f19",
+    "name": "Filler19 Lopez",
+    "email": "filler19@example-home.com",
+    "phone": "+15596002019"
+   }
+  },
+  {
+   "id": "opp_c_f20",
+   "name": "Filler20 Ng",
+   "contactId": "c_f20",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-14T16:10:28.688Z",
+   "updatedAt": "2026-09-14T16:10:28.688Z",
+   "contact": {
+    "id": "c_f20",
+    "name": "Filler20 Ng",
+    "email": "filler20@example-home.com",
+    "phone": "+15596002020"
+   }
+  },
+  {
+   "id": "opp_c_f21",
+   "name": "Filler21 Ng",
+   "contactId": "c_f21",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-09T10:47:15.011Z",
+   "updatedAt": "2026-08-09T10:47:15.011Z",
+   "contact": {
+    "id": "c_f21",
+    "name": "Filler21 Ng",
+    "email": "filler21@example-home.com",
+    "phone": "+15596002021"
+   }
+  },
+  {
+   "id": "opp_c_f22",
+   "name": "Filler22 Smith",
+   "contactId": "c_f22",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-03T01:32:12.448Z",
+   "updatedAt": "2026-08-03T01:32:12.448Z",
+   "contact": {
+    "id": "c_f22",
+    "name": "Filler22 Smith",
+    "email": "filler22@example-home.com",
+    "phone": "+15596002022"
+   }
+  },
+  {
+   "id": "opp_c_f23",
+   "name": "Filler23 Patel",
+   "contactId": "c_f23",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-20T12:19:07.750Z",
+   "updatedAt": "2026-07-20T12:19:07.750Z",
+   "contact": {
+    "id": "c_f23",
+    "name": "Filler23 Patel",
+    "email": "filler23@example-home.com",
+    "phone": "+15596002023"
+   }
+  },
+  {
+   "id": "opp_c_f24",
+   "name": "Filler24 Patel",
+   "contactId": "c_f24",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-01T02:46:07.760Z",
+   "updatedAt": "2026-08-01T02:46:07.760Z",
+   "contact": {
+    "id": "c_f24",
+    "name": "Filler24 Patel",
+    "email": "filler24@example-home.com",
+    "phone": "+15596002024"
+   }
+  },
+  {
+   "id": "opp_c_f25",
+   "name": "Filler25 Patel",
+   "contactId": "c_f25",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-09-22T06:35:31.611Z",
+   "updatedAt": "2026-09-22T06:35:31.611Z",
+   "contact": {
+    "id": "c_f25",
+    "name": "Filler25 Patel",
+    "email": "filler25@example-home.com",
+    "phone": "+15596002025"
+   }
+  },
+  {
+   "id": "opp_c_f26",
+   "name": "Filler26 Smith",
+   "contactId": "c_f26",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-31T16:31:26.236Z",
+   "updatedAt": "2026-08-31T16:31:26.236Z",
+   "contact": {
+    "id": "c_f26",
+    "name": "Filler26 Smith",
+    "email": "filler26@example-home.com",
+    "phone": "+15596002026"
+   }
+  },
+  {
+   "id": "opp_c_f27",
+   "name": "Filler27 Ng",
+   "contactId": "c_f27",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-25T21:07:55.233Z",
+   "updatedAt": "2026-07-25T21:07:55.233Z",
+   "contact": {
+    "id": "c_f27",
+    "name": "Filler27 Ng",
+    "email": "filler27@example-home.com",
+    "phone": "+15596002027"
+   }
+  },
+  {
+   "id": "opp_c_f28",
+   "name": "Filler28 Smith",
+   "contactId": "c_f28",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-27T07:41:42.193Z",
+   "updatedAt": "2026-07-27T07:41:42.193Z",
+   "contact": {
+    "id": "c_f28",
+    "name": "Filler28 Smith",
+    "email": "filler28@example-home.com",
+    "phone": "+15596002028"
+   }
+  },
+  {
+   "id": "opp_c_f29",
+   "name": "Filler29 Kim",
+   "contactId": "c_f29",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-03T18:31:58.078Z",
+   "updatedAt": "2026-09-03T18:31:58.078Z",
+   "contact": {
+    "id": "c_f29",
+    "name": "Filler29 Kim",
+    "email": "filler29@example-home.com",
+    "phone": "+15596002029"
+   }
+  },
+  {
+   "id": "opp_c_f30",
+   "name": "Filler30 Lopez",
+   "contactId": "c_f30",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-08T07:24:25.920Z",
+   "updatedAt": "2026-07-08T07:24:25.920Z",
+   "contact": {
+    "id": "c_f30",
+    "name": "Filler30 Lopez",
+    "email": "filler30@example-home.com",
+    "phone": "+15596002030"
+   }
+  },
+  {
+   "id": "opp_c_f31",
+   "name": "Filler31 Lopez",
+   "contactId": "c_f31",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-07-28T13:45:28.394Z",
+   "updatedAt": "2026-07-28T13:45:28.394Z",
+   "contact": {
+    "id": "c_f31",
+    "name": "Filler31 Lopez",
+    "email": "filler31@example-home.com",
+    "phone": "+15596002031"
+   }
+  },
+  {
+   "id": "opp_c_f32",
+   "name": "Filler32 Patel",
+   "contactId": "c_f32",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-26T21:29:58.389Z",
+   "updatedAt": "2026-07-26T21:29:58.389Z",
+   "contact": {
+    "id": "c_f32",
+    "name": "Filler32 Patel",
+    "email": "filler32@example-home.com",
+    "phone": "+15596002032"
+   }
+  },
+  {
+   "id": "opp_c_f33",
+   "name": "Filler33 Smith",
+   "contactId": "c_f33",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-28T16:05:30.074Z",
+   "updatedAt": "2026-07-28T16:05:30.074Z",
+   "contact": {
+    "id": "c_f33",
+    "name": "Filler33 Smith",
+    "email": "filler33@example-home.com",
+    "phone": "+15596002033"
+   }
+  },
+  {
+   "id": "opp_c_f34",
+   "name": "Filler34 Smith",
+   "contactId": "c_f34",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-08T08:20:42.124Z",
+   "updatedAt": "2026-09-08T08:20:42.124Z",
+   "contact": {
+    "id": "c_f34",
+    "name": "Filler34 Smith",
+    "email": "filler34@example-home.com",
+    "phone": "+15596002034"
+   }
+  },
+  {
+   "id": "opp_c_f35",
+   "name": "Filler35 Ng",
+   "contactId": "c_f35",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-04T07:59:26.941Z",
+   "updatedAt": "2026-09-04T07:59:26.941Z",
+   "contact": {
+    "id": "c_f35",
+    "name": "Filler35 Ng",
+    "email": "filler35@example-home.com",
+    "phone": "+15596002035"
+   }
+  },
+  {
+   "id": "opp_c_f36",
+   "name": "Filler36 Ng",
+   "contactId": "c_f36",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-15T17:33:27.822Z",
+   "updatedAt": "2026-07-15T17:33:27.822Z",
+   "contact": {
+    "id": "c_f36",
+    "name": "Filler36 Ng",
+    "email": "filler36@example-home.com",
+    "phone": "+15596002036"
+   }
+  },
+  {
+   "id": "opp_c_f37",
+   "name": "Filler37 Lopez",
+   "contactId": "c_f37",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-09-25T07:48:35.407Z",
+   "updatedAt": "2026-09-25T07:48:35.407Z",
+   "contact": {
+    "id": "c_f37",
+    "name": "Filler37 Lopez",
+    "email": "filler37@example-home.com",
+    "phone": "+15596002037"
+   }
+  },
+  {
+   "id": "opp_c_f38",
+   "name": "Filler38 Ng",
+   "contactId": "c_f38",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-09-07T01:43:25.702Z",
+   "updatedAt": "2026-09-07T01:43:25.702Z",
+   "contact": {
+    "id": "c_f38",
+    "name": "Filler38 Ng",
+    "email": "filler38@example-home.com",
+    "phone": "+15596002038"
+   }
+  },
+  {
+   "id": "opp_c_f39",
+   "name": "Filler39 Smith",
+   "contactId": "c_f39",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-09T10:21:26.536Z",
+   "updatedAt": "2026-09-09T10:21:26.536Z",
+   "contact": {
+    "id": "c_f39",
+    "name": "Filler39 Smith",
+    "email": "filler39@example-home.com",
+    "phone": "+15596002039"
+   }
+  },
+  {
+   "id": "opp_c_f40",
+   "name": "Filler40 Ng",
+   "contactId": "c_f40",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-28T06:07:46.585Z",
+   "updatedAt": "2026-07-28T06:07:46.585Z",
+   "contact": {
+    "id": "c_f40",
+    "name": "Filler40 Ng",
+    "email": "filler40@example-home.com",
+    "phone": "+15596002040"
+   }
+  },
+  {
+   "id": "opp_c_f41",
+   "name": "Filler41 Kim",
+   "contactId": "c_f41",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-06T11:02:32.748Z",
+   "updatedAt": "2026-07-06T11:02:32.748Z",
+   "contact": {
+    "id": "c_f41",
+    "name": "Filler41 Kim",
+    "email": "filler41@example-home.com",
+    "phone": "+15596002041"
+   }
+  },
+  {
+   "id": "opp_c_f42",
+   "name": "Filler42 Smith",
+   "contactId": "c_f42",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-09T17:53:00.872Z",
+   "updatedAt": "2026-09-09T17:53:00.872Z",
+   "contact": {
+    "id": "c_f42",
+    "name": "Filler42 Smith",
+    "email": "filler42@example-home.com",
+    "phone": "+15596002042"
+   }
+  },
+  {
+   "id": "opp_c_f43",
+   "name": "Filler43 Lopez",
+   "contactId": "c_f43",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-26T20:37:14.507Z",
+   "updatedAt": "2026-08-26T20:37:14.507Z",
+   "contact": {
+    "id": "c_f43",
+    "name": "Filler43 Lopez",
+    "email": "filler43@example-home.com",
+    "phone": "+15596002043"
+   }
+  },
+  {
+   "id": "opp_c_f44",
+   "name": "Filler44 Smith",
+   "contactId": "c_f44",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-19T02:51:04.252Z",
+   "updatedAt": "2026-08-19T02:51:04.252Z",
+   "contact": {
+    "id": "c_f44",
+    "name": "Filler44 Smith",
+    "email": "filler44@example-home.com",
+    "phone": "+15596002044"
+   }
+  },
+  {
+   "id": "opp_c_f45",
+   "name": "Filler45 Lopez",
+   "contactId": "c_f45",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-19T17:58:18.602Z",
+   "updatedAt": "2026-09-19T17:58:18.602Z",
+   "contact": {
+    "id": "c_f45",
+    "name": "Filler45 Lopez",
+    "email": "filler45@example-home.com",
+    "phone": "+15596002045"
+   }
+  },
+  {
+   "id": "opp_c_f46",
+   "name": "Filler46 Ng",
+   "contactId": "c_f46",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-31T16:16:20.458Z",
+   "updatedAt": "2026-08-31T16:16:20.458Z",
+   "contact": {
+    "id": "c_f46",
+    "name": "Filler46 Ng",
+    "email": "filler46@example-home.com",
+    "phone": "+15596002046"
+   }
+  },
+  {
+   "id": "opp_c_f47",
+   "name": "Filler47 Kim",
+   "contactId": "c_f47",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-24T02:31:46.331Z",
+   "updatedAt": "2026-08-24T02:31:46.331Z",
+   "contact": {
+    "id": "c_f47",
+    "name": "Filler47 Kim",
+    "email": "filler47@example-home.com",
+    "phone": "+15596002047"
+   }
+  },
+  {
+   "id": "opp_c_f48",
+   "name": "Filler48 Lopez",
+   "contactId": "c_f48",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-21T10:52:25.385Z",
+   "updatedAt": "2026-07-21T10:52:25.385Z",
+   "contact": {
+    "id": "c_f48",
+    "name": "Filler48 Lopez",
+    "email": "filler48@example-home.com",
+    "phone": "+15596002048"
+   }
+  },
+  {
+   "id": "opp_c_f49",
+   "name": "Filler49 Ng",
+   "contactId": "c_f49",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-28T16:36:19.191Z",
+   "updatedAt": "2026-07-28T16:36:19.191Z",
+   "contact": {
+    "id": "c_f49",
+    "name": "Filler49 Ng",
+    "email": "filler49@example-home.com",
+    "phone": "+15596002049"
+   }
+  },
+  {
+   "id": "opp_c_f50",
+   "name": "Filler50 Smith",
+   "contactId": "c_f50",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-06T10:44:36.896Z",
+   "updatedAt": "2026-08-06T10:44:36.896Z",
+   "contact": {
+    "id": "c_f50",
+    "name": "Filler50 Smith",
+    "email": "filler50@example-home.com",
+    "phone": "+15596002050"
+   }
+  },
+  {
+   "id": "opp_c_f51",
+   "name": "Filler51 Smith",
+   "contactId": "c_f51",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-29T05:33:31.239Z",
+   "updatedAt": "2026-07-29T05:33:31.239Z",
+   "contact": {
+    "id": "c_f51",
+    "name": "Filler51 Smith",
+    "email": "filler51@example-home.com",
+    "phone": "+15596002051"
+   }
+  },
+  {
+   "id": "opp_c_f52",
+   "name": "Filler52 Ng",
+   "contactId": "c_f52",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-26T13:39:47.754Z",
+   "updatedAt": "2026-08-26T13:39:47.754Z",
+   "contact": {
+    "id": "c_f52",
+    "name": "Filler52 Ng",
+    "email": "filler52@example-home.com",
+    "phone": "+15596002052"
+   }
+  },
+  {
+   "id": "opp_c_f53",
+   "name": "Filler53 Patel",
+   "contactId": "c_f53",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-10T07:21:04.717Z",
+   "updatedAt": "2026-09-10T07:21:04.717Z",
+   "contact": {
+    "id": "c_f53",
+    "name": "Filler53 Patel",
+    "email": "filler53@example-home.com",
+    "phone": "+15596002053"
+   }
+  },
+  {
+   "id": "opp_c_f54",
+   "name": "Filler54 Smith",
+   "contactId": "c_f54",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-25T09:44:14.990Z",
+   "updatedAt": "2026-08-25T09:44:14.990Z",
+   "contact": {
+    "id": "c_f54",
+    "name": "Filler54 Smith",
+    "email": "filler54@example-home.com",
+    "phone": "+15596002054"
+   }
+  },
+  {
+   "id": "opp_c_f55",
+   "name": "Filler55 Ng",
+   "contactId": "c_f55",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-11T15:47:33.673Z",
+   "updatedAt": "2026-09-11T15:47:33.673Z",
+   "contact": {
+    "id": "c_f55",
+    "name": "Filler55 Ng",
+    "email": "filler55@example-home.com",
+    "phone": "+15596002055"
+   }
+  },
+  {
+   "id": "opp_c_f56",
+   "name": "Filler56 Kim",
+   "contactId": "c_f56",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-18T01:03:04.500Z",
+   "updatedAt": "2026-09-18T01:03:04.500Z",
+   "contact": {
+    "id": "c_f56",
+    "name": "Filler56 Kim",
+    "email": "filler56@example-home.com",
+    "phone": "+15596002056"
+   }
+  },
+  {
+   "id": "opp_c_f57",
+   "name": "Filler57 Patel",
+   "contactId": "c_f57",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-08T03:48:31.134Z",
+   "updatedAt": "2026-08-08T03:48:31.134Z",
+   "contact": {
+    "id": "c_f57",
+    "name": "Filler57 Patel",
+    "email": "filler57@example-home.com",
+    "phone": "+15596002057"
+   }
+  },
+  {
+   "id": "opp_c_f58",
+   "name": "Filler58 Kim",
+   "contactId": "c_f58",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-29T06:50:59.573Z",
+   "updatedAt": "2026-07-29T06:50:59.573Z",
+   "contact": {
+    "id": "c_f58",
+    "name": "Filler58 Kim",
+    "email": "filler58@example-home.com",
+    "phone": "+15596002058"
+   }
+  },
+  {
+   "id": "opp_c_f59",
+   "name": "Filler59 Ng",
+   "contactId": "c_f59",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-15T00:57:52.059Z",
+   "updatedAt": "2026-07-15T00:57:52.059Z",
+   "contact": {
+    "id": "c_f59",
+    "name": "Filler59 Ng",
+    "email": "filler59@example-home.com",
+    "phone": "+15596002059"
+   }
+  },
+  {
+   "id": "opp_c_f60",
+   "name": "Filler60 Lopez",
+   "contactId": "c_f60",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-07-09T03:59:20.604Z",
+   "updatedAt": "2026-07-09T03:59:20.604Z",
+   "contact": {
+    "id": "c_f60",
+    "name": "Filler60 Lopez",
+    "email": "filler60@example-home.com",
+    "phone": "+15596002060"
+   }
+  },
+  {
+   "id": "opp_c_f61",
+   "name": "Filler61 Kim",
+   "contactId": "c_f61",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-27T10:03:47.027Z",
+   "updatedAt": "2026-08-27T10:03:47.027Z",
+   "contact": {
+    "id": "c_f61",
+    "name": "Filler61 Kim",
+    "email": "filler61@example-home.com",
+    "phone": "+15596002061"
+   }
+  },
+  {
+   "id": "opp_c_f62",
+   "name": "Filler62 Patel",
+   "contactId": "c_f62",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-14T19:39:47.120Z",
+   "updatedAt": "2026-07-14T19:39:47.120Z",
+   "contact": {
+    "id": "c_f62",
+    "name": "Filler62 Patel",
+    "email": "filler62@example-home.com",
+    "phone": "+15596002062"
+   }
+  },
+  {
+   "id": "opp_c_f63",
+   "name": "Filler63 Smith",
+   "contactId": "c_f63",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-07T05:41:23.778Z",
+   "updatedAt": "2026-07-07T05:41:23.778Z",
+   "contact": {
+    "id": "c_f63",
+    "name": "Filler63 Smith",
+    "email": "filler63@example-home.com",
+    "phone": "+15596002063"
+   }
+  },
+  {
+   "id": "opp_c_f64",
+   "name": "Filler64 Smith",
+   "contactId": "c_f64",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-31T10:57:36.908Z",
+   "updatedAt": "2026-07-31T10:57:36.908Z",
+   "contact": {
+    "id": "c_f64",
+    "name": "Filler64 Smith",
+    "email": "filler64@example-home.com",
+    "phone": "+15596002064"
+   }
+  },
+  {
+   "id": "opp_c_f65",
+   "name": "Filler65 Patel",
+   "contactId": "c_f65",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-18T14:19:56.726Z",
+   "updatedAt": "2026-08-18T14:19:56.726Z",
+   "contact": {
+    "id": "c_f65",
+    "name": "Filler65 Patel",
+    "email": "filler65@example-home.com",
+    "phone": "+15596002065"
+   }
+  },
+  {
+   "id": "opp_c_f66",
+   "name": "Filler66 Ng",
+   "contactId": "c_f66",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-20T04:42:54.843Z",
+   "updatedAt": "2026-09-20T04:42:54.843Z",
+   "contact": {
+    "id": "c_f66",
+    "name": "Filler66 Ng",
+    "email": "filler66@example-home.com",
+    "phone": "+15596002066"
+   }
+  },
+  {
+   "id": "opp_c_f67",
+   "name": "Filler67 Patel",
+   "contactId": "c_f67",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-08-06T17:45:57.273Z",
+   "updatedAt": "2026-08-06T17:45:57.273Z",
+   "contact": {
+    "id": "c_f67",
+    "name": "Filler67 Patel",
+    "email": "filler67@example-home.com",
+    "phone": "+15596002067"
+   }
+  },
+  {
+   "id": "opp_c_f68",
+   "name": "Filler68 Smith",
+   "contactId": "c_f68",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-10T04:30:03.401Z",
+   "updatedAt": "2026-09-10T04:30:03.401Z",
+   "contact": {
+    "id": "c_f68",
+    "name": "Filler68 Smith",
+    "email": "filler68@example-home.com",
+    "phone": "+15596002068"
+   }
+  },
+  {
+   "id": "opp_c_f69",
+   "name": "Filler69 Smith",
+   "contactId": "c_f69",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-24T21:17:37.170Z",
+   "updatedAt": "2026-08-24T21:17:37.170Z",
+   "contact": {
+    "id": "c_f69",
+    "name": "Filler69 Smith",
+    "email": "filler69@example-home.com",
+    "phone": "+15596002069"
+   }
+  },
+  {
+   "id": "opp_c_f70",
+   "name": "Filler70 Patel",
+   "contactId": "c_f70",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-05T11:05:56.551Z",
+   "updatedAt": "2026-08-05T11:05:56.551Z",
+   "contact": {
+    "id": "c_f70",
+    "name": "Filler70 Patel",
+    "email": "filler70@example-home.com",
+    "phone": "+15596002070"
+   }
+  },
+  {
+   "id": "opp_c_f71",
+   "name": "Filler71 Kim",
+   "contactId": "c_f71",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-29T03:25:39.592Z",
+   "updatedAt": "2026-08-29T03:25:39.592Z",
+   "contact": {
+    "id": "c_f71",
+    "name": "Filler71 Kim",
+    "email": "filler71@example-home.com",
+    "phone": "+15596002071"
+   }
+  },
+  {
+   "id": "opp_c_f72",
+   "name": "Filler72 Ng",
+   "contactId": "c_f72",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-09-01T02:47:41.656Z",
+   "updatedAt": "2026-09-01T02:47:41.656Z",
+   "contact": {
+    "id": "c_f72",
+    "name": "Filler72 Ng",
+    "email": "filler72@example-home.com",
+    "phone": "+15596002072"
+   }
+  },
+  {
+   "id": "opp_c_f73",
+   "name": "Filler73 Ng",
+   "contactId": "c_f73",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-17T13:11:21.624Z",
+   "updatedAt": "2026-08-17T13:11:21.624Z",
+   "contact": {
+    "id": "c_f73",
+    "name": "Filler73 Ng",
+    "email": "filler73@example-home.com",
+    "phone": "+15596002073"
+   }
+  },
+  {
+   "id": "opp_c_f74",
+   "name": "Filler74 Patel",
+   "contactId": "c_f74",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "",
+   "createdAt": "2026-08-17T04:06:29.988Z",
+   "updatedAt": "2026-08-17T04:06:29.988Z",
+   "contact": {
+    "id": "c_f74",
+    "name": "Filler74 Patel",
+    "email": "filler74@example-home.com",
+    "phone": "+15596002074"
+   }
+  },
+  {
+   "id": "opp_c_f75",
+   "name": "Filler75 Lopez",
+   "contactId": "c_f75",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-12T07:28:56.160Z",
+   "updatedAt": "2026-07-12T07:28:56.160Z",
+   "contact": {
+    "id": "c_f75",
+    "name": "Filler75 Lopez",
+    "email": "filler75@example-home.com",
+    "phone": "+15596002075"
+   }
+  },
+  {
+   "id": "opp_c_f76",
+   "name": "Filler76 Ng",
+   "contactId": "c_f76",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-27T11:30:51.461Z",
+   "updatedAt": "2026-09-27T11:30:51.461Z",
+   "contact": {
+    "id": "c_f76",
+    "name": "Filler76 Ng",
+    "email": "filler76@example-home.com",
+    "phone": "+15596002076"
+   }
+  },
+  {
+   "id": "opp_c_f77",
+   "name": "Filler77 Ng",
+   "contactId": "c_f77",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-19T05:19:55.953Z",
+   "updatedAt": "2026-07-19T05:19:55.953Z",
+   "contact": {
+    "id": "c_f77",
+    "name": "Filler77 Ng",
+    "email": "filler77@example-home.com",
+    "phone": "+15596002077"
+   }
+  },
+  {
+   "id": "opp_c_f78",
+   "name": "Filler78 Lopez",
+   "contactId": "c_f78",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-09-23T20:15:31.251Z",
+   "updatedAt": "2026-09-23T20:15:31.251Z",
+   "contact": {
+    "id": "c_f78",
+    "name": "Filler78 Lopez",
+    "email": "filler78@example-home.com",
+    "phone": "+15596002078"
+   }
+  },
+  {
+   "id": "opp_c_f79",
+   "name": "Filler79 Kim",
+   "contactId": "c_f79",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-16T05:47:47.663Z",
+   "updatedAt": "2026-09-16T05:47:47.663Z",
+   "contact": {
+    "id": "c_f79",
+    "name": "Filler79 Kim",
+    "email": "filler79@example-home.com",
+    "phone": "+15596002079"
+   }
+  },
+  {
+   "id": "opp_c_f80",
+   "name": "Filler80 Smith",
+   "contactId": "c_f80",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-06T16:07:20.970Z",
+   "updatedAt": "2026-07-06T16:07:20.970Z",
+   "contact": {
+    "id": "c_f80",
+    "name": "Filler80 Smith",
+    "email": "filler80@example-home.com",
+    "phone": "+15596002080"
+   }
+  },
+  {
+   "id": "opp_c_f81",
+   "name": "Filler81 Patel",
+   "contactId": "c_f81",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-08T11:37:13.366Z",
+   "updatedAt": "2026-07-08T11:37:13.366Z",
+   "contact": {
+    "id": "c_f81",
+    "name": "Filler81 Patel",
+    "email": "filler81@example-home.com",
+    "phone": "+15596002081"
+   }
+  },
+  {
+   "id": "opp_c_f82",
+   "name": "Filler82 Ng",
+   "contactId": "c_f82",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-17T07:08:55.040Z",
+   "updatedAt": "2026-09-17T07:08:55.040Z",
+   "contact": {
+    "id": "c_f82",
+    "name": "Filler82 Ng",
+    "email": "filler82@example-home.com",
+    "phone": "+15596002082"
+   }
+  },
+  {
+   "id": "opp_c_f83",
+   "name": "Filler83 Patel",
+   "contactId": "c_f83",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-18T07:10:30.271Z",
+   "updatedAt": "2026-07-18T07:10:30.271Z",
+   "contact": {
+    "id": "c_f83",
+    "name": "Filler83 Patel",
+    "email": "filler83@example-home.com",
+    "phone": "+15596002083"
+   }
+  },
+  {
+   "id": "opp_c_f84",
+   "name": "Filler84 Lopez",
+   "contactId": "c_f84",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-05T13:48:18.454Z",
+   "updatedAt": "2026-09-05T13:48:18.454Z",
+   "contact": {
+    "id": "c_f84",
+    "name": "Filler84 Lopez",
+    "email": "filler84@example-home.com",
+    "phone": "+15596002084"
+   }
+  },
+  {
+   "id": "opp_c_f85",
+   "name": "Filler85 Lopez",
+   "contactId": "c_f85",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-10T05:19:26.945Z",
+   "updatedAt": "2026-09-10T05:19:26.945Z",
+   "contact": {
+    "id": "c_f85",
+    "name": "Filler85 Lopez",
+    "email": "filler85@example-home.com",
+    "phone": "+15596002085"
+   }
+  },
+  {
+   "id": "opp_c_f86",
+   "name": "Filler86 Patel",
+   "contactId": "c_f86",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "",
+   "createdAt": "2026-07-18T18:22:48.168Z",
+   "updatedAt": "2026-07-18T18:22:48.168Z",
+   "contact": {
+    "id": "c_f86",
+    "name": "Filler86 Patel",
+    "email": "filler86@example-home.com",
+    "phone": "+15596002086"
+   }
+  },
+  {
+   "id": "opp_c_f87",
+   "name": "Filler87 Lopez",
+   "contactId": "c_f87",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-26T10:06:35.009Z",
+   "updatedAt": "2026-07-26T10:06:35.009Z",
+   "contact": {
+    "id": "c_f87",
+    "name": "Filler87 Lopez",
+    "email": "filler87@example-home.com",
+    "phone": "+15596002087"
+   }
+  },
+  {
+   "id": "opp_c_f88",
+   "name": "Filler88 Patel",
+   "contactId": "c_f88",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-09T09:07:04.372Z",
+   "updatedAt": "2026-07-09T09:07:04.372Z",
+   "contact": {
+    "id": "c_f88",
+    "name": "Filler88 Patel",
+    "email": "filler88@example-home.com",
+    "phone": "+15596002088"
+   }
+  },
+  {
+   "id": "opp_c_f89",
+   "name": "Filler89 Kim",
+   "contactId": "c_f89",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-10T16:32:01.184Z",
+   "updatedAt": "2026-09-10T16:32:01.184Z",
+   "contact": {
+    "id": "c_f89",
+    "name": "Filler89 Kim",
+    "email": "filler89@example-home.com",
+    "phone": "+15596002089"
+   }
+  },
+  {
+   "id": "opp_c_f90",
+   "name": "Filler90 Lopez",
+   "contactId": "c_f90",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-24T13:41:22.870Z",
+   "updatedAt": "2026-08-24T13:41:22.870Z",
+   "contact": {
+    "id": "c_f90",
+    "name": "Filler90 Lopez",
+    "email": "filler90@example-home.com",
+    "phone": "+15596002090"
+   }
+  },
+  {
+   "id": "opp_c_f91",
+   "name": "Filler91 Lopez",
+   "contactId": "c_f91",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-01T09:51:37.561Z",
+   "updatedAt": "2026-08-01T09:51:37.561Z",
+   "contact": {
+    "id": "c_f91",
+    "name": "Filler91 Lopez",
+    "email": "filler91@example-home.com",
+    "phone": "+15596002091"
+   }
+  },
+  {
+   "id": "opp_c_f92",
+   "name": "Filler92 Patel",
+   "contactId": "c_f92",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-08T07:50:38.793Z",
+   "updatedAt": "2026-07-08T07:50:38.793Z",
+   "contact": {
+    "id": "c_f92",
+    "name": "Filler92 Patel",
+    "email": "filler92@example-home.com",
+    "phone": "+15596002092"
+   }
+  },
+  {
+   "id": "opp_c_f93",
+   "name": "Filler93 Smith",
+   "contactId": "c_f93",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-08T21:59:45.643Z",
+   "updatedAt": "2026-07-08T21:59:45.643Z",
+   "contact": {
+    "id": "c_f93",
+    "name": "Filler93 Smith",
+    "email": "filler93@example-home.com",
+    "phone": "+15596002093"
+   }
+  },
+  {
+   "id": "opp_c_f94",
+   "name": "Filler94 Ng",
+   "contactId": "c_f94",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-17T08:11:38.205Z",
+   "updatedAt": "2026-07-17T08:11:38.205Z",
+   "contact": {
+    "id": "c_f94",
+    "name": "Filler94 Ng",
+    "email": "filler94@example-home.com",
+    "phone": "+15596002094"
+   }
+  },
+  {
+   "id": "opp_c_f95",
+   "name": "Filler95 Kim",
+   "contactId": "c_f95",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-12T12:40:16.161Z",
+   "updatedAt": "2026-09-12T12:40:16.161Z",
+   "contact": {
+    "id": "c_f95",
+    "name": "Filler95 Kim",
+    "email": "filler95@example-home.com",
+    "phone": "+15596002095"
+   }
+  },
+  {
+   "id": "opp_c_f96",
+   "name": "Filler96 Ng",
+   "contactId": "c_f96",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-23T11:12:54.205Z",
+   "updatedAt": "2026-08-23T11:12:54.205Z",
+   "contact": {
+    "id": "c_f96",
+    "name": "Filler96 Ng",
+    "email": "filler96@example-home.com",
+    "phone": "+15596002096"
+   }
+  },
+  {
+   "id": "opp_c_f97",
+   "name": "Filler97 Lopez",
+   "contactId": "c_f97",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-07-08T06:48:33.554Z",
+   "updatedAt": "2026-07-08T06:48:33.554Z",
+   "contact": {
+    "id": "c_f97",
+    "name": "Filler97 Lopez",
+    "email": "filler97@example-home.com",
+    "phone": "+15596002097"
+   }
+  },
+  {
+   "id": "opp_c_f98",
+   "name": "Filler98 Lopez",
+   "contactId": "c_f98",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-10-01T05:59:32.963Z",
+   "updatedAt": "2026-10-01T05:59:32.963Z",
+   "contact": {
+    "id": "c_f98",
+    "name": "Filler98 Lopez",
+    "email": "filler98@example-home.com",
+    "phone": "+15596002098"
+   }
+  },
+  {
+   "id": "opp_c_f99",
+   "name": "Filler99 Kim",
+   "contactId": "c_f99",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-06T19:13:47.973Z",
+   "updatedAt": "2026-08-06T19:13:47.973Z",
+   "contact": {
+    "id": "c_f99",
+    "name": "Filler99 Kim",
+    "email": "filler99@example-home.com",
+    "phone": "+15596002099"
+   }
+  },
+  {
+   "id": "opp_c_f100",
+   "name": "Filler100 Lopez",
+   "contactId": "c_f100",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-05T05:25:28.523Z",
+   "updatedAt": "2026-08-05T05:25:28.523Z",
+   "contact": {
+    "id": "c_f100",
+    "name": "Filler100 Lopez",
+    "email": "filler100@example-home.com",
+    "phone": "+15596002100"
+   }
+  },
+  {
+   "id": "opp_c_f101",
+   "name": "Filler101 Lopez",
+   "contactId": "c_f101",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-22T07:27:21.772Z",
+   "updatedAt": "2026-09-22T07:27:21.772Z",
+   "contact": {
+    "id": "c_f101",
+    "name": "Filler101 Lopez",
+    "email": "filler101@example-home.com",
+    "phone": "+15596002101"
+   }
+  },
+  {
+   "id": "opp_c_f102",
+   "name": "Filler102 Lopez",
+   "contactId": "c_f102",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-07-13T02:43:35.351Z",
+   "updatedAt": "2026-07-13T02:43:35.351Z",
+   "contact": {
+    "id": "c_f102",
+    "name": "Filler102 Lopez",
+    "email": "filler102@example-home.com",
+    "phone": "+15596002102"
+   }
+  },
+  {
+   "id": "opp_c_f103",
+   "name": "Filler103 Patel",
+   "contactId": "c_f103",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-27T02:33:16.497Z",
+   "updatedAt": "2026-09-27T02:33:16.497Z",
+   "contact": {
+    "id": "c_f103",
+    "name": "Filler103 Patel",
+    "email": "filler103@example-home.com",
+    "phone": "+15596002103"
+   }
+  },
+  {
+   "id": "opp_c_f104",
+   "name": "Filler104 Patel",
+   "contactId": "c_f104",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-18T02:07:46.757Z",
+   "updatedAt": "2026-08-18T02:07:46.757Z",
+   "contact": {
+    "id": "c_f104",
+    "name": "Filler104 Patel",
+    "email": "filler104@example-home.com",
+    "phone": "+15596002104"
+   }
+  },
+  {
+   "id": "opp_c_f105",
+   "name": "Filler105 Ng",
+   "contactId": "c_f105",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-22T21:28:55.770Z",
+   "updatedAt": "2026-07-22T21:28:55.770Z",
+   "contact": {
+    "id": "c_f105",
+    "name": "Filler105 Ng",
+    "email": "filler105@example-home.com",
+    "phone": "+15596002105"
+   }
+  },
+  {
+   "id": "opp_c_f106",
+   "name": "Filler106 Patel",
+   "contactId": "c_f106",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-12T18:36:10.318Z",
+   "updatedAt": "2026-07-12T18:36:10.318Z",
+   "contact": {
+    "id": "c_f106",
+    "name": "Filler106 Patel",
+    "email": "filler106@example-home.com",
+    "phone": "+15596002106"
+   }
+  },
+  {
+   "id": "opp_c_f107",
+   "name": "Filler107 Ng",
+   "contactId": "c_f107",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-09T05:06:15.359Z",
+   "updatedAt": "2026-08-09T05:06:15.359Z",
+   "contact": {
+    "id": "c_f107",
+    "name": "Filler107 Ng",
+    "email": "filler107@example-home.com",
+    "phone": "+15596002107"
+   }
+  },
+  {
+   "id": "opp_c_f108",
+   "name": "Filler108 Lopez",
+   "contactId": "c_f108",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-27T14:11:21.173Z",
+   "updatedAt": "2026-07-27T14:11:21.173Z",
+   "contact": {
+    "id": "c_f108",
+    "name": "Filler108 Lopez",
+    "email": "filler108@example-home.com",
+    "phone": "+15596002108"
+   }
+  },
+  {
+   "id": "opp_c_f109",
+   "name": "Filler109 Ng",
+   "contactId": "c_f109",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-08-25T02:57:38.285Z",
+   "updatedAt": "2026-08-25T02:57:38.285Z",
+   "contact": {
+    "id": "c_f109",
+    "name": "Filler109 Ng",
+    "email": "filler109@example-home.com",
+    "phone": "+15596002109"
+   }
+  },
+  {
+   "id": "opp_c_f110",
+   "name": "Filler110 Smith",
+   "contactId": "c_f110",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-10T16:37:47.575Z",
+   "updatedAt": "2026-07-10T16:37:47.575Z",
+   "contact": {
+    "id": "c_f110",
+    "name": "Filler110 Smith",
+    "email": "filler110@example-home.com",
+    "phone": "+15596002110"
+   }
+  },
+  {
+   "id": "opp_c_f111",
+   "name": "Filler111 Kim",
+   "contactId": "c_f111",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-10T19:00:17.934Z",
+   "updatedAt": "2026-07-10T19:00:17.934Z",
+   "contact": {
+    "id": "c_f111",
+    "name": "Filler111 Kim",
+    "email": "filler111@example-home.com",
+    "phone": "+15596002111"
+   }
+  },
+  {
+   "id": "opp_c_f112",
+   "name": "Filler112 Kim",
+   "contactId": "c_f112",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-18T20:20:54.871Z",
+   "updatedAt": "2026-09-18T20:20:54.871Z",
+   "contact": {
+    "id": "c_f112",
+    "name": "Filler112 Kim",
+    "email": "filler112@example-home.com",
+    "phone": "+15596002112"
+   }
+  },
+  {
+   "id": "opp_c_f113",
+   "name": "Filler113 Patel",
+   "contactId": "c_f113",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-13T01:54:14.907Z",
+   "updatedAt": "2026-08-13T01:54:14.907Z",
+   "contact": {
+    "id": "c_f113",
+    "name": "Filler113 Patel",
+    "email": "filler113@example-home.com",
+    "phone": "+15596002113"
+   }
+  },
+  {
+   "id": "opp_c_f114",
+   "name": "Filler114 Ng",
+   "contactId": "c_f114",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-25T18:19:10.412Z",
+   "updatedAt": "2026-07-25T18:19:10.412Z",
+   "contact": {
+    "id": "c_f114",
+    "name": "Filler114 Ng",
+    "email": "filler114@example-home.com",
+    "phone": "+15596002114"
+   }
+  },
+  {
+   "id": "opp_c_f115",
+   "name": "Filler115 Smith",
+   "contactId": "c_f115",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-03T11:48:37.223Z",
+   "updatedAt": "2026-08-03T11:48:37.223Z",
+   "contact": {
+    "id": "c_f115",
+    "name": "Filler115 Smith",
+    "email": "filler115@example-home.com",
+    "phone": "+15596002115"
+   }
+  },
+  {
+   "id": "opp_c_f116",
+   "name": "Filler116 Smith",
+   "contactId": "c_f116",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-29T01:43:29.460Z",
+   "updatedAt": "2026-09-29T01:43:29.460Z",
+   "contact": {
+    "id": "c_f116",
+    "name": "Filler116 Smith",
+    "email": "filler116@example-home.com",
+    "phone": "+15596002116"
+   }
+  },
+  {
+   "id": "opp_c_f117",
+   "name": "Filler117 Lopez",
+   "contactId": "c_f117",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-10T06:22:50.160Z",
+   "updatedAt": "2026-08-10T06:22:50.160Z",
+   "contact": {
+    "id": "c_f117",
+    "name": "Filler117 Lopez",
+    "email": "filler117@example-home.com",
+    "phone": "+15596002117"
+   }
+  },
+  {
+   "id": "opp_c_f118",
+   "name": "Filler118 Kim",
+   "contactId": "c_f118",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-24T13:17:26.262Z",
+   "updatedAt": "2026-09-24T13:17:26.262Z",
+   "contact": {
+    "id": "c_f118",
+    "name": "Filler118 Kim",
+    "email": "filler118@example-home.com",
+    "phone": "+15596002118"
+   }
+  },
+  {
+   "id": "opp_c_f119",
+   "name": "Filler119 Patel",
+   "contactId": "c_f119",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-30T08:09:42.483Z",
+   "updatedAt": "2026-08-30T08:09:42.483Z",
+   "contact": {
+    "id": "c_f119",
+    "name": "Filler119 Patel",
+    "email": "filler119@example-home.com",
+    "phone": "+15596002119"
+   }
+  },
+  {
+   "id": "opp_c_f120",
+   "name": "Filler120 Patel",
+   "contactId": "c_f120",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-16T06:51:08.472Z",
+   "updatedAt": "2026-08-16T06:51:08.472Z",
+   "contact": {
+    "id": "c_f120",
+    "name": "Filler120 Patel",
+    "email": "filler120@example-home.com",
+    "phone": "+15596002120"
+   }
+  },
+  {
+   "id": "opp_c_f121",
+   "name": "Filler121 Kim",
+   "contactId": "c_f121",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-26T11:04:18.361Z",
+   "updatedAt": "2026-08-26T11:04:18.361Z",
+   "contact": {
+    "id": "c_f121",
+    "name": "Filler121 Kim",
+    "email": "filler121@example-home.com",
+    "phone": "+15596002121"
+   }
+  },
+  {
+   "id": "opp_c_f122",
+   "name": "Filler122 Patel",
+   "contactId": "c_f122",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-12T16:32:25.872Z",
+   "updatedAt": "2026-09-12T16:32:25.872Z",
+   "contact": {
+    "id": "c_f122",
+    "name": "Filler122 Patel",
+    "email": "filler122@example-home.com",
+    "phone": "+15596002122"
+   }
+  },
+  {
+   "id": "opp_c_f123",
+   "name": "Filler123 Lopez",
+   "contactId": "c_f123",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-09T08:05:42.120Z",
+   "updatedAt": "2026-08-09T08:05:42.120Z",
+   "contact": {
+    "id": "c_f123",
+    "name": "Filler123 Lopez",
+    "email": "filler123@example-home.com",
+    "phone": "+15596002123"
+   }
+  },
+  {
+   "id": "opp_c_f124",
+   "name": "Filler124 Kim",
+   "contactId": "c_f124",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-10T18:36:01.974Z",
+   "updatedAt": "2026-08-10T18:36:01.974Z",
+   "contact": {
+    "id": "c_f124",
+    "name": "Filler124 Kim",
+    "email": "filler124@example-home.com",
+    "phone": "+15596002124"
+   }
+  },
+  {
+   "id": "opp_c_f125",
+   "name": "Filler125 Kim",
+   "contactId": "c_f125",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-25T22:11:48.487Z",
+   "updatedAt": "2026-08-25T22:11:48.487Z",
+   "contact": {
+    "id": "c_f125",
+    "name": "Filler125 Kim",
+    "email": "filler125@example-home.com",
+    "phone": "+15596002125"
+   }
+  },
+  {
+   "id": "opp_c_f126",
+   "name": "Filler126 Smith",
+   "contactId": "c_f126",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-11T10:24:48.761Z",
+   "updatedAt": "2026-09-11T10:24:48.761Z",
+   "contact": {
+    "id": "c_f126",
+    "name": "Filler126 Smith",
+    "email": "filler126@example-home.com",
+    "phone": "+15596002126"
+   }
+  },
+  {
+   "id": "opp_c_f127",
+   "name": "Filler127 Lopez",
+   "contactId": "c_f127",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-14T18:51:15.003Z",
+   "updatedAt": "2026-08-14T18:51:15.003Z",
+   "contact": {
+    "id": "c_f127",
+    "name": "Filler127 Lopez",
+    "email": "filler127@example-home.com",
+    "phone": "+15596002127"
+   }
+  },
+  {
+   "id": "opp_c_f128",
+   "name": "Filler128 Lopez",
+   "contactId": "c_f128",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-16T18:31:58.671Z",
+   "updatedAt": "2026-07-16T18:31:58.671Z",
+   "contact": {
+    "id": "c_f128",
+    "name": "Filler128 Lopez",
+    "email": "filler128@example-home.com",
+    "phone": "+15596002128"
+   }
+  },
+  {
+   "id": "opp_c_f129",
+   "name": "Filler129 Lopez",
+   "contactId": "c_f129",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-12T01:43:53.030Z",
+   "updatedAt": "2026-07-12T01:43:53.030Z",
+   "contact": {
+    "id": "c_f129",
+    "name": "Filler129 Lopez",
+    "email": "filler129@example-home.com",
+    "phone": "+15596002129"
+   }
+  },
+  {
+   "id": "opp_c_f130",
+   "name": "Filler130 Patel",
+   "contactId": "c_f130",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-20T16:14:15.276Z",
+   "updatedAt": "2026-07-20T16:14:15.276Z",
+   "contact": {
+    "id": "c_f130",
+    "name": "Filler130 Patel",
+    "email": "filler130@example-home.com",
+    "phone": "+15596002130"
+   }
+  },
+  {
+   "id": "opp_c_f131",
+   "name": "Filler131 Patel",
+   "contactId": "c_f131",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-28T08:16:52.223Z",
+   "updatedAt": "2026-09-28T08:16:52.223Z",
+   "contact": {
+    "id": "c_f131",
+    "name": "Filler131 Patel",
+    "email": "filler131@example-home.com",
+    "phone": "+15596002131"
+   }
+  },
+  {
+   "id": "opp_c_f132",
+   "name": "Filler132 Lopez",
+   "contactId": "c_f132",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-15T16:51:02.839Z",
+   "updatedAt": "2026-07-15T16:51:02.839Z",
+   "contact": {
+    "id": "c_f132",
+    "name": "Filler132 Lopez",
+    "email": "filler132@example-home.com",
+    "phone": "+15596002132"
+   }
+  },
+  {
+   "id": "opp_c_f133",
+   "name": "Filler133 Ng",
+   "contactId": "c_f133",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-19T07:02:16.599Z",
+   "updatedAt": "2026-07-19T07:02:16.599Z",
+   "contact": {
+    "id": "c_f133",
+    "name": "Filler133 Ng",
+    "email": "filler133@example-home.com",
+    "phone": "+15596002133"
+   }
+  },
+  {
+   "id": "opp_c_f134",
+   "name": "Filler134 Kim",
+   "contactId": "c_f134",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "",
+   "createdAt": "2026-07-07T04:23:14.338Z",
+   "updatedAt": "2026-07-07T04:23:14.338Z",
+   "contact": {
+    "id": "c_f134",
+    "name": "Filler134 Kim",
+    "email": "filler134@example-home.com",
+    "phone": "+15596002134"
+   }
+  },
+  {
+   "id": "opp_c_f135",
+   "name": "Filler135 Patel",
+   "contactId": "c_f135",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-16T04:58:56.111Z",
+   "updatedAt": "2026-09-16T04:58:56.111Z",
+   "contact": {
+    "id": "c_f135",
+    "name": "Filler135 Patel",
+    "email": "filler135@example-home.com",
+    "phone": "+15596002135"
+   }
+  },
+  {
+   "id": "opp_c_f136",
+   "name": "Filler136 Lopez",
+   "contactId": "c_f136",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-02T00:33:37.927Z",
+   "updatedAt": "2026-08-02T00:33:37.927Z",
+   "contact": {
+    "id": "c_f136",
+    "name": "Filler136 Lopez",
+    "email": "filler136@example-home.com",
+    "phone": "+15596002136"
+   }
+  },
+  {
+   "id": "opp_c_f137",
+   "name": "Filler137 Lopez",
+   "contactId": "c_f137",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-10T11:53:42.720Z",
+   "updatedAt": "2026-07-10T11:53:42.720Z",
+   "contact": {
+    "id": "c_f137",
+    "name": "Filler137 Lopez",
+    "email": "filler137@example-home.com",
+    "phone": "+15596002137"
+   }
+  },
+  {
+   "id": "opp_c_f138",
+   "name": "Filler138 Kim",
+   "contactId": "c_f138",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-07-08T16:07:30.664Z",
+   "updatedAt": "2026-07-08T16:07:30.664Z",
+   "contact": {
+    "id": "c_f138",
+    "name": "Filler138 Kim",
+    "email": "filler138@example-home.com",
+    "phone": "+15596002138"
+   }
+  },
+  {
+   "id": "opp_c_f139",
+   "name": "Filler139 Ng",
+   "contactId": "c_f139",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-16T02:38:14.657Z",
+   "updatedAt": "2026-07-16T02:38:14.657Z",
+   "contact": {
+    "id": "c_f139",
+    "name": "Filler139 Ng",
+    "email": "filler139@example-home.com",
+    "phone": "+15596002139"
+   }
+  },
+  {
+   "id": "opp_c_f140",
+   "name": "Filler140 Patel",
+   "contactId": "c_f140",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-09T08:25:19.082Z",
+   "updatedAt": "2026-09-09T08:25:19.082Z",
+   "contact": {
+    "id": "c_f140",
+    "name": "Filler140 Patel",
+    "email": "filler140@example-home.com",
+    "phone": "+15596002140"
+   }
+  },
+  {
+   "id": "opp_c_f141",
+   "name": "Filler141 Ng",
+   "contactId": "c_f141",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-20T02:32:53.136Z",
+   "updatedAt": "2026-08-20T02:32:53.136Z",
+   "contact": {
+    "id": "c_f141",
+    "name": "Filler141 Ng",
+    "email": "filler141@example-home.com",
+    "phone": "+15596002141"
+   }
+  },
+  {
+   "id": "opp_c_f142",
+   "name": "Filler142 Ng",
+   "contactId": "c_f142",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-06T20:13:32.759Z",
+   "updatedAt": "2026-07-06T20:13:32.759Z",
+   "contact": {
+    "id": "c_f142",
+    "name": "Filler142 Ng",
+    "email": "filler142@example-home.com",
+    "phone": "+15596002142"
+   }
+  },
+  {
+   "id": "opp_c_f143",
+   "name": "Filler143 Kim",
+   "contactId": "c_f143",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-08T10:44:00.337Z",
+   "updatedAt": "2026-07-08T10:44:00.337Z",
+   "contact": {
+    "id": "c_f143",
+    "name": "Filler143 Kim",
+    "email": "filler143@example-home.com",
+    "phone": "+15596002143"
+   }
+  },
+  {
+   "id": "opp_c_f144",
+   "name": "Filler144 Kim",
+   "contactId": "c_f144",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-23T02:03:47.754Z",
+   "updatedAt": "2026-08-23T02:03:47.754Z",
+   "contact": {
+    "id": "c_f144",
+    "name": "Filler144 Kim",
+    "email": "filler144@example-home.com",
+    "phone": "+15596002144"
+   }
+  },
+  {
+   "id": "opp_c_f145",
+   "name": "Filler145 Patel",
+   "contactId": "c_f145",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-22T03:22:26.031Z",
+   "updatedAt": "2026-07-22T03:22:26.031Z",
+   "contact": {
+    "id": "c_f145",
+    "name": "Filler145 Patel",
+    "email": "filler145@example-home.com",
+    "phone": "+15596002145"
+   }
+  },
+  {
+   "id": "opp_c_f146",
+   "name": "Filler146 Smith",
+   "contactId": "c_f146",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-17T09:53:07.412Z",
+   "updatedAt": "2026-08-17T09:53:07.412Z",
+   "contact": {
+    "id": "c_f146",
+    "name": "Filler146 Smith",
+    "email": "filler146@example-home.com",
+    "phone": "+15596002146"
+   }
+  },
+  {
+   "id": "opp_c_f147",
+   "name": "Filler147 Ng",
+   "contactId": "c_f147",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-24T09:56:51.336Z",
+   "updatedAt": "2026-09-24T09:56:51.336Z",
+   "contact": {
+    "id": "c_f147",
+    "name": "Filler147 Ng",
+    "email": "filler147@example-home.com",
+    "phone": "+15596002147"
+   }
+  },
+  {
+   "id": "opp_c_f148",
+   "name": "Filler148 Kim",
+   "contactId": "c_f148",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-14T17:04:15.605Z",
+   "updatedAt": "2026-08-14T17:04:15.605Z",
+   "contact": {
+    "id": "c_f148",
+    "name": "Filler148 Kim",
+    "email": "filler148@example-home.com",
+    "phone": "+15596002148"
+   }
+  },
+  {
+   "id": "opp_c_f149",
+   "name": "Filler149 Lopez",
+   "contactId": "c_f149",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-02T15:45:26.692Z",
+   "updatedAt": "2026-08-02T15:45:26.692Z",
+   "contact": {
+    "id": "c_f149",
+    "name": "Filler149 Lopez",
+    "email": "filler149@example-home.com",
+    "phone": "+15596002149"
+   }
+  },
+  {
+   "id": "opp_c_f150",
+   "name": "Filler150 Ng",
+   "contactId": "c_f150",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-07T06:04:27.128Z",
+   "updatedAt": "2026-07-07T06:04:27.128Z",
+   "contact": {
+    "id": "c_f150",
+    "name": "Filler150 Ng",
+    "email": "filler150@example-home.com",
+    "phone": "+15596002150"
+   }
+  },
+  {
+   "id": "opp_c_f151",
+   "name": "Filler151 Smith",
+   "contactId": "c_f151",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-28T12:29:47.094Z",
+   "updatedAt": "2026-07-28T12:29:47.094Z",
+   "contact": {
+    "id": "c_f151",
+    "name": "Filler151 Smith",
+    "email": "filler151@example-home.com",
+    "phone": "+15596002151"
+   }
+  },
+  {
+   "id": "opp_c_f152",
+   "name": "Filler152 Lopez",
+   "contactId": "c_f152",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-22T16:36:36.473Z",
+   "updatedAt": "2026-07-22T16:36:36.473Z",
+   "contact": {
+    "id": "c_f152",
+    "name": "Filler152 Lopez",
+    "email": "filler152@example-home.com",
+    "phone": "+15596002152"
+   }
+  },
+  {
+   "id": "opp_c_f153",
+   "name": "Filler153 Kim",
+   "contactId": "c_f153",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-20T21:37:25.143Z",
+   "updatedAt": "2026-08-20T21:37:25.143Z",
+   "contact": {
+    "id": "c_f153",
+    "name": "Filler153 Kim",
+    "email": "filler153@example-home.com",
+    "phone": "+15596002153"
+   }
+  },
+  {
+   "id": "opp_c_f154",
+   "name": "Filler154 Patel",
+   "contactId": "c_f154",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-20T14:48:37.580Z",
+   "updatedAt": "2026-09-20T14:48:37.580Z",
+   "contact": {
+    "id": "c_f154",
+    "name": "Filler154 Patel",
+    "email": "filler154@example-home.com",
+    "phone": "+15596002154"
+   }
+  },
+  {
+   "id": "opp_c_f155",
+   "name": "Filler155 Kim",
+   "contactId": "c_f155",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-22T10:17:01.352Z",
+   "updatedAt": "2026-09-22T10:17:01.352Z",
+   "contact": {
+    "id": "c_f155",
+    "name": "Filler155 Kim",
+    "email": "filler155@example-home.com",
+    "phone": "+15596002155"
+   }
+  },
+  {
+   "id": "opp_c_f156",
+   "name": "Filler156 Ng",
+   "contactId": "c_f156",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-13T04:27:57.142Z",
+   "updatedAt": "2026-09-13T04:27:57.142Z",
+   "contact": {
+    "id": "c_f156",
+    "name": "Filler156 Ng",
+    "email": "filler156@example-home.com",
+    "phone": "+15596002156"
+   }
+  },
+  {
+   "id": "opp_c_f157",
+   "name": "Filler157 Lopez",
+   "contactId": "c_f157",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-09T01:55:00.137Z",
+   "updatedAt": "2026-09-09T01:55:00.137Z",
+   "contact": {
+    "id": "c_f157",
+    "name": "Filler157 Lopez",
+    "email": "filler157@example-home.com",
+    "phone": "+15596002157"
+   }
+  },
+  {
+   "id": "opp_c_f158",
+   "name": "Filler158 Patel",
+   "contactId": "c_f158",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-08T10:42:14.392Z",
+   "updatedAt": "2026-07-08T10:42:14.392Z",
+   "contact": {
+    "id": "c_f158",
+    "name": "Filler158 Patel",
+    "email": "filler158@example-home.com",
+    "phone": "+15596002158"
+   }
+  },
+  {
+   "id": "opp_c_f159",
+   "name": "Filler159 Patel",
+   "contactId": "c_f159",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "",
+   "createdAt": "2026-07-22T20:40:34.893Z",
+   "updatedAt": "2026-07-22T20:40:34.893Z",
+   "contact": {
+    "id": "c_f159",
+    "name": "Filler159 Patel",
+    "email": "filler159@example-home.com",
+    "phone": "+15596002159"
+   }
+  },
+  {
+   "id": "opp_c_f160",
+   "name": "Filler160 Kim",
+   "contactId": "c_f160",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-19T19:10:08.203Z",
+   "updatedAt": "2026-08-19T19:10:08.203Z",
+   "contact": {
+    "id": "c_f160",
+    "name": "Filler160 Kim",
+    "email": "filler160@example-home.com",
+    "phone": "+15596002160"
+   }
+  },
+  {
+   "id": "opp_c_f161",
+   "name": "Filler161 Patel",
+   "contactId": "c_f161",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-04T08:29:19.101Z",
+   "updatedAt": "2026-09-04T08:29:19.101Z",
+   "contact": {
+    "id": "c_f161",
+    "name": "Filler161 Patel",
+    "email": "filler161@example-home.com",
+    "phone": "+15596002161"
+   }
+  },
+  {
+   "id": "opp_c_f162",
+   "name": "Filler162 Ng",
+   "contactId": "c_f162",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-28T14:01:14.854Z",
+   "updatedAt": "2026-08-28T14:01:14.854Z",
+   "contact": {
+    "id": "c_f162",
+    "name": "Filler162 Ng",
+    "email": "filler162@example-home.com",
+    "phone": "+15596002162"
+   }
+  },
+  {
+   "id": "opp_c_f163",
+   "name": "Filler163 Lopez",
+   "contactId": "c_f163",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-29T22:10:25.376Z",
+   "updatedAt": "2026-09-29T22:10:25.376Z",
+   "contact": {
+    "id": "c_f163",
+    "name": "Filler163 Lopez",
+    "email": "filler163@example-home.com",
+    "phone": "+15596002163"
+   }
+  },
+  {
+   "id": "opp_c_f164",
+   "name": "Filler164 Ng",
+   "contactId": "c_f164",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-31T10:19:43.614Z",
+   "updatedAt": "2026-08-31T10:19:43.614Z",
+   "contact": {
+    "id": "c_f164",
+    "name": "Filler164 Ng",
+    "email": "filler164@example-home.com",
+    "phone": "+15596002164"
+   }
+  },
+  {
+   "id": "opp_c_f165",
+   "name": "Filler165 Kim",
+   "contactId": "c_f165",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-03T16:55:33.206Z",
+   "updatedAt": "2026-09-03T16:55:33.206Z",
+   "contact": {
+    "id": "c_f165",
+    "name": "Filler165 Kim",
+    "email": "filler165@example-home.com",
+    "phone": "+15596002165"
+   }
+  },
+  {
+   "id": "opp_c_f166",
+   "name": "Filler166 Patel",
+   "contactId": "c_f166",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-01T01:30:27.751Z",
+   "updatedAt": "2026-08-01T01:30:27.751Z",
+   "contact": {
+    "id": "c_f166",
+    "name": "Filler166 Patel",
+    "email": "filler166@example-home.com",
+    "phone": "+15596002166"
+   }
+  },
+  {
+   "id": "opp_c_f167",
+   "name": "Filler167 Ng",
+   "contactId": "c_f167",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-10-01T17:42:27.419Z",
+   "updatedAt": "2026-10-01T17:42:27.419Z",
+   "contact": {
+    "id": "c_f167",
+    "name": "Filler167 Ng",
+    "email": "filler167@example-home.com",
+    "phone": "+15596002167"
+   }
+  },
+  {
+   "id": "opp_c_f168",
+   "name": "Filler168 Ng",
+   "contactId": "c_f168",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-07T14:55:40.897Z",
+   "updatedAt": "2026-08-07T14:55:40.897Z",
+   "contact": {
+    "id": "c_f168",
+    "name": "Filler168 Ng",
+    "email": "filler168@example-home.com",
+    "phone": "+15596002168"
+   }
+  },
+  {
+   "id": "opp_c_f169",
+   "name": "Filler169 Ng",
+   "contactId": "c_f169",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-21T03:59:46.245Z",
+   "updatedAt": "2026-07-21T03:59:46.245Z",
+   "contact": {
+    "id": "c_f169",
+    "name": "Filler169 Ng",
+    "email": "filler169@example-home.com",
+    "phone": "+15596002169"
+   }
+  },
+  {
+   "id": "opp_c_f170",
+   "name": "Filler170 Kim",
+   "contactId": "c_f170",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-06T09:32:17.224Z",
+   "updatedAt": "2026-08-06T09:32:17.224Z",
+   "contact": {
+    "id": "c_f170",
+    "name": "Filler170 Kim",
+    "email": "filler170@example-home.com",
+    "phone": "+15596002170"
+   }
+  },
+  {
+   "id": "opp_c_f171",
+   "name": "Filler171 Patel",
+   "contactId": "c_f171",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-03T10:48:12.388Z",
+   "updatedAt": "2026-09-03T10:48:12.388Z",
+   "contact": {
+    "id": "c_f171",
+    "name": "Filler171 Patel",
+    "email": "filler171@example-home.com",
+    "phone": "+15596002171"
+   }
+  },
+  {
+   "id": "opp_c_f172",
+   "name": "Filler172 Patel",
+   "contactId": "c_f172",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-30T19:51:15.331Z",
+   "updatedAt": "2026-07-30T19:51:15.331Z",
+   "contact": {
+    "id": "c_f172",
+    "name": "Filler172 Patel",
+    "email": "filler172@example-home.com",
+    "phone": "+15596002172"
+   }
+  },
+  {
+   "id": "opp_c_f173",
+   "name": "Filler173 Patel",
+   "contactId": "c_f173",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-03T07:49:15.306Z",
+   "updatedAt": "2026-09-03T07:49:15.306Z",
+   "contact": {
+    "id": "c_f173",
+    "name": "Filler173 Patel",
+    "email": "filler173@example-home.com",
+    "phone": "+15596002173"
+   }
+  },
+  {
+   "id": "opp_c_f174",
+   "name": "Filler174 Smith",
+   "contactId": "c_f174",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-30T06:46:44.898Z",
+   "updatedAt": "2026-09-30T06:46:44.898Z",
+   "contact": {
+    "id": "c_f174",
+    "name": "Filler174 Smith",
+    "email": "filler174@example-home.com",
+    "phone": "+15596002174"
+   }
+  },
+  {
+   "id": "opp_c_f175",
+   "name": "Filler175 Smith",
+   "contactId": "c_f175",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-10T18:24:19.219Z",
+   "updatedAt": "2026-08-10T18:24:19.219Z",
+   "contact": {
+    "id": "c_f175",
+    "name": "Filler175 Smith",
+    "email": "filler175@example-home.com",
+    "phone": "+15596002175"
+   }
+  },
+  {
+   "id": "opp_c_f176",
+   "name": "Filler176 Smith",
+   "contactId": "c_f176",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-10T05:15:22.411Z",
+   "updatedAt": "2026-09-10T05:15:22.411Z",
+   "contact": {
+    "id": "c_f176",
+    "name": "Filler176 Smith",
+    "email": "filler176@example-home.com",
+    "phone": "+15596002176"
+   }
+  },
+  {
+   "id": "opp_c_f177",
+   "name": "Filler177 Ng",
+   "contactId": "c_f177",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "",
+   "createdAt": "2026-09-21T17:47:56.727Z",
+   "updatedAt": "2026-09-21T17:47:56.727Z",
+   "contact": {
+    "id": "c_f177",
+    "name": "Filler177 Ng",
+    "email": "filler177@example-home.com",
+    "phone": "+15596002177"
+   }
+  },
+  {
+   "id": "opp_c_f178",
+   "name": "Filler178 Ng",
+   "contactId": "c_f178",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-09T13:59:12.665Z",
+   "updatedAt": "2026-09-09T13:59:12.665Z",
+   "contact": {
+    "id": "c_f178",
+    "name": "Filler178 Ng",
+    "email": "filler178@example-home.com",
+    "phone": "+15596002178"
+   }
+  },
+  {
+   "id": "opp_c_f179",
+   "name": "Filler179 Lopez",
+   "contactId": "c_f179",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-23T11:52:12.885Z",
+   "updatedAt": "2026-08-23T11:52:12.885Z",
+   "contact": {
+    "id": "c_f179",
+    "name": "Filler179 Lopez",
+    "email": "filler179@example-home.com",
+    "phone": "+15596002179"
+   }
+  },
+  {
+   "id": "opp_c_f180",
+   "name": "Filler180 Lopez",
+   "contactId": "c_f180",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-24T17:40:17.461Z",
+   "updatedAt": "2026-08-24T17:40:17.461Z",
+   "contact": {
+    "id": "c_f180",
+    "name": "Filler180 Lopez",
+    "email": "filler180@example-home.com",
+    "phone": "+15596002180"
+   }
+  },
+  {
+   "id": "opp_c_f181",
+   "name": "Filler181 Ng",
+   "contactId": "c_f181",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-21T00:39:54.129Z",
+   "updatedAt": "2026-08-21T00:39:54.129Z",
+   "contact": {
+    "id": "c_f181",
+    "name": "Filler181 Ng",
+    "email": "filler181@example-home.com",
+    "phone": "+15596002181"
+   }
+  },
+  {
+   "id": "opp_c_f182",
+   "name": "Filler182 Patel",
+   "contactId": "c_f182",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-28T00:05:08.019Z",
+   "updatedAt": "2026-07-28T00:05:08.019Z",
+   "contact": {
+    "id": "c_f182",
+    "name": "Filler182 Patel",
+    "email": "filler182@example-home.com",
+    "phone": "+15596002182"
+   }
+  },
+  {
+   "id": "opp_c_f183",
+   "name": "Filler183 Kim",
+   "contactId": "c_f183",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-04T10:41:48.763Z",
+   "updatedAt": "2026-09-04T10:41:48.763Z",
+   "contact": {
+    "id": "c_f183",
+    "name": "Filler183 Kim",
+    "email": "filler183@example-home.com",
+    "phone": "+15596002183"
+   }
+  },
+  {
+   "id": "opp_c_f184",
+   "name": "Filler184 Ng",
+   "contactId": "c_f184",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-04T04:24:15.308Z",
+   "updatedAt": "2026-08-04T04:24:15.308Z",
+   "contact": {
+    "id": "c_f184",
+    "name": "Filler184 Ng",
+    "email": "filler184@example-home.com",
+    "phone": "+15596002184"
+   }
+  },
+  {
+   "id": "opp_c_f185",
+   "name": "Filler185 Patel",
+   "contactId": "c_f185",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-23T11:51:21.873Z",
+   "updatedAt": "2026-09-23T11:51:21.873Z",
+   "contact": {
+    "id": "c_f185",
+    "name": "Filler185 Patel",
+    "email": "filler185@example-home.com",
+    "phone": "+15596002185"
+   }
+  },
+  {
+   "id": "opp_c_f186",
+   "name": "Filler186 Lopez",
+   "contactId": "c_f186",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-11T03:40:29.629Z",
+   "updatedAt": "2026-07-11T03:40:29.629Z",
+   "contact": {
+    "id": "c_f186",
+    "name": "Filler186 Lopez",
+    "email": "filler186@example-home.com",
+    "phone": "+15596002186"
+   }
+  },
+  {
+   "id": "opp_c_f187",
+   "name": "Filler187 Kim",
+   "contactId": "c_f187",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-21T16:30:29.786Z",
+   "updatedAt": "2026-09-21T16:30:29.786Z",
+   "contact": {
+    "id": "c_f187",
+    "name": "Filler187 Kim",
+    "email": "filler187@example-home.com",
+    "phone": "+15596002187"
+   }
+  },
+  {
+   "id": "opp_c_f188",
+   "name": "Filler188 Patel",
+   "contactId": "c_f188",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-27T05:20:10.839Z",
+   "updatedAt": "2026-09-27T05:20:10.839Z",
+   "contact": {
+    "id": "c_f188",
+    "name": "Filler188 Patel",
+    "email": "filler188@example-home.com",
+    "phone": "+15596002188"
+   }
+  },
+  {
+   "id": "opp_c_f189",
+   "name": "Filler189 Lopez",
+   "contactId": "c_f189",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "PG&E referral",
+   "createdAt": "2026-07-22T08:22:06.588Z",
+   "updatedAt": "2026-07-22T08:22:06.588Z",
+   "contact": {
+    "id": "c_f189",
+    "name": "Filler189 Lopez",
+    "email": "filler189@example-home.com",
+    "phone": "+15596002189"
+   }
+  },
+  {
+   "id": "opp_c_f190",
+   "name": "Filler190 Lopez",
+   "contactId": "c_f190",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-25T03:02:41.862Z",
+   "updatedAt": "2026-09-25T03:02:41.862Z",
+   "contact": {
+    "id": "c_f190",
+    "name": "Filler190 Lopez",
+    "email": "filler190@example-home.com",
+    "phone": "+15596002190"
+   }
+  },
+  {
+   "id": "opp_c_f191",
+   "name": "Filler191 Kim",
+   "contactId": "c_f191",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-12T13:31:59.501Z",
+   "updatedAt": "2026-07-12T13:31:59.501Z",
+   "contact": {
+    "id": "c_f191",
+    "name": "Filler191 Kim",
+    "email": "filler191@example-home.com",
+    "phone": "+15596002191"
+   }
+  },
+  {
+   "id": "opp_c_f192",
+   "name": "Filler192 Ng",
+   "contactId": "c_f192",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-27T01:54:19.925Z",
+   "updatedAt": "2026-09-27T01:54:19.925Z",
+   "contact": {
+    "id": "c_f192",
+    "name": "Filler192 Ng",
+    "email": "filler192@example-home.com",
+    "phone": "+15596002192"
+   }
+  },
+  {
+   "id": "opp_c_f193",
+   "name": "Filler193 Lopez",
+   "contactId": "c_f193",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-11T14:56:58.102Z",
+   "updatedAt": "2026-09-11T14:56:58.102Z",
+   "contact": {
+    "id": "c_f193",
+    "name": "Filler193 Lopez",
+    "email": "filler193@example-home.com",
+    "phone": "+15596002193"
+   }
+  },
+  {
+   "id": "opp_c_f194",
+   "name": "Filler194 Kim",
+   "contactId": "c_f194",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-09T18:22:09.916Z",
+   "updatedAt": "2026-09-09T18:22:09.916Z",
+   "contact": {
+    "id": "c_f194",
+    "name": "Filler194 Kim",
+    "email": "filler194@example-home.com",
+    "phone": "+15596002194"
+   }
+  },
+  {
+   "id": "opp_c_f195",
+   "name": "Filler195 Kim",
+   "contactId": "c_f195",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-07-30T18:39:38.620Z",
+   "updatedAt": "2026-07-30T18:39:38.620Z",
+   "contact": {
+    "id": "c_f195",
+    "name": "Filler195 Kim",
+    "email": "filler195@example-home.com",
+    "phone": "+15596002195"
+   }
+  },
+  {
+   "id": "opp_c_f196",
+   "name": "Filler196 Smith",
+   "contactId": "c_f196",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-09T04:10:08.960Z",
+   "updatedAt": "2026-08-09T04:10:08.960Z",
+   "contact": {
+    "id": "c_f196",
+    "name": "Filler196 Smith",
+    "email": "filler196@example-home.com",
+    "phone": "+15596002196"
+   }
+  },
+  {
+   "id": "opp_c_f197",
+   "name": "Filler197 Smith",
+   "contactId": "c_f197",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-27T16:45:44.872Z",
+   "updatedAt": "2026-08-27T16:45:44.872Z",
+   "contact": {
+    "id": "c_f197",
+    "name": "Filler197 Smith",
+    "email": "filler197@example-home.com",
+    "phone": "+15596002197"
+   }
+  },
+  {
+   "id": "opp_c_f198",
+   "name": "Filler198 Smith",
+   "contactId": "c_f198",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-16T16:41:33.245Z",
+   "updatedAt": "2026-08-16T16:41:33.245Z",
+   "contact": {
+    "id": "c_f198",
+    "name": "Filler198 Smith",
+    "email": "filler198@example-home.com",
+    "phone": "+15596002198"
+   }
+  },
+  {
+   "id": "opp_c_f199",
+   "name": "Filler199 Ng",
+   "contactId": "c_f199",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-09T12:24:33.756Z",
+   "updatedAt": "2026-08-09T12:24:33.756Z",
+   "contact": {
+    "id": "c_f199",
+    "name": "Filler199 Ng",
+    "email": "filler199@example-home.com",
+    "phone": "+15596002199"
+   }
+  },
+  {
+   "id": "opp_c_f200",
+   "name": "Filler200 Smith",
+   "contactId": "c_f200",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-18T03:43:34.398Z",
+   "updatedAt": "2026-08-18T03:43:34.398Z",
+   "contact": {
+    "id": "c_f200",
+    "name": "Filler200 Smith",
+    "email": "filler200@example-home.com",
+    "phone": "+15596002200"
+   }
+  },
+  {
+   "id": "opp_c_f201",
+   "name": "Filler201 Patel",
+   "contactId": "c_f201",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-07T18:19:57.801Z",
+   "updatedAt": "2026-09-07T18:19:57.801Z",
+   "contact": {
+    "id": "c_f201",
+    "name": "Filler201 Patel",
+    "email": "filler201@example-home.com",
+    "phone": "+15596002201"
+   }
+  },
+  {
+   "id": "opp_c_f202",
+   "name": "Filler202 Ng",
+   "contactId": "c_f202",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-22T21:43:49.780Z",
+   "updatedAt": "2026-09-22T21:43:49.780Z",
+   "contact": {
+    "id": "c_f202",
+    "name": "Filler202 Ng",
+    "email": "filler202@example-home.com",
+    "phone": "+15596002202"
+   }
+  },
+  {
+   "id": "opp_c_f203",
+   "name": "Filler203 Kim",
+   "contactId": "c_f203",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-07T13:54:30.244Z",
+   "updatedAt": "2026-09-07T13:54:30.244Z",
+   "contact": {
+    "id": "c_f203",
+    "name": "Filler203 Kim",
+    "email": "filler203@example-home.com",
+    "phone": "+15596002203"
+   }
+  },
+  {
+   "id": "opp_c_f204",
+   "name": "Filler204 Ng",
+   "contactId": "c_f204",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-09T04:33:48.322Z",
+   "updatedAt": "2026-08-09T04:33:48.322Z",
+   "contact": {
+    "id": "c_f204",
+    "name": "Filler204 Ng",
+    "email": "filler204@example-home.com",
+    "phone": "+15596002204"
+   }
+  },
+  {
+   "id": "opp_c_f205",
+   "name": "Filler205 Lopez",
+   "contactId": "c_f205",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-26T02:56:29.665Z",
+   "updatedAt": "2026-09-26T02:56:29.665Z",
+   "contact": {
+    "id": "c_f205",
+    "name": "Filler205 Lopez",
+    "email": "filler205@example-home.com",
+    "phone": "+15596002205"
+   }
+  },
+  {
+   "id": "opp_c_f206",
+   "name": "Filler206 Kim",
+   "contactId": "c_f206",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-08-27T14:29:32.328Z",
+   "updatedAt": "2026-08-27T14:29:32.328Z",
+   "contact": {
+    "id": "c_f206",
+    "name": "Filler206 Kim",
+    "email": "filler206@example-home.com",
+    "phone": "+15596002206"
+   }
+  },
+  {
+   "id": "opp_c_f207",
+   "name": "Filler207 Kim",
+   "contactId": "c_f207",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-29T01:02:30.239Z",
+   "updatedAt": "2026-09-29T01:02:30.239Z",
+   "contact": {
+    "id": "c_f207",
+    "name": "Filler207 Kim",
+    "email": "filler207@example-home.com",
+    "phone": "+15596002207"
+   }
+  },
+  {
+   "id": "opp_c_f208",
+   "name": "Filler208 Patel",
+   "contactId": "c_f208",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-15T03:53:57.374Z",
+   "updatedAt": "2026-07-15T03:53:57.374Z",
+   "contact": {
+    "id": "c_f208",
+    "name": "Filler208 Patel",
+    "email": "filler208@example-home.com",
+    "phone": "+15596002208"
+   }
+  },
+  {
+   "id": "opp_c_f209",
+   "name": "Filler209 Lopez",
+   "contactId": "c_f209",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-07-15T08:52:13.633Z",
+   "updatedAt": "2026-07-15T08:52:13.633Z",
+   "contact": {
+    "id": "c_f209",
+    "name": "Filler209 Lopez",
+    "email": "filler209@example-home.com",
+    "phone": "+15596002209"
+   }
+  },
+  {
+   "id": "opp_c_f210",
+   "name": "Filler210 Kim",
+   "contactId": "c_f210",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-09-25T05:43:39.880Z",
+   "updatedAt": "2026-09-25T05:43:39.880Z",
+   "contact": {
+    "id": "c_f210",
+    "name": "Filler210 Kim",
+    "email": "filler210@example-home.com",
+    "phone": "+15596002210"
+   }
+  },
+  {
+   "id": "opp_c_f211",
+   "name": "Filler211 Ng",
+   "contactId": "c_f211",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-18T17:04:20.622Z",
+   "updatedAt": "2026-08-18T17:04:20.622Z",
+   "contact": {
+    "id": "c_f211",
+    "name": "Filler211 Ng",
+    "email": "filler211@example-home.com",
+    "phone": "+15596002211"
+   }
+  },
+  {
+   "id": "opp_c_f212",
+   "name": "Filler212 Smith",
+   "contactId": "c_f212",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-10T18:38:07.218Z",
+   "updatedAt": "2026-09-10T18:38:07.218Z",
+   "contact": {
+    "id": "c_f212",
+    "name": "Filler212 Smith",
+    "email": "filler212@example-home.com",
+    "phone": "+15596002212"
+   }
+  },
+  {
+   "id": "opp_c_f213",
+   "name": "Filler213 Patel",
+   "contactId": "c_f213",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-17T15:45:43.873Z",
+   "updatedAt": "2026-08-17T15:45:43.873Z",
+   "contact": {
+    "id": "c_f213",
+    "name": "Filler213 Patel",
+    "email": "filler213@example-home.com",
+    "phone": "+15596002213"
+   }
+  },
+  {
+   "id": "opp_c_f214",
+   "name": "Filler214 Ng",
+   "contactId": "c_f214",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-21T01:24:43.348Z",
+   "updatedAt": "2026-07-21T01:24:43.348Z",
+   "contact": {
+    "id": "c_f214",
+    "name": "Filler214 Ng",
+    "email": "filler214@example-home.com",
+    "phone": "+15596002214"
+   }
+  },
+  {
+   "id": "opp_c_f215",
+   "name": "Filler215 Smith",
+   "contactId": "c_f215",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-29T10:19:23.890Z",
+   "updatedAt": "2026-07-29T10:19:23.890Z",
+   "contact": {
+    "id": "c_f215",
+    "name": "Filler215 Smith",
+    "email": "filler215@example-home.com",
+    "phone": "+15596002215"
+   }
+  },
+  {
+   "id": "opp_c_f216",
+   "name": "Filler216 Patel",
+   "contactId": "c_f216",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-17T03:18:13.487Z",
+   "updatedAt": "2026-08-17T03:18:13.487Z",
+   "contact": {
+    "id": "c_f216",
+    "name": "Filler216 Patel",
+    "email": "filler216@example-home.com",
+    "phone": "+15596002216"
+   }
+  },
+  {
+   "id": "opp_c_f217",
+   "name": "Filler217 Lopez",
+   "contactId": "c_f217",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-15T06:42:31.764Z",
+   "updatedAt": "2026-08-15T06:42:31.764Z",
+   "contact": {
+    "id": "c_f217",
+    "name": "Filler217 Lopez",
+    "email": "filler217@example-home.com",
+    "phone": "+15596002217"
+   }
+  },
+  {
+   "id": "opp_c_f218",
+   "name": "Filler218 Ng",
+   "contactId": "c_f218",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-12T06:24:42.395Z",
+   "updatedAt": "2026-08-12T06:24:42.395Z",
+   "contact": {
+    "id": "c_f218",
+    "name": "Filler218 Ng",
+    "email": "filler218@example-home.com",
+    "phone": "+15596002218"
+   }
+  },
+  {
+   "id": "opp_c_f219",
+   "name": "Filler219 Lopez",
+   "contactId": "c_f219",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-10T18:22:26.491Z",
+   "updatedAt": "2026-09-10T18:22:26.491Z",
+   "contact": {
+    "id": "c_f219",
+    "name": "Filler219 Lopez",
+    "email": "filler219@example-home.com",
+    "phone": "+15596002219"
+   }
+  },
+  {
+   "id": "opp_c_f220",
+   "name": "Filler220 Smith",
+   "contactId": "c_f220",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-07T06:43:39.553Z",
+   "updatedAt": "2026-08-07T06:43:39.553Z",
+   "contact": {
+    "id": "c_f220",
+    "name": "Filler220 Smith",
+    "email": "filler220@example-home.com",
+    "phone": "+15596002220"
+   }
+  },
+  {
+   "id": "opp_c_f221",
+   "name": "Filler221 Kim",
+   "contactId": "c_f221",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-04T05:34:27.201Z",
+   "updatedAt": "2026-08-04T05:34:27.201Z",
+   "contact": {
+    "id": "c_f221",
+    "name": "Filler221 Kim",
+    "email": "filler221@example-home.com",
+    "phone": "+15596002221"
+   }
+  },
+  {
+   "id": "opp_c_f222",
+   "name": "Filler222 Lopez",
+   "contactId": "c_f222",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-08T18:36:03.278Z",
+   "updatedAt": "2026-08-08T18:36:03.278Z",
+   "contact": {
+    "id": "c_f222",
+    "name": "Filler222 Lopez",
+    "email": "filler222@example-home.com",
+    "phone": "+15596002222"
+   }
+  },
+  {
+   "id": "opp_c_f223",
+   "name": "Filler223 Patel",
+   "contactId": "c_f223",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-07-20T11:08:57.040Z",
+   "updatedAt": "2026-07-20T11:08:57.040Z",
+   "contact": {
+    "id": "c_f223",
+    "name": "Filler223 Patel",
+    "email": "filler223@example-home.com",
+    "phone": "+15596002223"
+   }
+  },
+  {
+   "id": "opp_c_f224",
+   "name": "Filler224 Ng",
+   "contactId": "c_f224",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-28T05:17:03.652Z",
+   "updatedAt": "2026-09-28T05:17:03.652Z",
+   "contact": {
+    "id": "c_f224",
+    "name": "Filler224 Ng",
+    "email": "filler224@example-home.com",
+    "phone": "+15596002224"
+   }
+  },
+  {
+   "id": "opp_c_f225",
+   "name": "Filler225 Smith",
+   "contactId": "c_f225",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-15T03:58:38.077Z",
+   "updatedAt": "2026-08-15T03:58:38.077Z",
+   "contact": {
+    "id": "c_f225",
+    "name": "Filler225 Smith",
+    "email": "filler225@example-home.com",
+    "phone": "+15596002225"
+   }
+  },
+  {
+   "id": "opp_c_f226",
+   "name": "Filler226 Patel",
+   "contactId": "c_f226",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-19T19:11:00.556Z",
+   "updatedAt": "2026-08-19T19:11:00.556Z",
+   "contact": {
+    "id": "c_f226",
+    "name": "Filler226 Patel",
+    "email": "filler226@example-home.com",
+    "phone": "+15596002226"
+   }
+  },
+  {
+   "id": "opp_c_f227",
+   "name": "Filler227 Patel",
+   "contactId": "c_f227",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-07-17T22:02:19.876Z",
+   "updatedAt": "2026-07-17T22:02:19.876Z",
+   "contact": {
+    "id": "c_f227",
+    "name": "Filler227 Patel",
+    "email": "filler227@example-home.com",
+    "phone": "+15596002227"
+   }
+  },
+  {
+   "id": "opp_c_f228",
+   "name": "Filler228 Smith",
+   "contactId": "c_f228",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-06T04:55:47.220Z",
+   "updatedAt": "2026-09-06T04:55:47.220Z",
+   "contact": {
+    "id": "c_f228",
+    "name": "Filler228 Smith",
+    "email": "filler228@example-home.com",
+    "phone": "+15596002228"
+   }
+  },
+  {
+   "id": "opp_c_f229",
+   "name": "Filler229 Smith",
+   "contactId": "c_f229",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-29T10:32:00.039Z",
+   "updatedAt": "2026-08-29T10:32:00.039Z",
+   "contact": {
+    "id": "c_f229",
+    "name": "Filler229 Smith",
+    "email": "filler229@example-home.com",
+    "phone": "+15596002229"
+   }
+  },
+  {
+   "id": "opp_c_f230",
+   "name": "Filler230 Ng",
+   "contactId": "c_f230",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-19T11:51:52.457Z",
+   "updatedAt": "2026-07-19T11:51:52.457Z",
+   "contact": {
+    "id": "c_f230",
+    "name": "Filler230 Ng",
+    "email": "filler230@example-home.com",
+    "phone": "+15596002230"
+   }
+  },
+  {
+   "id": "opp_c_f231",
+   "name": "Filler231 Lopez",
+   "contactId": "c_f231",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-11T16:29:30.619Z",
+   "updatedAt": "2026-08-11T16:29:30.619Z",
+   "contact": {
+    "id": "c_f231",
+    "name": "Filler231 Lopez",
+    "email": "filler231@example-home.com",
+    "phone": "+15596002231"
+   }
+  },
+  {
+   "id": "opp_c_f232",
+   "name": "Filler232 Kim",
+   "contactId": "c_f232",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-08-23T20:23:08.251Z",
+   "updatedAt": "2026-08-23T20:23:08.251Z",
+   "contact": {
+    "id": "c_f232",
+    "name": "Filler232 Kim",
+    "email": "filler232@example-home.com",
+    "phone": "+15596002232"
+   }
+  },
+  {
+   "id": "opp_c_f233",
+   "name": "Filler233 Lopez",
+   "contactId": "c_f233",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_5",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-07-09T16:51:35.953Z",
+   "updatedAt": "2026-07-09T16:51:35.953Z",
+   "contact": {
+    "id": "c_f233",
+    "name": "Filler233 Lopez",
+    "email": "filler233@example-home.com",
+    "phone": "+15596002233"
+   }
+  },
+  {
+   "id": "opp_c_f234",
+   "name": "Filler234 Patel",
+   "contactId": "c_f234",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-04T15:22:42.203Z",
+   "updatedAt": "2026-09-04T15:22:42.203Z",
+   "contact": {
+    "id": "c_f234",
+    "name": "Filler234 Patel",
+    "email": "filler234@example-home.com",
+    "phone": "+15596002234"
+   }
+  },
+  {
+   "id": "opp_c_f235",
+   "name": "Filler235 Smith",
+   "contactId": "c_f235",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-09-10T15:45:51.901Z",
+   "updatedAt": "2026-09-10T15:45:51.901Z",
+   "contact": {
+    "id": "c_f235",
+    "name": "Filler235 Smith",
+    "email": "filler235@example-home.com",
+    "phone": "+15596002235"
+   }
+  },
+  {
+   "id": "opp_c_f236",
+   "name": "Filler236 Ng",
+   "contactId": "c_f236",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-08-24T06:31:39.731Z",
+   "updatedAt": "2026-08-24T06:31:39.731Z",
+   "contact": {
+    "id": "c_f236",
+    "name": "Filler236 Ng",
+    "email": "filler236@example-home.com",
+    "phone": "+15596002236"
+   }
+  },
+  {
+   "id": "opp_c_f237",
+   "name": "Filler237 Ng",
+   "contactId": "c_f237",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-13T18:40:04.503Z",
+   "updatedAt": "2026-08-13T18:40:04.503Z",
+   "contact": {
+    "id": "c_f237",
+    "name": "Filler237 Ng",
+    "email": "filler237@example-home.com",
+    "phone": "+15596002237"
+   }
+  },
+  {
+   "id": "opp_c_f238",
+   "name": "Filler238 Lopez",
+   "contactId": "c_f238",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_3",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-06T11:20:04.012Z",
+   "updatedAt": "2026-08-06T11:20:04.012Z",
+   "contact": {
+    "id": "c_f238",
+    "name": "Filler238 Lopez",
+    "email": "filler238@example-home.com",
+    "phone": "+15596002238"
+   }
+  },
+  {
+   "id": "opp_c_f239",
+   "name": "Filler239 Ng",
+   "contactId": "c_f239",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-13T03:08:41.496Z",
+   "updatedAt": "2026-08-13T03:08:41.496Z",
+   "contact": {
+    "id": "c_f239",
+    "name": "Filler239 Ng",
+    "email": "filler239@example-home.com",
+    "phone": "+15596002239"
+   }
+  },
+  {
+   "id": "opp_c_f240",
+   "name": "Filler240 Kim",
+   "contactId": "c_f240",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Sold install (partner)",
+   "createdAt": "2026-09-12T18:12:29.976Z",
+   "updatedAt": "2026-09-12T18:12:29.976Z",
+   "contact": {
+    "id": "c_f240",
+    "name": "Filler240 Kim",
+    "email": "filler240@example-home.com",
+    "phone": "+15596002240"
+   }
+  },
+  {
+   "id": "opp_c_f241",
+   "name": "Filler241 Kim",
+   "contactId": "c_f241",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "lost",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-22T12:33:38.463Z",
+   "updatedAt": "2026-08-22T12:33:38.463Z",
+   "contact": {
+    "id": "c_f241",
+    "name": "Filler241 Kim",
+    "email": "filler241@example-home.com",
+    "phone": "+15596002241"
+   }
+  },
+  {
+   "id": "opp_c_f242",
+   "name": "Filler242 Patel",
+   "contactId": "c_f242",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_4",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "",
+   "createdAt": "2026-08-05T02:35:57.511Z",
+   "updatedAt": "2026-08-05T02:35:57.511Z",
+   "contact": {
+    "id": "c_f242",
+    "name": "Filler242 Patel",
+    "email": "filler242@example-home.com",
+    "phone": "+15596002242"
+   }
+  },
+  {
+   "id": "opp_c_f243",
+   "name": "Filler243 Lopez",
+   "contactId": "c_f243",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_7",
+   "status": "won",
+   "monetaryValue": 18000,
+   "source": "Cold calling",
+   "createdAt": "2026-07-12T14:09:12.398Z",
+   "updatedAt": "2026-07-12T14:09:12.398Z",
+   "contact": {
+    "id": "c_f243",
+    "name": "Filler243 Lopez",
+    "email": "filler243@example-home.com",
+    "phone": "+15596002243"
+   }
+  },
+  {
+   "id": "opp_c_f244",
+   "name": "Filler244 Ng",
+   "contactId": "c_f244",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-09-16T10:14:59.662Z",
+   "updatedAt": "2026-09-16T10:14:59.662Z",
+   "contact": {
+    "id": "c_f244",
+    "name": "Filler244 Ng",
+    "email": "filler244@example-home.com",
+    "phone": "+15596002244"
+   }
+  },
+  {
+   "id": "opp_c_f245",
+   "name": "Filler245 Kim",
+   "contactId": "c_f245",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_2",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-22T00:24:14.620Z",
+   "updatedAt": "2026-08-22T00:24:14.620Z",
+   "contact": {
+    "id": "c_f245",
+    "name": "Filler245 Kim",
+    "email": "filler245@example-home.com",
+    "phone": "+15596002245"
+   }
+  },
+  {
+   "id": "opp_c_f246",
+   "name": "Filler246 Lopez",
+   "contactId": "c_f246",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "Cold calling",
+   "createdAt": "2026-08-28T06:09:03.589Z",
+   "updatedAt": "2026-08-28T06:09:03.589Z",
+   "contact": {
+    "id": "c_f246",
+    "name": "Filler246 Lopez",
+    "email": "filler246@example-home.com",
+    "phone": "+15596002246"
+   }
+  },
+  {
+   "id": "opp_c_f247",
+   "name": "Filler247 Ng",
+   "contactId": "c_f247",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_6",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "PG&E referral",
+   "createdAt": "2026-08-26T19:32:06.840Z",
+   "updatedAt": "2026-08-26T19:32:06.840Z",
+   "contact": {
+    "id": "c_f247",
+    "name": "Filler247 Ng",
+    "email": "filler247@example-home.com",
+    "phone": "+15596002247"
+   }
+  },
+  {
+   "id": "opp_c_f248",
+   "name": "Filler248 Ng",
+   "contactId": "c_f248",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_1",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "EG4 referral",
+   "createdAt": "2026-09-06T04:56:25.392Z",
+   "updatedAt": "2026-09-06T04:56:25.392Z",
+   "contact": {
+    "id": "c_f248",
+    "name": "Filler248 Ng",
+    "email": "filler248@example-home.com",
+    "phone": "+15596002248"
+   }
+  },
+  {
+   "id": "opp_c_f249",
+   "name": "Filler249 Smith",
+   "contactId": "c_f249",
+   "pipelineId": "pl_solar",
+   "pipelineStageId": "st_solar_0",
+   "status": "open",
+   "monetaryValue": 0,
+   "source": "RYNO website forms",
+   "createdAt": "2026-08-07T07:55:26.476Z",
+   "updatedAt": "2026-08-07T07:55:26.476Z",
+   "contact": {
+    "id": "c_f249",
+    "name": "Filler249 Smith",
+    "email": "filler249@example-home.com",
+    "phone": "+15596002249"
+   }
+  }
+ ]
+}

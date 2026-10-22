@@ -1,0 +1,61 @@
+{
+ "records": [
+  {
+   "message_id": "0000338981",
+   "received_at": "2026-10-19 13:05",
+   "kind": "lead_outcome",
+   "lead_name": "Sam Slow",
+   "phone": "(559) 555-2155",
+   "outcome": "QUALIFIED APPOINTMENT SET",
+   "status": "FOLLOW UP NOT REQUIRED",
+   "details": "Wants a quote this week.",
+   "ghl_contact_id": "c_sam"
+  },
+  {
+   "message_id": "0000338989",
+   "received_at": "2026-10-20 09:04",
+   "kind": "lead_outcome",
+   "lead_name": "Jane Adams",
+   "phone": "5595552111",
+   "email": "jane.adams@gmail.com",
+   "outcome": "QUALIFIED APPOINTMENT SET",
+   "details": "Roof is 12 years old.",
+   "attempts": [
+    {
+     "at": "2026-10-20 09:04",
+     "result": "Answered"
+    }
+   ]
+  },
+  {
+   "message_id": "0000338990",
+   "received_at": "2026-10-21 08:10",
+   "kind": "followup_dispatch",
+   "lead_name": "Bob Noopp",
+   "phone": "5595552122",
+   "outcome": "WEB LEAD FOLLOWUP",
+   "status": "NO ANSWER"
+  },
+  {
+   "message_id": "0000338991",
+   "received_at": "2026-10-20 13:30",
+   "kind": "lead_outcome",
+   "lead_name": "Dana Typo",
+   "phone": "5595552144",
+   "email": "dana@typo.com",
+   "outcome": "LEAD - CALL BACK",
+   "flags": [
+    "email mismatch"
+   ]
+  },
+  {
+   "message_id": "0000338992",
+   "received_at": "2026-10-21 07:20",
+   "kind": "lead_outcome",
+   "lead_name": "Eve Elsewhere",
+   "phone": "5595552177",
+   "outcome": "LEAD - QUALIFIED NOT INTERESTED",
+   "status": "FOLLOW UP NOT REQUIRED"
+  }
+ ]
+}

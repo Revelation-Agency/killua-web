@@ -1,0 +1,22 @@
+{
+ "records": [
+  {
+   "platform": "tiktok",
+   "date": "2026-10-20",
+   "campaign": "TikTok Spark",
+   "spend": 18.5,
+   "impressions": 5200,
+   "clicks": 61,
+   "leads": 1
+  },
+  {
+   "platform": "tiktok",
+   "date": "2026-10-21",
+   "campaign": "TikTok Spark",
+   "spend": 20,
+   "impressions": 5800,
+   "clicks": 70,
+   "leads": 2
+  }
+ ]
+}

@@ -1,0 +1,294 @@
+{
+ "total": {
+  "rows": [
+   {
+    "clicks": 310,
+    "impressions": 9100,
+    "ctr": 0.034,
+    "position": 14.2
+   }
+  ]
+ },
+ "daily": {
+  "rows": [
+   {
+    "keys": [
+     "2026-09-23"
+    ],
+    "clicks": 8,
+    "impressions": 300,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-09-24"
+    ],
+    "clicks": 9,
+    "impressions": 304,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-09-25"
+    ],
+    "clicks": 10,
+    "impressions": 308,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-09-26"
+    ],
+    "clicks": 11,
+    "impressions": 312,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-09-27"
+    ],
+    "clicks": 12,
+    "impressions": 316,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-09-28"
+    ],
+    "clicks": 13,
+    "impressions": 320,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-09-29"
+    ],
+    "clicks": 14,
+    "impressions": 324,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-09-30"
+    ],
+    "clicks": 8,
+    "impressions": 328,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-01"
+    ],
+    "clicks": 9,
+    "impressions": 332,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-02"
+    ],
+    "clicks": 10,
+    "impressions": 336,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-03"
+    ],
+    "clicks": 11,
+    "impressions": 340,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-04"
+    ],
+    "clicks": 12,
+    "impressions": 344,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-05"
+    ],
+    "clicks": 13,
+    "impressions": 348,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-06"
+    ],
+    "clicks": 14,
+    "impressions": 352,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-07"
+    ],
+    "clicks": 8,
+    "impressions": 356,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-08"
+    ],
+    "clicks": 9,
+    "impressions": 360,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-09"
+    ],
+    "clicks": 10,
+    "impressions": 364,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-10"
+    ],
+    "clicks": 11,
+    "impressions": 368,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-11"
+    ],
+    "clicks": 12,
+    "impressions": 372,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-12"
+    ],
+    "clicks": 13,
+    "impressions": 376,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-13"
+    ],
+    "clicks": 14,
+    "impressions": 380,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-14"
+    ],
+    "clicks": 8,
+    "impressions": 384,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-15"
+    ],
+    "clicks": 9,
+    "impressions": 388,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-16"
+    ],
+    "clicks": 10,
+    "impressions": 392,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-17"
+    ],
+    "clicks": 11,
+    "impressions": 396,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-18"
+    ],
+    "clicks": 12,
+    "impressions": 400,
+    "ctr": 0.03,
+    "position": 14
+   },
+   {
+    "keys": [
+     "2026-10-19"
+    ],
+    "clicks": 13,
+    "impressions": 404,
+    "ctr": 0.03,
+    "position": 14
+   }
+  ]
+ },
+ "queries": {
+  "rows": [
+   {
+    "keys": [
+     "solar installation fresno"
+    ],
+    "clicks": 40,
+    "impressions": 800,
+    "ctr": 0.05,
+    "position": 6.1
+   },
+   {
+    "keys": [
+     "roof repair clovis"
+    ],
+    "clicks": 12,
+    "impressions": 500,
+    "ctr": 0.024,
+    "position": 11.4
+   }
+  ]
+ },
+ "pages": {
+  "rows": [
+   {
+    "keys": [
+     "https://killuahome.com/solar-installation/"
+    ],
+    "clicks": 90,
+    "impressions": 2100,
+    "ctr": 0.043,
+    "position": 9.9
+   }
+  ]
+ }
+}

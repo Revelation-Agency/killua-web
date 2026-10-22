@@ -1,0 +1,81 @@
+{
+ "pipelines": [
+  {
+   "id": "pl_solar",
+   "name": "Solar",
+   "stages": [
+    {
+     "id": "st_solar_0",
+     "name": "New Lead",
+     "position": 0
+    },
+    {
+     "id": "st_solar_1",
+     "name": "Attempting Contact",
+     "position": 1
+    },
+    {
+     "id": "st_solar_2",
+     "name": "Contacted / Working",
+     "position": 2
+    },
+    {
+     "id": "st_solar_3",
+     "name": "Appointment Booked",
+     "position": 3
+    },
+    {
+     "id": "st_solar_4",
+     "name": "Confirmed",
+     "position": 4
+    },
+    {
+     "id": "st_solar_5",
+     "name": "Appointment Ran",
+     "position": 5
+    },
+    {
+     "id": "st_solar_6",
+     "name": "Closing",
+     "position": 6
+    },
+    {
+     "id": "st_solar_7",
+     "name": "Won",
+     "position": 7
+    },
+    {
+     "id": "st_solar_8",
+     "name": "Lost",
+     "position": 8
+    }
+   ]
+  },
+  {
+   "id": "pl_roof",
+   "name": "Roofing",
+   "stages": [
+    {
+     "id": "st_roof_0",
+     "name": "New Lead",
+     "position": 0
+    },
+    {
+     "id": "st_roof_1",
+     "name": "Appointment Booked",
+     "position": 1
+    },
+    {
+     "id": "st_roof_2",
+     "name": "Won",
+     "position": 2
+    },
+    {
+     "id": "st_roof_3",
+     "name": "Lost",
+     "position": 3
+    }
+   ]
+  }
+ ]
+}

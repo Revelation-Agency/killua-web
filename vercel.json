@@ -8,15 +8,15 @@
     },
     { "source": "/dashboard", "destination": "/api/dash?r=_page&p=" },
     { "source": "/dashboard/:path*", "destination": "/api/dash?r=_page&p=:path*" },
-    { "source": "/api/dash/:path*", "destination": "/api/dash?r=:path*" }
+    { "source": "/api/dash/:path+", "destination": "/api/dash?r=:path*" }
   ],
   "functions": {
     "api/dash.js": {
       "maxDuration": 300,
-      "includeFiles": "{dashboard-app/**,scripts/seed-tasks.json}"
+      "includeFiles": "dashboard-app/**"
     }
   },
   "crons": [
-    { "path": "/api/dash?r=cron", "schedule": "0 14,20 * * *" }
+    { "path": "/api/dash/cron", "schedule": "0 14,20 * * *" }
   ]
 }

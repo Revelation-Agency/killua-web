@@ -2,10 +2,10 @@
  * Dashboard data store. JSON documents in Vercel Blob, reached only from the
  * authenticated functions; no blob address ever goes to a browser.
  *
- * - Blobs are written with access 'private' (needs the store to be a private
- *   store). If the connected store is a public one, the code falls back to
- *   public blobs under a pathname that is an HMAC of the document name, which
- *   nobody can guess, and still never hands the address out.
+ * - Blobs are always written and read with access 'private' (the connected
+ *   store "killua-dashboard-data" is a private store). There is no public
+ *   fallback. The pathname is also an HMAC of the document name, so even
+ *   inside the store it cannot be guessed.
  * - Writes use the blob's etag so two people saving at once cannot silently
  *   overwrite each other (readModifyWrite retries).
  * - For local testing and the verify script, set DASH_STORE_DIR to use plain
@@ -15,7 +15,7 @@ import { createHmac } from 'node:crypto';
 import { mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 
-let accessMode = null; // 'private' | 'public', learned on first write
+const ACCESS = 'private';
 
 export function storeConfigured(env = process.env) {
   return Boolean(env.DASH_STORE_DIR || env.BLOB_READ_WRITE_TOKEN);
@@ -56,53 +56,26 @@ async function fileWrite(name, data, env) {
 // ---------------------------------------------------------------- blob mode
 async function blobRead(name, env) {
   const { get } = await blobSdk();
-  const pathname = blobPathname(name, env);
-  const tryAccess = accessMode ? [accessMode] : ['private', 'public'];
-  let lastErr;
-  for (const access of tryAccess) {
-    try {
-      const r = await get(pathname, { access, useCache: false, token: env.BLOB_READ_WRITE_TOKEN });
-      if (!r) {
-        if (access === tryAccess[tryAccess.length - 1]) return null;
-        continue; // maybe stored under the other access mode
-      }
-      if (r.statusCode !== 200) return null;
-      const text = await new Response(r.stream).text();
-      accessMode = access;
-      return { data: JSON.parse(text), etag: r.blob.etag };
-    } catch (e) {
-      lastErr = e;
-      if (!/access|private|public/i.test(String(e?.message))) throw e;
-    }
-  }
-  if (lastErr) throw lastErr;
-  return null;
+  const r = await get(blobPathname(name, env), { access: ACCESS, useCache: false, token: env.BLOB_READ_WRITE_TOKEN });
+  if (!r || r.statusCode !== 200) return null;
+  const text = await new Response(r.stream).text();
+  return { data: JSON.parse(text), etag: r.blob.etag };
 }
 
 async function blobWrite(name, data, env, etag) {
   const { put } = await blobSdk();
-  const pathname = blobPathname(name, env);
-  const body = JSON.stringify(data);
-  const base = { allowOverwrite: true, addRandomSuffix: false, contentType: 'application/json', cacheControlMaxAge: 60, token: env.BLOB_READ_WRITE_TOKEN };
-  if (etag) base.ifMatch = etag;
-  const order = accessMode ? [accessMode] : ['private', 'public'];
-  let lastErr;
-  for (const access of order) {
-    try {
-      await put(pathname, body, { ...base, access });
-      accessMode = access;
-      return;
-    } catch (e) {
-      lastErr = e;
-      if (e?.name === 'BlobPreconditionFailedError') {
-        const err = new Error('conflict');
-        err.conflict = true;
-        throw err;
-      }
-      if (!/access|private|public/i.test(String(e?.message))) throw e;
+  const opts = { access: ACCESS, allowOverwrite: true, addRandomSuffix: false, contentType: 'application/json', token: env.BLOB_READ_WRITE_TOKEN };
+  if (etag) opts.ifMatch = etag;
+  try {
+    await put(blobPathname(name, env), JSON.stringify(data), opts);
+  } catch (e) {
+    if (e?.name === 'BlobPreconditionFailedError') {
+      const err = new Error('conflict');
+      err.conflict = true;
+      throw err;
     }
+    throw e;
   }
-  throw lastErr;
 }
 
 // ---------------------------------------------------------------- API
@@ -152,7 +125,3 @@ export async function logActivity(entry, env = process.env) {
     console.error('activity log failed', String(e?.message || e));
   }
 }
-
-export const _resetAccessMode = () => {
-  accessMode = null;
-};

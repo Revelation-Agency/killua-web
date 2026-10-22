@@ -1,0 +1,46 @@
+{
+ "records": [
+  {
+   "received_at": "2026-10-19T09:59:00-07:00",
+   "subject": "New Killua lead: Sam Slow - Solar installation (Ad: RYNO / Website / Form)",
+   "phone": "5595552155",
+   "email": "sam@gmail.com"
+  },
+  {
+   "received_at": "2026-10-20T08:59:30-07:00",
+   "subject": "New Killua lead: Jane Adams - Solar installation (Ad: Facebook / VIP-Taj Solar Leads / Video 1)",
+   "phone": "5595552111",
+   "email": "jane.adams@gmail.com"
+  },
+  {
+   "received_at": "2026-10-21T07:59:00-07:00",
+   "subject": "New Killua lead: Bob Noopp - Roof repair (Ad: Facebook / Roofing test / Roof image)",
+   "phone": "5595552122",
+   "email": "bob@gmail.com"
+  },
+  {
+   "received_at": "2026-10-21T07:00:00-07:00",
+   "subject": "New Killua lead: Carl Silent - Battery storage (Ad: Facebook / VIP-Taj Solar Leads / Image 2)",
+   "phone": "5595552133",
+   "email": "carl@gmail.com"
+  },
+  {
+   "received_at": "2026-10-20T12:55:00-07:00",
+   "subject": "New Killua lead: Dana Typo - Roof inspection (Ad: RYNO / Website / Form)",
+   "phone": "5595552144",
+   "email": "dana@typo.com"
+  },
+  {
+   "received_at": "2026-10-21T06:00:00-07:00",
+   "subject": "New Killua lead: Eve Elsewhere - Solar repair (Ad: Facebook / VIP-Taj Solar Leads / Video 1)",
+   "phone": "5595552177",
+   "email": "eve@gmail.com"
+  },
+  {
+   "received_at": "2026-10-21T05:00:00-07:00",
+   "subject": "TEST New Killua lead: TEST Lead - Solar installation (Ad: Facebook / test / test)",
+   "phone": "5595550100",
+   "email": "test@example.com"
+  }
+ ]
+}
