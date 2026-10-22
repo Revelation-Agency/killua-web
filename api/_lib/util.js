@@ -72,14 +72,31 @@ export function weekStart(day) {
 }
 export const monthStart = (day) => `${day.slice(0, 7)}-01`;
 
-/** Seconds -> ms-safe ISO, accepts epoch seconds/ms, ISO strings. */
+/** A clock time with no zone ("2026-10-21 14:05") is read as Pacific time. */
+function naivePacificToDate(v) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?$/.exec(String(v).trim());
+  if (!m) return null;
+  const asUtc = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +(m[6] || 0));
+  const parts = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(new Date(asUtc));
+  const g = (t) => +parts.find((x) => x.type === t).value;
+  const shown = Date.UTC(g('year'), g('month') - 1, g('day'), g('hour'), g('minute'), g('second'));
+  const offset = shown - asUtc; // Pacific minus UTC at that instant
+  // the real instant is the naive wall time minus the offset in force then
+  const guess = asUtc - offset;
+  const parts2 = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).formatToParts(new Date(guess));
+  const g2 = (t) => +parts2.find((x) => x.type === t).value;
+  const offset2 = Date.UTC(g2('year'), g2('month') - 1, g2('day'), g2('hour'), g2('minute'), g2('second')) - guess;
+  return new Date(asUtc - offset2);
+}
+
+/** Epoch seconds/ms, ISO strings or zone-less Pacific times -> ISO (UTC). '' if unparseable. */
 export function toIso(v) {
   if (v == null || v === '') return '';
   let d;
   if (typeof v === 'number' || /^\d{10,13}$/.test(String(v))) {
     const n = Number(v);
     d = new Date(n < 1e12 ? n * 1000 : n);
-  } else d = new Date(v);
+  } else d = naivePacificToDate(v) || new Date(v);
   return Number.isNaN(d.getTime()) ? '' : d.toISOString();
 }
 
