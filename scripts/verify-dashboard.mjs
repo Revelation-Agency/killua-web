@@ -329,7 +329,7 @@ ok(leaky.length === 0, 'no lead data in any dashboard page or script file');
 const secretish = staticFiles.concat(['../api/dash.js', '../vercel.json', '../.env.example'].map((p) => new URL(p, import.meta.url).pathname)).filter((f) => /EAA[A-Za-z0-9]{20,}|pit-[0-9a-f-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY|vercel_blob_rw_/.test(readFileSync(f, 'utf8')));
 ok(secretish.length === 0, 'no tokens or keys in dashboard files, vercel.json or .env.example');
 const vj = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
-ok(vj.crons.length === 1 && vj.crons[0].path === '/api/dash/cron' && vj.crons[0].schedule === '0 14,20 * * *', 'two refreshes a day (7:00 and 13:00 Pacific in summer time)');
+ok(vj.crons.length === 1 && vj.crons[0].path === '/api/dash/cron' && vj.crons[0].schedule === '0 14 * * *', 'Vercel refreshes once a day at 7:00 Pacific (Hobby plan limit); the 1:00 PM run is a call to the same cron address');
 ok(vj.rewrites.some((r) => r.has?.[0]?.value === 'app.killuahome.com') && vj.functions['api/dash.js'].includeFiles === 'dashboard-app/**', 'app.killuahome.com is served the dashboard; page files ship with the function');
 
 server.close();

@@ -2,7 +2,9 @@
 
 What this is: a private, logged-in dashboard at **app.killuahome.com** (also `/dashboard/` on any deployment of this project). It shows Meta ads, GoHighLevel leads and appointments, Nexa calls, lead emails, the sales assistant, Google Ads, Search Console, a social calendar, Blaine's task list, and a Connections page that says what is and is not hooked up. A source with no credentials shows "Not connected" and a plain-English "who needs to do what". It never shows made-up numbers.
 
-How it works in one paragraph: a function (`api/dash.js`) serves the pages and the data, but only to signed-in people. Twice a day (7:00 AM and 1:00 PM Pacific in summer; an hour earlier on the clock in winter, because Vercel schedules in UTC) it pulls Meta, GoHighLevel, Google Ads (through a Sheet) and Search Console and saves the results in a **private** Vercel Blob store. Agents (Nexa history, lead-email reader, sales assistant, social, other ads) push their data in with a key. An admin can press **Refresh now** at any time.
+How it works in one paragraph: a function (`api/dash.js`) serves the pages and the data, but only to signed-in people. Twice a day it pulls Meta, GoHighLevel, Google Ads (through a Sheet) and Search Console and saves the results in a **private** Vercel Blob store. Agents (Nexa history, lead-email reader, sales assistant, social, other ads) push their data in with a key. An admin can press **Refresh now** at any time.
+
+**Why "twice a day" is set up two ways:** the Vercel project is on the Hobby plan, which only allows one scheduled job a day. `vercel.json` therefore has one job, 7:00 AM Pacific in summer (14:00 UTC; 6:00 AM in winter). The second run, 1:00 PM Pacific, is a call from Revelation's own n8n (a Schedule trigger plus an HTTP Request node): `GET https://app.killuahome.com/api/dash/cron` with header `Authorization: Bearer <CRON_SECRET>`. If the project moves to Pro, change the cron in `vercel.json` to `0 14,20 * * *` and drop the n8n call.
 
 ## 1. Environment variables
 
