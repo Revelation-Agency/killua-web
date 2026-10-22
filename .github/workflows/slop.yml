@@ -20,5 +20,7 @@ jobs:
       - run: npm run verify
       # Marketing pages: claims, consent, tracking fields, no tags before consent.
       - run: npm run verify:site
+      # Dashboard: connectors on fixtures, login and roles, ingest rules, pagination.
+      - run: npm run verify:dashboard
       # SlopMonster: every shipped page and every staged ad, script and post at 5/5.
       - run: npm run slop
