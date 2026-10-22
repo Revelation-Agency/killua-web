@@ -33,9 +33,14 @@
   const yn = (b) => (b ? html`<span class="pill ok">Yes</span>` : html`<span class="pill bad">No</span>`);
   const LABELS = { ghl: 'GoHighLevel', meta: 'Meta ads', google_ads: 'Google Ads', gsc: 'Search Console', nexa: 'Nexa', email_leads: 'Lead emails', sales_agent: 'Sales assistant', other_ads: 'Other ads', social: 'Social', tasks: 'Tasks', facebook_page: 'Facebook Page' };
   const upd = (u) => {
-    const parts = Object.entries(u || {}).map(([k, v]) => (v ? `${LABELS[k] || k} updated ${when(v)}` : `${LABELS[k] || k} not updated yet`));
+    const ent = Object.entries(u || {});
+    const times = ent.map(([, v]) => v).filter(Boolean).map((v) => Date.parse(v));
+    if (times.length && times.length === ent.length && Math.max(...times) - Math.min(...times) < 10 * 60000) return html`<span class="upd">Updated ${when(new Date(Math.max(...times)).toISOString())}</span>`;
+    const parts = ent.map(([k, v]) => (v ? `${LABELS[k] || k} updated ${when(v)}` : `${LABELS[k] || k} not updated yet`));
     return html`<span class="upd">${parts.length ? parts.join(' · ') : 'Not updated yet'}</span>`;
   };
+  const monthName = (k) => new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'short' }).format(new Date(`${k.slice(0, 7)}-15T12:00:00Z`));
+  const weekName = (k) => new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric' }).format(new Date(`${k}T12:00:00Z`));
   const PALETTE = ['var(--c1)', 'var(--c2)', 'var(--c3)', 'var(--c4)', 'var(--c5)', 'var(--c6)'];
 
   // ------------------------------------------------------------ plumbing
@@ -117,8 +122,8 @@
         <div class="card"><h3>Where leads came from <small>this month · ${L.month.total}</small></h3>${barList(L.month.by_source)}</div>
       </div>
       <div class="grid two">
-        <div class="card"><h3>New leads by week <small>last 10 weeks</small></h3>${stacked(o.series.weekly, o.series.sources)}</div>
-        <div class="card"><h3>New leads by month</h3>${stacked(o.series.monthly, o.series.sources)}</div>
+        <div class="card"><h3>New leads by week <small>last 10 weeks</small></h3>${stacked(o.series.weekly.map((x) => ({ ...x, label: weekName(x.key) })), o.series.sources)}</div>
+        <div class="card"><h3>New leads by month</h3>${stacked(o.series.monthly.map((x) => ({ ...x, label: monthName(x.key) })), o.series.sources)}</div>
       </div>
       <p class="note">A lead is one person, counted once even if they show up in GoHighLevel, the lead email and Nexa. Test records are left out.</p>`);
   }
@@ -168,7 +173,7 @@
   }
 
   // ------------------------------------------------------------ EVERY LEAD
-  let leadData = null, leadFilter = 'all', leadQ = '', leadShown = 120;
+  let leadData = null, leadFilter = 'all', leadQ = '', leadShown = 40;
   const FILTERS = [['all', 'Everyone'], ['attention', 'Needs a look'], ['no_opportunity', 'No opportunity'], ['never_called', 'Never called'], ['not_sent_to_nexa', 'Not sent to Nexa'], ['missing_from_ghl', 'Not in GoHighLevel'], ['wrong_email', 'Email problem'], ['slow_response', 'Slow first contact']];
   const flagPill = (f) => html`<span class="pill ${f.level}">${f.label}</span>`;
   function leadRows() {
@@ -405,8 +410,8 @@
     if (!b) return;
     const act = b.dataset.act, v = b.dataset.v;
     if (act === 'range') { adsRange = v; return vAds(); }
-    if (act === 'lead-filter') { leadFilter = v; leadShown = 120; return vLeadsRender(); }
-    if (act === 'more-leads') { leadShown += 200; return vLeadsRender(); }
+    if (act === 'lead-filter') { leadFilter = v; leadShown = 40; return vLeadsRender(); }
+    if (act === 'more-leads') { leadShown += 100; return vLeadsRender(); }
     if (act === 'soc-plat') { socPlat = v; return rerenderSocial(); }
     if (act === 'soc-mode') { socMode = v; return rerenderSocial(); }
     if (act === 'soc-month') { const [y, m] = socMonth.split('-').map(Number); const d = new Date(Date.UTC(y, m - 1 + Number(v), 1)); socMonth = d.toISOString().slice(0, 7); socDay = null; return rerenderSocial(); }
@@ -427,7 +432,7 @@
   });
   const vLeadsRender = () => { const h = $('#leadtable'); if (h) h.innerHTML = leadTable().s; $$('.chip[data-act="lead-filter"]').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.v === leadFilter))); };
   view.addEventListener('input', (e) => {
-    if (e.target.id === 'leadq') { leadQ = e.target.value; leadShown = 120; vLeadsRender(); }
+    if (e.target.id === 'leadq') { leadQ = e.target.value; leadShown = 40; vLeadsRender(); }
     if (e.target.name === 'progress') { const o = e.target.closest('label').querySelector('output'); if (o) o.textContent = e.target.value; }
   });
   view.addEventListener('submit', async (e) => {

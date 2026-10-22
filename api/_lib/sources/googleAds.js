@@ -39,7 +39,10 @@ export function parseRows(values) {
   const cell = (r, k) => (idx[k] >= 0 ? r[idx[k]] : '');
   const rows = [];
   for (const r of values.slice(1)) {
-    const date = String(cell(r, 'date')).slice(0, 10);
+    let rawDate = cell(r, 'date');
+    // a Sheets date arrives as a day count since 1899-12-30 when the cell is formatted as a date
+    if (typeof rawDate === 'number' && rawDate > 30000) rawDate = new Date(Date.UTC(1899, 11, 30) + rawDate * 86400000).toISOString();
+    const date = String(rawDate).slice(0, 10);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
     const type = str(cell(r, 'type'), 40);
     rows.push({
