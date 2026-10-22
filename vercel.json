@@ -7,6 +7,8 @@
       "destination": "/api/dash?r=_page&p="
     },
     { "source": "/dashboard", "destination": "/api/dash?r=_page&p=" },
+    { "source": "/dashboard/", "destination": "/api/dash?r=_page&p=" },
+    { "source": "/dashboard/:path*/", "destination": "/api/dash?r=_page&p=:path*" },
     { "source": "/dashboard/:path*", "destination": "/api/dash?r=_page&p=:path*" },
     { "source": "/api/dash/:path+", "destination": "/api/dash?r=:path*" }
   ],
